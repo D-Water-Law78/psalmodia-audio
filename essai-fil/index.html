@@ -169,6 +169,23 @@ body.vit-cote .art .lvc{right:-6px;bottom:-6px;width:22px;height:22px;font-size:
 .stepcard.entc .eyebrow,.stepcard.entc .sc-n,.stepcard.entc .sc-d{color:#fffaf0;text-shadow:0 1px 2px rgba(60,20,0,.55),0 0 14px rgba(60,20,0,.45)}
 section.litfil + .stepcard.entc{margin:14px 0 6px}
 .cpk.acc .nm{font-size:11px;overflow-wrap:normal;white-space:nowrap;letter-spacing:-.1px}
+
+/* 19/11 : fil 6 recentré, points toujours remplis (jamais vides ni blancs) */
+.v6 .f6row{margin:0 10px}
+.v6 .d6 i{background:var(--c1);box-shadow:none;opacity:.55}
+.v6 .d6.done i{opacity:1}
+.v6 .d6.on i{opacity:1;background:linear-gradient(160deg,var(--c1),var(--c2));color:#f6ecd9;box-shadow:0 0 0 3px var(--night),0 0 0 5px var(--c1)}
+/* bulles qui pâlissent : seulement la photo et le nom, jamais les sceaux */
+.qc.mini .chan.off{opacity:1}.qc.mini .chan.off .av,.qc.mini .chan.off>span:not(.etqs),.qc.mini .chan.off small{opacity:.4}
+.qc.mini{padding:6px 4px 4px;margin-top:-6px}
+/* Pastilles : Tous · chaque prêtre */
+.qchips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 10px}.qchips::-webkit-scrollbar{display:none}
+.qchips button{flex:none;display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px 0 4px;border-radius:18px;background:var(--raised);font-size:13.5px;white-space:nowrap}
+.qchips button:first-child{padding-left:14px}
+.qchips button small{font-size:11.5px;color:var(--faint)}
+.qchips button.on{background:var(--gold);color:var(--on-gold)}.qchips button.on small{color:inherit;opacity:.7}
+.qchips .av.xs{width:28px;height:28px;font-size:11px}
+.qsheet{padding:4px 16px 18px}
 /* ===== Barre du bas façon Apple Music (essai du 18-19/11) =====
    body.am : la barre se replie quand on descend (onglet en rond · mini-lecteur · loupe), se rouvre quand on remonte ;
    la loupe devient un champ de recherche. body.am-lq : verre liquide, avec la loupe de verre qui suit le doigt.
@@ -288,9 +305,11 @@ body.am-gl.am-col #dock > .amgl,body.am-gl.am-sea #dock > .amgl{opacity:0;pointe
 :root[data-theme="pourpre"]{--night:#150a12;--surface:#1f0f1b;--raised:#33182d;--muted:#ab93a3;--faint:#7d6574;--glass:rgba(45,20,40,.8);--sheet:rgba(40,18,36,.95);--fade:21,10,18;--top:#150a12;--av1:#47213f;--av2:#1f0f1b;--avph:#2e1529}
 :root[data-theme="olivier"]{--night:#0a130e;--surface:#101c14;--raised:#17281d;--muted:#93a596;--faint:#66786a;--glass:rgba(22,38,28,.8);--sheet:rgba(20,34,25,.95);--fade:10,19,14;--top:#0a130e;--av1:#24402e;--av2:#0f1a13;--avph:#183022}
 :root[data-theme="bordeaux"]{--night:#160608;--surface:#20090c;--raised:#321115;--muted:#ac9194;--faint:#7b6568;--glass:rgba(45,13,17,.8);--sheet:rgba(40,11,15,.95);--fade:22,6,8;--top:#160608;--av1:#491d23;--av2:#20090c;--avph:#331418}
-:root[data-theme="encens"]{--night:#140e08;--surface:#1e140b;--raised:#2f2114;--muted:#ac9e91;--faint:#7b7065;--glass:rgba(43,29,16,.8);--sheet:rgba(37,26,14,.95);--fade:20,14,8;--top:#140e08;--av1:#453321;--av2:#1e140b;--avph:#312417}
 :root[data-theme="nil"]{--night:#061416;--surface:#081d21;--raised:#0f2e33;--muted:#91a8ac;--faint:#65787b;--glass:rgba(12,42,47,.8);--sheet:rgba(10,37,41,.95);--fade:6,20,22;--top:#061416;--av1:#1b454b;--av2:#081d21;--avph:#133035}
 :root[data-theme="indigo"]{--night:#080814;--surface:#0b0c1e;--raised:#14152f;--muted:#9191ac;--faint:#65667b;--glass:rgba(16,17,43,.8);--sheet:rgba(14,15,37,.95);--fade:8,8,20;--top:#080814;--av1:#212245;--av2:#0b0c1e;--avph:#171831}
+:root[data-theme="emeraude"]{--night:#05140f;--surface:#081f16;--raised:#0f3124;--muted:#91aca2;--faint:#657b73;--glass:rgba(11,45,33,.8);--sheet:rgba(10,39,28,.95);--fade:5,20,15;--top:#05140f;--av1:#1a4a38;--av2:#081f16;--avph:#123327}
+:root[data-theme="lavande"]{--night:#120e18;--surface:#181221;--raised:#241d30;--muted:#9a91ac;--faint:#6d657b;--glass:rgba(32,25,44,.8);--sheet:rgba(28,22,39,.95);--fade:18,14,24;--top:#120e18;--av1:#352c45;--av2:#181221;--avph:#262032}
+:root[data-theme="ambre"]{--night:#160f03;--surface:#211605;--raised:#35240a;--muted:#aca191;--faint:#7b7265;--glass:rgba(49,32,7,.8);--sheet:rgba(42,28,6,.95);--fade:22,15,3;--top:#160f03;--av1:#503814;--av2:#211605;--avph:#37270e}
 /* Nacre (clair) : texte bleu marine, or assombri pour rester lisible. Sous l'heure de l'iPhone, une bande bleu nuit, car l'heure y est toujours écrite en blanc. */
 :root[data-theme="nacre"]{--night:#f7f8fb;--surface:#ffffff;--raised:#eaeef2;--ivory:#142039;--muted:#5a6680;--faint:#7d879b;--gold:#a67a24;--on-gold:#ffffff;
   --line:rgba(20,33,61,.09);--glass:rgba(255,255,255,.8);--glass-sh:0 1px 0 rgba(20,33,61,.06),0 8px 24px rgba(20,33,61,.10);
@@ -342,11 +361,18 @@ h1{font-family:var(--f-display);font-weight:400;font-size:34px;letter-spacing:.0
   background:radial-gradient(120% 90% at 15% 0%,rgba(255,255,255,.22),transparent 55%),linear-gradient(150deg,var(--c1),var(--c2));
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
 .art .gl{font-family:var(--f-lettrine);font-size:54cqi;line-height:1;text-shadow:0 2px 24px rgba(0,0,0,.25)}
-.art .xc{position:absolute;right:7%;bottom:7%;width:16%;height:16%;opacity:.45}
+.art .xc{position:absolute;right:7%;bottom:7%;width:16%;height:16%;opacity:.45;display:none}   /* croix « signature » : retirée le 19/11 à la demande du user, on verra plus tard */
 .art.xs{width:40px;height:40px;border-radius:8px}
 .art.sm{width:48px;height:48px;border-radius:8px}
 .art.md{width:100%;aspect-ratio:1;border-radius:12px}
 .art.xl{width:min(62vw,230px);aspect-ratio:1;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.plrow .art.xs{width:32px;height:32px;border-radius:7px}   /* pochette des playlists dans la Bibliothèque */
+.chzoom{border-radius:50%;cursor:zoom-in}
+.chz{position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px 16px;cursor:zoom-out;
+  background:rgba(var(--fade),0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:background .3s,backdrop-filter .3s,-webkit-backdrop-filter .3s}
+.chz.on{background:rgba(var(--fade),.55);-webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2)}
+.chz img{max-width:min(100%,460px);max-height:72vh;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.5);transition:transform .32s cubic-bezier(.32,.72,0,1),border-radius .32s;will-change:transform}
+.chz-n{font-family:var(--f-display);font-size:22px;color:var(--ivory);opacity:0;transition:opacity .25s .1s}.chz.on .chz-n{opacity:1}
 
 .season{position:relative;overflow:hidden;border-radius:22px;padding:20px;color:var(--ink);
   background:radial-gradient(120% 90% at 10% 0%,rgba(255,255,255,.2),transparent 55%),linear-gradient(150deg,var(--c1),var(--c2))}
@@ -860,7 +886,7 @@ body.dk-big .p-queue,body.dk-big .p-find{padding-top:40px}
 .qc .etq::before,.qleg .etq::before{content:"";display:inline-block;width:0;height:calc(50% + .39em);vertical-align:baseline}
 .qc .etq[data-l="gregoire"],.qleg .etq[data-l="gregoire"]{color:#2a2010}
 .sh.mom+.qleg{margin-top:4px}.qleg{display:flex;gap:14px;margin:-6px 2px 14px;font-size:12.5px;color:var(--faint)}.qleg span{display:inline-flex;align-items:center;gap:6px}.qleg .etq{width:18px;height:18px;font-size:11px}
-.qc.mini{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0!important;margin-inline:0;padding-inline:0}.qc.mini .chan{width:calc((100% - 30px) / 4);gap:6px;scroll-snap-align:start;transition:opacity .2s}.qc.mini .av{width:80px;height:80px}.qc.mini .chan>span:not(.etqs){font-size:13px;line-height:1.2}.qc.mini .etq{width:20px;height:20px;font-size:12px}
+.qc.mini{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0!important;margin-inline:0;padding:6px 4px 4px;margin-top:-6px}.qc.mini .chan{width:calc((100% - 30px) / 4);gap:6px;scroll-snap-align:start;transition:opacity .2s}.qc.mini .av{width:80px;height:80px}.qc.mini .chan>span:not(.etqs){font-size:13px;line-height:1.2}.qc.mini .etq{width:20px;height:20px;font-size:12px}
 .qc.mini .chan.off{opacity:.4}.qc.mini .chan.on .av{box-shadow:0 0 0 2px var(--night),0 0 0 4px var(--gold)}.qc.mini .chan.on>span:not(.etqs){color:var(--gold);font-weight:600}
 </style>
 
@@ -1764,7 +1790,7 @@ function litRow(id, list, i) {   // sceau de la messe sur l'image ; traduction, 
 }
 /* ===== Vitrine du fil de la liturgie (18/11) : 8 fils + Prêtre célébrant 2 ou 3 ===== */
 let VIT_SC = localStorage.getItem('vit:sceau') || 'dedans'; document.body.classList.toggle('vit-cote', VIT_SC === 'cote');
-let VIT_MUTE = 0, VIT_FIL = +(localStorage.getItem('vit:fil') || 4), VIT_QC = +(localStorage.getItem('vit:qc') || 2), VIT_VIS = [], VIT_N = {}, VIT_DIR = 0, VIT_QF = '';   // VIT_QF : chantre choisi dans les bulles (filtre la liste de l'étape)
+let VIT_MUTE = 0, VIT_FIL = +(localStorage.getItem('vit:fil') || 4), VIT_QC = 2, VIT_VIS = [], VIT_N = {}, VIT_DIR = 0, VIT_QF = '';   // VIT_QF : chantre choisi dans les bulles (filtre la liste de l'étape)
 const VIT_FILS = ['Actuel', 'Fil aéré', 'Pilules', 'Cartes', 'Carrousel', 'Onglets', 'Progression', 'Barre', 'Pastilles'];
 const vitPC = s => LITP.find(p => p[0] === s[0]);
 const vitV = s => { const p = vitPC(s)[2]; return `--c1:${p[0]};--c2:${p[1]}`; };
@@ -1786,8 +1812,8 @@ function vitFilHTML(oldFil) {
 }
 function vitBar() {
   return `<div class="vitbar"><div class="vitrow"><span class="vitl">Fil</span><div class="vitch">${VIT_FILS.map((nm, k) => `<button class="${k === VIT_FIL ? 'on' : ''}" data-vitfil="${k}">${k ? k + ' ' : ''}${nm}</button>`).join('')}</div></div>`
-    + `<div class="vitrow"><span class="vitl">Prêtre</span><div class="vitch"><button class="${VIT_QC === 2 ? 'on' : ''}" data-vitqc="2">2 · sous la carte</button><button class="${VIT_QC === 3 ? 'on' : ''}" data-vitqc="3">3 · tout en bas</button></div></div>`
-    + `<div class="vitrow"><span class="vitl">Sceau</span><div class="vitch"><button class="${VIT_SC === 'dedans' ? 'on' : ''}" data-vitsc="dedans">Dans la pochette</button><button class="${VIT_SC === 'cote' ? 'on' : ''}" data-vitsc="cote">Sur le côté</button></div></div>` + vitFcBar() + vitEntBar() + vitGearBar() + (typeof amBar === 'function' ? amBar() : '') + `</div>`;
+    + `<div class="vitrow" hidden><span class="vitl">Prêtre</span><div class="vitch"><button class="${VIT_QC === 2 ? 'on' : ''}" data-vitqc="2">2 · sous la carte</button><button class="${VIT_QC === 3 ? 'on' : ''}" data-vitqc="3">3 · tout en bas</button></div></div>`
+    + vitQmBar() + `<div class="vitrow" hidden><span class="vitl">Sceau</span><div class="vitch"><button class="${VIT_SC === 'dedans' ? 'on' : ''}" data-vitsc="dedans">Dans la pochette</button><button class="${VIT_SC === 'cote' ? 'on' : ''}" data-vitsc="cote">Sur le côté</button></div></div>` + vitEntBar() + vitGearBar() + (typeof amBar === 'function' ? amBar() : '') + `</div>`;
 }
 function renderLiturgie() {
   const ids0 = litOrdre(), autres = listIds('univ:liturgie').filter(id => !litStepOf(id));
@@ -1812,14 +1838,15 @@ function renderLiturgie() {
       <button class="s-btn" data-act="shufplay" data-list="univ:liturgie" ${ids0.length ? '' : 'disabled'}>${ic('shuffle', 16)} Aléatoire</button></div></section>`
     + (VIT_EP === 'haut' ? ent : '') + vitBar() + fil + card + (VIT_QC === 2 ? litQui(ids, 'Prêtre célébrant de cette étape', true) : '') + rows + (VIT_EP === 'bas' ? ent : '') + (VIT_QC === 3 ? litQui(listIds('univ:liturgie'), 'Prêtre célébrant') : '');
 }
-function litQui(ids, titre, mini) {   // prêtre célébrant : photo, nombre de chants, sceaux des messes
+function litQui(ids, titre, mini) {   // prêtre célébrant : photo, nombre de chants, sceaux des messes ; VIT_QM : bulles | pastilles | feuille
   const cnt = {}, lits = {};
   ids.forEach(id => { const t = TR[id]; [t.ch, t.ch2, t.ch3].filter(k => CH[k]).forEach(k => { cnt[k] = (cnt[k] || 0) + 1; const l = litDe(id); if (LITC[l]) (lits[k] = lits[k] || {})[l] = 1; }); });
   const chs = Object.keys(cnt).sort((a, b) => cnt[b] - cnt[a]); if (!chs.length) return '';
   const LVN = {basile:'Basile', gregoire:'Grégoire', cyrille:'Cyrille'};
   const et = l => `<i class="etq" data-l="${l}" style="--c1:${LITC[l][0]};--c2:${LITC[l][1]}">${LITL[l]}</i>`;
-  return `<div class="sh${mini ? ' mom' : ''}">${mini ? `<h3>${titre}</h3>` : `<h2>${titre}</h2>`}</div><p class="qleg">${['basile', 'gregoire', 'cyrille'].map(l => `<span>${et(l)}Saint ${LVN[l]}</span>`).join('')}</p>`
-    + `<div class="hscroll qc${mini ? ' mini' : ''}">${chs.map(k => { const c = CH[k], L = ['basile', 'gregoire', 'cyrille'].filter(l => (lits[k] || {})[l]); return `<button class="chan${mini && VIT_QF ? (VIT_QF === k ? ' on' : ' off') : ''}" ${mini ? `data-qcf="${k}" aria-pressed="${VIT_QF === k}"` : `data-act="open" data-type="chanter" data-id="${k}"`}>${avHTML(c)}<span>${esc(c.name)}</span><small>${cnt[k]} chant${cnt[k] > 1 ? 's' : ''}</small><span class="etqs">${L.map(et).join('')}</span></button>`; }).join('')}</div>`;
+  const head = `<div class="sh mom"><h3>${titre}</h3></div><p class="qleg">${['basile', 'gregoire', 'cyrille'].map(l => `<span>${et(l)}Saint ${LVN[l]}</span>`).join('')}</p>`;
+  if (VIT_QM === 'pastilles') return head + `<div class="qchips"><button class="${VIT_QF ? '' : 'on'}" data-qcf="">Tous<small>${ids.length}</small></button>${chs.map(k => `<button class="${VIT_QF === k ? 'on' : ''}" data-qcf="${k}">${avHTML(CH[k], 'xs')}${esc(CH[k].name)}<small>${cnt[k]}</small></button>`).join('')}</div>`;
+  return head + `<div class="hscroll qc mini">${chs.map(k => { const c = CH[k], L = ['basile', 'gregoire', 'cyrille'].filter(l => (lits[k] || {})[l]), on = VIT_QM === 'bulles' && VIT_QF; return `<button class="chan${on ? (VIT_QF === k ? ' on' : ' off') : ''}" ${VIT_QM === 'feuille' ? `data-qfeuille="${k}"` : `data-qcf="${k}"`} aria-pressed="${VIT_QF === k}">${avHTML(c)}<span>${esc(c.name)}</span><small>${cnt[k]} chant${cnt[k] > 1 ? 's' : ''}</small><span class="etqs">${L.map(et).join('')}</span></button>`; }).join('')}</div>`;
 }
 function vitCenter(sc, el, smooth) { if (!sc || !el) return; const x = el.offsetLeft + el.offsetWidth / 2 - sc.clientWidth / 2; sc.scrollTo({left: Math.max(0, x), behavior: smooth ? 'smooth' : 'auto'}); }
 function vitSync(v, smooth, from) {
@@ -1878,9 +1905,9 @@ document.addEventListener('click', e => {
     if (f) { VIT_FIL = +f.dataset.vitfil; localStorage.setItem('vit:fil', VIT_FIL); } else { VIT_QC = +q.dataset.vitqc; localStorage.setItem('vit:qc', VIT_QC); }
     render(true); scrollTo(0, y); return; }
   const qb = t.closest('[data-qcf]');
-  if (qb) { e.preventDefault(); e.stopPropagation(); const y = scrollY, hs = qb.closest('.qc').scrollLeft;
+  if (qb) { e.preventDefault(); e.stopPropagation(); const y = scrollY, hs = (qb.closest('.qc, .qchips') || {}).scrollLeft || 0;
     VIT_QF = VIT_QF === qb.dataset.qcf ? '' : qb.dataset.qcf; render(true); scrollTo(0, y);
-    const q2 = document.querySelector('.qc.mini'); if (q2) q2.scrollLeft = hs; return; }
+    const q2 = document.querySelector('.qc.mini, .qchips'); if (q2) q2.scrollLeft = hs; return; }
   const d = t.closest('[data-litd]');
   if (d) { e.preventDefault(); e.stopPropagation(); const i = VIT_VIS.findIndex(s => s[1] === litStep) + +d.dataset.litd; if (VIT_VIS[i]) vitSelect(VIT_VIS[i][1]); return; }
   const b = t.closest('.vfil [data-litst]');
@@ -1975,7 +2002,7 @@ document.addEventListener('click', e => {
 }, true);
 
 /* 19/11 : les couleurs des trois messes (or de la patène, blanc éclatant, rouge du sang) sur le fil et la bulle, qui changent en avançant */
-let VIT_FC = localStorage.getItem('vit:fc') || 'trois';
+let VIT_FC = 'parties';   // 19/11 : le user ne veut pas les trois messes sur le fil (ni blanc, ni points vides)
 const VIT_TROIS = [[0, [184, 134, 11]], [.24, [245, 197, 66]], [.5, [255, 248, 231]], [.76, [214, 40, 57]], [1, [139, 13, 28]]];
 function vitTrois(t, dark = 0) {
   t = Math.max(0, Math.min(1, t)); let k = 1; while (k < VIT_TROIS.length - 1 && VIT_TROIS[k][0] < t) k++;
@@ -1991,6 +2018,20 @@ document.addEventListener('click', e => {
   document.body.classList.toggle('vit-fc3', VIT_FC === 'trois'); const y = scrollY; render(true); scrollTo(0, y);
 }, true);
 document.body.classList.toggle('vit-fc3', VIT_FC === 'trois');
+
+/* 19/11 : comment choisir un prêtre célébrant (le user n'aime pas les bulles qui pâlissent) */
+let VIT_QM = localStorage.getItem('vit:qm') || 'pastilles';
+function vitQmBar() { return `<div class="vitrow"><span class="vitl">Prêtre</span><div class="vitch">${[['bulles', 'Bulles (actuel)'], ['pastilles', 'Pastilles'], ['feuille', 'Feuille']].map(([k, n]) => `<button class="${VIT_QM === k ? 'on' : ''}" data-vitqm="${k}">${n}</button>`).join('')}</div></div>`; }
+document.addEventListener('click', e => {
+  const m = e.target.closest('[data-vitqm]'), f = e.target.closest('[data-qfeuille]');
+  if (m) { e.preventDefault(); e.stopPropagation(); VIT_QM = m.dataset.vitqm; VIT_QF = ''; localStorage.setItem('vit:qm', VIT_QM); const y = scrollY; render(true); scrollTo(0, y); return; }
+  if (f) {   // « Feuille » : la liste ne bouge pas ; ses chants de l'étape s'ouvrent dans une feuille
+    e.preventDefault(); e.stopPropagation();
+    const k = f.dataset.qfeuille, c = CH[k], list = 'litv:' + litStep, all = listIds(list);
+    const rows = all.map((id, i) => [TR[id].ch, TR[id].ch2, TR[id].ch3].includes(k) ? rowHTML(TR[id], list, i) : '').join('');
+    openSheet(`<div class="sh-head">${avHTML(c, 'sm')}<div class="tt"><div class="tt1 ell">${esc(c.name)}</div><div class="tt2 ell">${VIT_VIS.find(s => s[1] === litStep)?.[2] || ''}</div></div></div><div class="qsheet">${rows}</div>`);
+  }
+}, true);
 
 /*! Glisse 0.6.0 (c) Kelvin Zhang, licence MIT, github.com/0kzh/glisse. React (c) Meta Platforms, licence MIT. */
 (()=>{var uv=Object.create;var Pf=Object.defineProperty;var cv=Object.getOwnPropertyDescriptor;var ov=Object.getOwnPropertyNames;var rv=Object.getPrototypeOf,fv=Object.prototype.hasOwnProperty;var ts=(t,e,l)=>()=>{if(l)throw l[0];try{return t&&(e=t(t=0)),e}catch(n){throw l=[n],n}};var xe=(t,e)=>()=>{try{return e||t((e={exports:{}}).exports,e),e.exports}catch(l){throw e=0,l}};var sv=(t,e,l,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let a of ov(e))!fv.call(t,a)&&a!==l&&Pf(t,a,{get:()=>e[a],enumerable:!(n=cv(e,a))||n.enumerable});return t};var yn=(t,e,l)=>(l=t!=null?uv(rv(t)):{},sv(e||!t||!t.__esModule?Pf(l,"default",{value:t,enumerable:!0}):l,t));var gs=xe(D=>{"use strict";var Cc=Symbol.for("react.transitional.element"),dv=Symbol.for("react.portal"),gv=Symbol.for("react.fragment"),hv=Symbol.for("react.strict_mode"),mv=Symbol.for("react.profiler"),vv=Symbol.for("react.consumer"),bv=Symbol.for("react.context"),pv=Symbol.for("react.forward_ref"),yv=Symbol.for("react.suspense"),Sv=Symbol.for("react.memo"),is=Symbol.for("react.lazy"),xv=Symbol.for("react.activity"),Ev=Symbol.for("react.view_transition"),es=Symbol.iterator;function Tv(t){return t===null||typeof t!="object"?null:(t=es&&t[es]||t["@@iterator"],typeof t=="function"?t:null)}var us={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}},cs=Object.assign,os={};function xn(t,e,l){this.props=t,this.context=e,this.refs=os,this.updater=l||us}xn.prototype.isReactComponent={};xn.prototype.setState=function(t,e){if(typeof t!="object"&&typeof t!="function"&&t!=null)throw Error("takes an object of state variables to update or a function which returns an object of state variables.");this.updater.enqueueSetState(this,t,e,"setState")};xn.prototype.forceUpdate=function(t){this.updater.enqueueForceUpdate(this,t,"forceUpdate")};function rs(){}rs.prototype=xn.prototype;function Uc(t,e,l){this.props=t,this.context=e,this.refs=os,this.updater=l||us}var Hc=Uc.prototype=new rs;Hc.constructor=Uc;cs(Hc,xn.prototype);Hc.isPureReactComponent=!0;var ls=Array.isArray;function Rc(){}var W={H:null,A:null,T:null,S:null},fs=Object.prototype.hasOwnProperty;function Bc(t,e,l){var n=l.ref;return{$$typeof:Cc,type:t,key:e,ref:n!==void 0?n:null,props:l}}function Mv(t,e){return Bc(t.type,e,t.props)}function Lc(t){return typeof t=="object"&&t!==null&&t.$$typeof===Cc}function zv(t){var e={"=":"=0",":":"=2"};return"$"+t.replace(/[=:]/g,function(l){return e[l]})}var ns=/\/+/g;function Dc(t,e){return typeof t=="object"&&t!==null&&t.key!=null?zv(""+t.key):e.toString(36)}function wv(t){switch(t.status){case"fulfilled":return t.value;case"rejected":throw t.reason;default:switch(typeof t.status=="string"?t.then(Rc,Rc):(t.status="pending",t.then(function(e){t.status==="pending"&&(t.status="fulfilled",t.value=e)},function(e){t.status==="pending"&&(t.status="rejected",t.reason=e)})),t.status){case"fulfilled":return t.value;case"rejected":throw t.reason}}throw t}function Sn(t,e,l,n,a){var i=typeof t;(i==="undefined"||i==="boolean")&&(t=null);var u=!1;if(t===null)u=!0;else switch(i){case"bigint":case"string":case"number":u=!0;break;case"object":switch(t.$$typeof){case Cc:case dv:u=!0;break;case is:return u=t._init,Sn(u(t._payload),e,l,n,a)}}if(u)return a=a(t),u=n===""?"."+Dc(t,0):n,ls(a)?(l="",u!=null&&(l=u.replace(ns,"$&/")+"/"),Sn(a,e,l,"",function(r){return r})):a!=null&&(Lc(a)&&(a=Mv(a,l+(a.key==null||t&&t.key===a.key?"":(""+a.key).replace(ns,"$&/")+"/")+u)),e.push(a)),1;u=0;var c=n===""?".":n+":";if(ls(t))for(var o=0;o<t.length;o++)n=t[o],i=c+Dc(n,o),u+=Sn(n,e,l,i,a);else if(o=Tv(t),typeof o=="function")for(t=o.call(t),o=0;!(n=t.next()).done;)n=n.value,i=c+Dc(n,o++),u+=Sn(n,e,l,i,a);else if(i==="object"){if(typeof t.then=="function")return Sn(wv(t),e,l,n,a);throw e=String(t),Error("Objects are not valid as a React child (found: "+(e==="[object Object]"?"object with keys {"+Object.keys(t).join(", ")+"}":e)+"). If you meant to render a collection of children, use an array instead.")}return u}function Ni(t,e,l){if(t==null)return t;var n=[],a=0;return Sn(t,n,"","",function(i){return e.call(l,i,a++)}),n}function Av(t){if(t._status===-1){var e=t._result,l=e();l.then(function(n){(t._status===0||t._status===-1)&&(t._status=1,t._result=n,l.status===void 0&&(l.status="fulfilled",l.value=n))},function(n){(t._status===0||t._status===-1)&&(t._status=2,t._result=n,l.status===void 0&&(l.status="rejected",l.reason=n))}),t._status===-1&&(t._status=0,t._result=l)}if(t._status===1)return t._result.default;throw t._result}var as=typeof reportError=="function"?reportError:function(t){if(typeof window=="object"&&typeof window.ErrorEvent=="function"){var e=new window.ErrorEvent("error",{bubbles:!0,cancelable:!0,message:typeof t=="object"&&t!==null&&typeof t.message=="string"?String(t.message):String(t),error:t});if(!window.dispatchEvent(e))return}else if(typeof process=="object"&&typeof process.emit=="function"){process.emit("uncaughtException",t);return}console.error(t)};function ss(t){var e=W.T,l={};l.types=e!==null?e.types:null,W.T=l;try{var n=t(),a=W.S;a!==null&&a(l,n),typeof n=="object"&&n!==null&&typeof n.then=="function"&&n.then(Rc,as)}catch(i){as(i)}finally{e!==null&&l.types!==null&&(e.types=l.types),W.T=e}}function ds(t){var e=W.T;if(e!==null){var l=e.types;l===null?e.types=[t]:l.indexOf(t)===-1&&l.push(t)}else ss(ds.bind(null,t))}var Nv={map:Ni,forEach:function(t,e,l){Ni(t,function(){e.apply(this,arguments)},l)},count:function(t){var e=0;return Ni(t,function(){e++}),e},toArray:function(t){return Ni(t,function(e){return e})||[]},only:function(t){if(!Lc(t))throw Error("React.Children.only expected to receive a single React element child.");return t}};D.Activity=xv;D.Children=Nv;D.Component=xn;D.Fragment=gv;D.Profiler=mv;D.PureComponent=Uc;D.StrictMode=hv;D.Suspense=yv;D.ViewTransition=Ev;D.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE=W;D.__COMPILER_RUNTIME={__proto__:null,c:function(t){return W.H.useMemoCache(t)}};D.addTransitionType=ds;D.cache=function(t){return function(){return t.apply(null,arguments)}};D.cacheSignal=function(){return null};D.cloneElement=function(t,e,l){if(t==null)throw Error("The argument must be a React element, but you passed "+t+".");var n=cs({},t.props),a=t.key;if(e!=null)for(i in e.key!==void 0&&(a=""+e.key),e)!fs.call(e,i)||i==="key"||i==="__self"||i==="__source"||i==="ref"&&e.ref===void 0||(n[i]=e[i]);var i=arguments.length-2;if(i===1)n.children=l;else if(1<i){for(var u=Array(i),c=0;c<i;c++)u[c]=arguments[c+2];n.children=u}return Bc(t.type,a,n)};D.createContext=function(t){return t={$$typeof:bv,_currentValue:t,_currentValue2:t,_threadCount:0,Provider:null,Consumer:null},t.Provider=t,t.Consumer={$$typeof:vv,_context:t},t};D.createElement=function(t,e,l){var n,a={},i=null;if(e!=null)for(n in e.key!==void 0&&(i=""+e.key),e)fs.call(e,n)&&n!=="key"&&n!=="__self"&&n!=="__source"&&(a[n]=e[n]);var u=arguments.length-2;if(u===1)a.children=l;else if(1<u){for(var c=Array(u),o=0;o<u;o++)c[o]=arguments[o+2];a.children=c}if(t&&t.defaultProps)for(n in u=t.defaultProps,u)a[n]===void 0&&(a[n]=u[n]);return Bc(t,i,a)};D.createRef=function(){return{current:null}};D.forwardRef=function(t){return{$$typeof:pv,render:t}};D.isValidElement=Lc;D.lazy=function(t){return{$$typeof:is,_payload:{_status:-1,_result:t},_init:Av}};D.memo=function(t,e){return{$$typeof:Sv,type:t,compare:e===void 0?null:e}};D.startTransition=ss;D.unstable_useCacheRefresh=function(){return W.H.useCacheRefresh()};D.use=function(t){return W.H.use(t)};D.useActionState=function(t,e,l){return W.H.useActionState(t,e,l)};D.useCallback=function(t,e){return W.H.useCallback(t,e)};D.useContext=function(t){return W.H.useContext(t)};D.useDebugValue=function(){};D.useDeferredValue=function(t,e){return W.H.useDeferredValue(t,e)};D.useEffect=function(t,e){return W.H.useEffect(t,e)};D.useEffectEvent=function(t){return W.H.useEffectEvent(t)};D.useId=function(){return W.H.useId()};D.useImperativeHandle=function(t,e,l){return W.H.useImperativeHandle(t,e,l)};D.useInsertionEffect=function(t,e){return W.H.useInsertionEffect(t,e)};D.useLayoutEffect=function(t,e){return W.H.useLayoutEffect(t,e)};D.useMemo=function(t,e){return W.H.useMemo(t,e)};D.useOptimistic=function(t,e){return W.H.useOptimistic(t,e)};D.useReducer=function(t,e,l){return W.H.useReducer(t,e,l)};D.useRef=function(t){return W.H.useRef(t)};D.useState=function(t){return W.H.useState(t)};D.useSyncExternalStore=function(t,e,l){return W.H.useSyncExternalStore(t,e,l)};D.useTransition=function(){return W.H.useTransition()};D.version="19.3.1"});var Ea=xe(($y,hs)=>{"use strict";hs.exports=gs()});var Ms=xe(et=>{"use strict";function Xc(t,e){var l=t.length;t.push(e);t:for(;0<l;){var n=l-1>>>1,a=t[n];if(0<Oi(a,e))t[n]=e,t[l]=a,l=n;else break t}}function De(t){return t.length===0?null:t[0]}function Di(t){if(t.length===0)return null;var e=t[0],l=t.pop();if(l!==e){t[0]=l;t:for(var n=0,a=t.length,i=a>>>1;n<i;){var u=2*(n+1)-1,c=t[u],o=u+1,r=t[o];if(0>Oi(c,l))o<a&&0>Oi(r,c)?(t[n]=r,t[o]=l,n=o):(t[n]=c,t[u]=l,n=u);else if(o<a&&0>Oi(r,l))t[n]=r,t[o]=l,n=o;else break t}}return e}function Oi(t,e){var l=t.sortIndex-e.sortIndex;return l!==0?l:t.id-e.id}et.unstable_now=void 0;typeof performance=="object"&&typeof performance.now=="function"?(ms=performance,et.unstable_now=function(){return ms.now()}):(Yc=Date,vs=Yc.now(),et.unstable_now=function(){return Yc.now()-vs});var ms,Yc,vs,Je=[],rl=[],Ov=1,se=null,Ct=3,jc=!1,Ta=!1,Ma=!1,Qc=!1,ys=typeof setTimeout=="function"?setTimeout:null,Ss=typeof clearTimeout=="function"?clearTimeout:null,bs=typeof setImmediate<"u"?setImmediate:null;function _i(t){for(var e=De(rl);e!==null;){if(e.callback===null)Di(rl);else if(e.startTime<=t)Di(rl),e.sortIndex=e.expirationTime,Xc(Je,e);else break;e=De(rl)}}function Vc(t){if(Ma=!1,_i(t),!Ta)if(De(Je)!==null)Ta=!0,Tn||(Tn=!0,En());else{var e=De(rl);e!==null&&Zc(Vc,e.startTime-t)}}var Tn=!1,za=-1,xs=5,Es=-1;function Ts(){return Qc?!0:!(et.unstable_now()-Es<xs)}function qc(){if(Qc=!1,Tn){var t=et.unstable_now();Es=t;var e=!0;try{t:{Ta=!1,Ma&&(Ma=!1,Ss(za),za=-1),jc=!0;var l=Ct;try{e:{for(_i(t),se=De(Je);se!==null&&!(se.expirationTime>t&&Ts());){var n=se.callback;if(typeof n=="function"){se.callback=null,Ct=se.priorityLevel;var a=n(se.expirationTime<=t);if(t=et.unstable_now(),typeof a=="function"){se.callback=a,_i(t),e=!0;break e}se===De(Je)&&Di(Je),_i(t)}else Di(Je);se=De(Je)}if(se!==null)e=!0;else{var i=De(rl);i!==null&&Zc(Vc,i.startTime-t),e=!1}}break t}finally{se=null,Ct=l,jc=!1}e=void 0}}finally{e?En():Tn=!1}}}var En;typeof bs=="function"?En=function(){bs(qc)}:typeof MessageChannel<"u"?(Gc=new MessageChannel,ps=Gc.port2,Gc.port1.onmessage=qc,En=function(){ps.postMessage(null)}):En=function(){ys(qc,0)};var Gc,ps;function Zc(t,e){za=ys(function(){t(et.unstable_now())},e)}et.unstable_IdlePriority=5;et.unstable_ImmediatePriority=1;et.unstable_LowPriority=4;et.unstable_NormalPriority=3;et.unstable_Profiling=null;et.unstable_UserBlockingPriority=2;et.unstable_cancelCallback=function(t){t.callback=null};et.unstable_forceFrameRate=function(t){0>t||125<t?console.error("forceFrameRate takes a positive int between 0 and 125, forcing frame rates higher than 125 fps is not supported"):xs=0<t?Math.floor(1e3/t):5};et.unstable_getCurrentPriorityLevel=function(){return Ct};et.unstable_next=function(t){switch(Ct){case 1:case 2:case 3:var e=3;break;default:e=Ct}var l=Ct;Ct=e;try{return t()}finally{Ct=l}};et.unstable_requestPaint=function(){Qc=!0};et.unstable_runWithPriority=function(t,e){switch(t){case 1:case 2:case 3:case 4:case 5:break;default:t=3}var l=Ct;Ct=t;try{return e()}finally{Ct=l}};et.unstable_scheduleCallback=function(t,e,l){var n=et.unstable_now();switch(typeof l=="object"&&l!==null?(l=l.delay,l=typeof l=="number"&&0<l?n+l:n):l=n,t){case 1:var a=-1;break;case 2:a=250;break;case 5:a=1073741823;break;case 4:a=1e4;break;default:a=5e3}return a=l+a,t={id:Ov++,callback:e,priorityLevel:t,startTime:l,expirationTime:a,sortIndex:-1},l>n?(t.sortIndex=l,Xc(rl,t),De(Je)===null&&t===De(rl)&&(Ma?(Ss(za),za=-1):Ma=!0,Zc(Vc,l-n))):(t.sortIndex=a,Xc(Je,t),Ta||jc||(Ta=!0,Tn||(Tn=!0,En()))),t};et.unstable_shouldYield=Ts;et.unstable_wrapCallback=function(t){var e=Ct;return function(){var l=Ct;Ct=e;try{return t.apply(this,arguments)}finally{Ct=l}}}});var ws=xe((Fy,zs)=>{"use strict";zs.exports=Ms()});var Os=xe(Ut=>{"use strict";var _v=Ea();function Ns(t){var e="https://react.dev/errors/"+t;if(1<arguments.length){e+="?args[]="+encodeURIComponent(arguments[1]);for(var l=2;l<arguments.length;l++)e+="&args[]="+encodeURIComponent(arguments[l])}return"Minified React error #"+t+"; visit "+e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}function fl(){}var Bt={d:{f:fl,r:function(){throw Error(Ns(522))},D:fl,C:fl,L:fl,m:fl,X:fl,S:fl,M:fl},p:0,findDOMNode:null},Dv=Symbol.for("react.portal"),Rv=Symbol.for("react.recoverable"),As=Symbol.for("react.optimistic_key");function Cv(t,e,l){var n=3<arguments.length&&arguments[3]!==void 0?arguments[3]:null;return{$$typeof:Dv,key:n==null?null:n===As?As:""+n,children:t,containerInfo:e,implementation:l}}var wa=_v.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;function Ri(t,e){if(t==="font")return"";if(typeof e=="string")return e==="use-credentials"?e:""}Ut.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE=Bt;Ut.browser=function(t){return{$$typeof:Rv,_reason:t}};Ut.createPortal=function(t,e){var l=2<arguments.length&&arguments[2]!==void 0?arguments[2]:null;if(!e||e.nodeType!==1&&e.nodeType!==9&&e.nodeType!==11)throw Error(Ns(299));return Cv(t,e,null,l)};Ut.flushSync=function(t){var e=wa.T,l=Bt.p;try{if(wa.T=null,Bt.p=2,t)return t()}finally{wa.T=e,Bt.p=l,Bt.d.f()}};Ut.preconnect=function(t,e){typeof t=="string"&&(e?(e=e.crossOrigin,e=typeof e=="string"?e==="use-credentials"?e:"":void 0):e=null,Bt.d.C(t,e))};Ut.prefetchDNS=function(t){typeof t=="string"&&Bt.d.D(t)};Ut.preinit=function(t,e){if(typeof t=="string"&&e&&typeof e.as=="string"){var l=e.as,n=Ri(l,e.crossOrigin),a=typeof e.integrity=="string"?e.integrity:void 0,i=typeof e.fetchPriority=="string"?e.fetchPriority:void 0;l==="style"?Bt.d.S(t,typeof e.precedence=="string"?e.precedence:void 0,{crossOrigin:n,integrity:a,fetchPriority:i}):l==="script"&&Bt.d.X(t,{crossOrigin:n,integrity:a,fetchPriority:i,nonce:typeof e.nonce=="string"?e.nonce:void 0})}};Ut.preinitModule=function(t,e){if(typeof t=="string")if(typeof e=="object"&&e!==null){if(e.as==null||e.as==="script"){var l=Ri(e.as,e.crossOrigin);Bt.d.M(t,{crossOrigin:l,integrity:typeof e.integrity=="string"?e.integrity:void 0,nonce:typeof e.nonce=="string"?e.nonce:void 0,fetchPriority:typeof e.fetchPriority=="string"?e.fetchPriority:void 0})}}else e==null&&Bt.d.M(t)};Ut.preload=function(t,e){if(typeof t=="string"&&typeof e=="object"&&e!==null&&typeof e.as=="string"){var l=e.as,n=Ri(l,e.crossOrigin);Bt.d.L(t,l,{crossOrigin:n,integrity:typeof e.integrity=="string"?e.integrity:void 0,nonce:typeof e.nonce=="string"?e.nonce:void 0,type:typeof e.type=="string"?e.type:void 0,fetchPriority:typeof e.fetchPriority=="string"?e.fetchPriority:void 0,referrerPolicy:typeof e.referrerPolicy=="string"?e.referrerPolicy:void 0,imageSrcSet:typeof e.imageSrcSet=="string"?e.imageSrcSet:void 0,imageSizes:typeof e.imageSizes=="string"?e.imageSizes:void 0,media:typeof e.media=="string"?e.media:void 0})}};Ut.preloadModule=function(t,e){if(typeof t=="string")if(e){var l=Ri(e.as,e.crossOrigin);Bt.d.m(t,{as:typeof e.as=="string"&&e.as!=="script"?e.as:void 0,crossOrigin:l,integrity:typeof e.integrity=="string"?e.integrity:void 0,nonce:typeof e.nonce=="string"?e.nonce:void 0,fetchPriority:typeof e.fetchPriority=="string"?e.fetchPriority:void 0})}else Bt.d.m(t)};Ut.requestFormReset=function(t){Bt.d.r(t)};Ut.unstable_batchedUpdates=function(t,e){return t(e)};Ut.useFormState=function(t,e,l){return wa.H.useFormState(t,e,l)};Ut.useFormStatus=function(){return wa.H.useHostTransitionStatus()};Ut.version="19.3.1"});var Rs=xe((Iy,Ds)=>{"use strict";function _s(){if(!(typeof __REACT_DEVTOOLS_GLOBAL_HOOK__>"u"||typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE!="function"))try{__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(_s)}catch(t){console.error(t)}}_s(),Ds.exports=Os()});var pm=xe(gc=>{"use strict";var vt=ws(),bg=Ea(),Uv=Rs();function T(t){var e="https://react.dev/errors/"+t;if(1<arguments.length){e+="?args[]="+encodeURIComponent(arguments[1]);for(var l=2;l<arguments.length;l++)e+="&args[]="+encodeURIComponent(arguments[l])}return"Minified React error #"+t+"; visit "+e+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}function pg(t){return!(!t||t.nodeType!==1&&t.nodeType!==9&&t.nodeType!==11)}function gi(t){for(var e=t,l=e;l&&!l.alternate;)e=l,(e.flags&4098)!==0&&(t=e.return),l=e.return;for(;e.return;)e=e.return;return e.tag===3?t:null}function yg(t){if(t.tag===13){var e=t.memoizedState;if(e===null&&(t=t.alternate,t!==null&&(e=t.memoizedState)),e!==null)return e.dehydrated}return null}function Sg(t){if(t.tag===31){var e=t.memoizedState;if(e===null&&(t=t.alternate,t!==null&&(e=t.memoizedState)),e!==null)return e.dehydrated}return null}function Cs(t){if(gi(t)!==t)throw Error(T(188))}function Hv(t){var e=t.alternate;if(!e){if(e=gi(t),e===null)throw Error(T(188));return e!==t?null:t}for(var l=t,n=e;;){var a=l.return;if(a===null)break;var i=a.alternate;if(i===null){if(n=a.return,n!==null){l=n;continue}break}if(a.child===i.child){for(i=a.child;i;){if(i===l)return Cs(a),t;if(i===n)return Cs(a),e;i=i.sibling}throw Error(T(188))}if(l.return!==n.return)l=a,n=i;else{for(var u=!1,c=a.child;c;){if(c===l){u=!0,l=a,n=i;break}if(c===n){u=!0,n=a,l=i;break}c=c.sibling}if(!u){for(c=i.child;c;){if(c===l){u=!0,l=i,n=a;break}if(c===n){u=!0,n=i,l=a;break}c=c.sibling}if(!u)throw Error(T(189))}}if(l.alternate!==n)throw Error(T(190))}if(l.tag!==3)throw Error(T(188));return l.stateNode.current===l?t:e}function xg(t){var e=t.tag;if(e===5||e===26||e===27||e===6)return t;for(t=t.child;t!==null;){if(e=xg(t),e!==null)return e;t=t.sibling}return null}function Kt(t,e,l,n,a,i){for(;t!==null;){if((t.tag===5||t.tag===27||t.tag===6)&&l(t,n,a,i)||(t.tag!==22||t.memoizedState===null)&&(e||t.tag!==5&&t.tag!==27)&&Kt(t.child,e,l,n,a,i))return!0;t=t.sibling}return!1}function rn(t){for(t=t.return;t!==null;){if(t.tag===3||t.tag===5||t.tag===27)return t;t=t.return}return null}function Us(t){var e=!1;for(t=t.return;t!==null&&(t.tag===4&&(e=!0),!(t.tag===3||t.tag===5||t.tag===27));)t=t.return;return e}function Eg(t){var e=[null,null],l=rn(t);return l===null||Tg(e,t,l.child,{foundSelf:!1}),e}function Tg(t,e,l,n){for(;l!==null;){if(l===e)n.foundSelf=!0;else if(l.tag===5||l.tag===27||l.tag===6){if(n.foundSelf)return t[1]=l,!0;t[0]=l}else if((l.tag!==22||l.memoizedState===null)&&Tg(t,e,l.child,n))return!0;l=l.sibling}return!1}function mt(t){switch(t.tag){case 5:case 27:case 6:return t.stateNode;case 3:return t.stateNode.containerInfo;default:throw Error(T(559))}}var _n=null,Mo=null;function Bv(t,e,l){return t===l?!0:t===e?(_n=t,!0):!1}function Lv(t,e,l){return t===l?(Mo=t,!1):t===e?(Mo!==null&&(_n=t),!0):!1}function Hs(t){if(t===null)return null;do t=t===null?null:t.return;while(t&&t.tag!==5&&t.tag!==27&&t.tag!==3);return t||null}function zo(t,e,l){for(var n=0,a=t;a;a=l(a))n++;a=0;for(var i=e;i;i=l(i))a++;for(;0<n-a;)t=l(t),n--;for(;0<a-n;)e=l(e),a--;for(;n--;){if(t===e||e!==null&&t===e.alternate)return t;t=l(t),e=l(e)}return null}var k=Object.assign,Yv=Symbol.for("react.element"),Ci=Symbol.for("react.transitional.element"),Ca=Symbol.for("react.portal"),Dn=Symbol.for("react.fragment"),Mg=Symbol.for("react.strict_mode"),wo=Symbol.for("react.profiler"),zg=Symbol.for("react.consumer"),Le=Symbol.for("react.context"),Hr=Symbol.for("react.forward_ref"),Ao=Symbol.for("react.suspense"),No=Symbol.for("react.suspense_list"),Br=Symbol.for("react.memo"),hl=Symbol.for("react.lazy"),Oo=Symbol.for("react.activity"),qv=Symbol.for("react.legacy_hidden"),Gv=Symbol.for("react.memo_cache_sentinel"),_o=Symbol.for("react.view_transition"),Xv=Symbol.for("react.recoverable"),Bs=Symbol.iterator;function Aa(t){return t===null||typeof t!="object"?null:(t=Bs&&t[Bs]||t["@@iterator"],typeof t=="function"?t:null)}var jv=Symbol.for("react.client.reference");function Do(t){if(t==null)return null;if(typeof t=="function")return t.$$typeof===jv?null:t.displayName||t.name||null;if(typeof t=="string")return t;switch(t){case Dn:return"Fragment";case wo:return"Profiler";case Mg:return"StrictMode";case Ao:return"Suspense";case No:return"SuspenseList";case Oo:return"Activity";case _o:return"ViewTransition"}if(typeof t=="object")switch(t.$$typeof){case Ca:return"Portal";case Le:return t.displayName||"Context";case zg:return(t._context.displayName||"Context")+".Consumer";case Hr:var e=t.render;return t=t.displayName,t||(t=e.displayName||e.name||"",t=t!==""?"ForwardRef("+t+")":"ForwardRef"),t;case Br:return e=t.displayName||null,e!==null?e:Do(t.type)||"Memo";case hl:e=t._payload,t=t._init;try{return Do(t(e))}catch{}}return null}var Ua=Array.isArray,_=bg.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,j=Uv.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE,kl={pending:!1,data:null,method:null,action:null},Ro=[],Rn=-1;function Ve(t){return{current:t}}function At(t){0>Rn||(t.current=Ro[Rn],Ro[Rn]=null,Rn--)}function tt(t,e){Rn++,Ro[Rn]=t.current,t.current=e}var Xe=Ve(null),Wa=Ve(null),Tl=Ve(null),yu=Ve(null);function Su(t,e){switch(tt(Tl,e),tt(Wa,t),tt(Xe,null),e.nodeType){case 9:case 11:t=(t=e.documentElement)&&(t=t.namespaceURI)?Fd(t):0;break;default:if(t=e.tagName,e=e.namespaceURI)e=Fd(e),t=Jh(e,t);else switch(t){case"svg":t=1;break;case"math":t=2;break;default:t=0}}At(Xe),tt(Xe,t)}function In(){At(Xe),At(Wa),At(Tl)}function Co(t){var e=t.memoizedState;e!==null&&(oa._currentValue=e.memoizedState,tt(yu,t)),e=Xe.current;var l=Jh(e,t.type);e!==l&&(tt(Wa,t),tt(Xe,l))}function xu(t){Wa.current===t&&(At(Xe),At(Wa)),yu.current===t&&(At(yu),oa._currentValue=kl)}var Kc,Ls;function dl(t){if(Kc===void 0)try{throw Error()}catch(l){var e=l.stack.trim().match(/\n( *(at )?)/);Kc=e&&e[1]||"",Ls=-1<l.stack.indexOf(`
@@ -3506,7 +3547,7 @@ function renderLibrary() {
   ${droits() ? `<button class="lrow" data-act="import">${ic('import')}Importer des fichiers audio<span class="cnt">MP3, M4A</span></button>` : ''}
   <button class="lrow" data-act="open" data-type="settings" data-id="s">${ic('gear')}Réglages</button>
   <div class="sh"><h2>Mes playlists</h2></div>
-  ${S.pl.map(p => `<button class="lrow" data-act="open" data-type="pl" data-id="${p.id}">${ic('queue')}<span class="ell">${esc(p.name)}</span><span class="cnt">${listIds('pl:' + p.id).length}</span></button>`).join('')}
+  ${S.pl.map(p => `<button class="lrow plrow" data-act="open" data-type="pl" data-id="${p.id}">${artHTML(plTeinte(p), plLettre(p), 'xs')}<span class="ell">${esc(p.name)}</span><span class="cnt">${listIds('pl:' + p.id).length}</span></button>`).join('')}
   <button class="lrow" data-act="plnew">${ic('plus')}Nouvelle playlist</button>
   <div class="sh"><h2>Ajoutés récemment</h2></div>
   ${listIds('ajouts').slice(0, 6).map((id, i) => rowHTML(TR[id], 'ajouts', i)).join('')}`;
@@ -3816,7 +3857,7 @@ function renderDetail(it) {
     head = artHTML(it.id, graph(P.word)[0], 'xl');
   } else if (it.type === 'chanter') {
     list = 'chanter:' + it.id; title = esc(CH[it.id].name); sub = 'Chantre';
-    head = avHTML(CH[it.id], 'lg');
+    head = CH[it.id].img ? `<button class="chzoom" data-act="chzoom" data-id="${it.id}" aria-label="Voir la photo en grand">${avHTML(CH[it.id], 'lg')}</button>` : avHTML(CH[it.id], 'lg');
   } else if (it.type === 'office') {
     list = 'office:' + it.id; title = OFFICES[it.id]; sub = 'Office';
     head = artHTML('annuel', '☩', 'xl');
@@ -3833,7 +3874,7 @@ function renderDetail(it) {
   } else if (it.type === 'pl') {
     const p = plGet(it.id) || { id: it.id, name: 'Playlist', ids: [] };
     list = 'pl:' + it.id; title = esc(p.name); sub = plN(ids0(list));
-    head = artHTML(plTeinte(p), graph(p.name.trim())[0]?.toUpperCase() || '♪', 'xl');
+    head = artHTML(plTeinte(p), plLettre(p), 'xl');
   } else if (it.type === 'recent') {
     list = 'recents'; title = 'Reprendre'; sub = `${ids0('recents')} chant${ids0('recents') > 1 ? 's' : ''} écouté${ids0('recents') > 1 ? 's' : ''}`;
     head = artHTML('nativite', '↺', 'xl');
@@ -4844,6 +4885,8 @@ function setFav(id) {
 const plGet = id => S.pl.find(p => p.id === id);
 const plSave = () => store.set('playlists', S.pl);
 const plN = n => n + ' chant' + (n > 1 ? 's' : '');
+const PL_COP = {a:'Ⲁ',b:'Ⲃ',c:'Ⲥ',d:'Ⲇ',e:'Ⲉ',f:'Ϥ',g:'Ⲅ',h:'Ϩ',i:'Ⲓ',j:'Ϫ',k:'Ⲕ',l:'Ⲗ',m:'Ⲙ',n:'Ⲛ',o:'Ⲟ',p:'Ⲡ',q:'Ⲕ',r:'Ⲣ',s:'Ⲥ',t:'Ⲧ',u:'Ⲩ',v:'Ⲃ',w:'Ⲱ',x:'Ⲝ',y:'Ⲩ',z:'Ⲍ'};
+const plLettre = p => { const g = (graph(p.name.trim())[0] || '').normalize('NFD')[0]?.toLowerCase() || ''; return PL_COP[g] || (/[\u2c80-\u2cff\u03e2-\u03ef]/.test(g) ? g.toUpperCase() : 'Ⲯ'); };   // première lettre de la playlist, en copte décoré
 const plTeinte = p => PERIODS[PERIOD_ORDER[[...p.id].reduce((h, c) => h + c.charCodeAt(0), 0) % PERIOD_ORDER.length]] || PERIODS.annuel;   // couleur stable, d'après l'identifiant
 function plNameHTML(p, add) {   // nom d'une nouvelle playlist (add : chant à y mettre tout de suite) ou renommage
   return `<form class="form" id="plForm" data-id="${p ? p.id : ''}" data-add="${add || ''}"><h3>${p ? 'Renommer la playlist' : 'Nouvelle playlist'}</h3>
@@ -4955,15 +4998,16 @@ document.addEventListener('submit', e => {
 const THEMES = [
   {k:'cierge', name:'Cierge', bg:'#0f0c0a', up:'#272019', ac:'#dbb066'},
   {k:'velours', name:'Saphir velours', bg:'#061123', up:'#0c254b', ac:'#dbb066'},
-  {k:'nuit', name:'Saphir de nuit', bg:'#030c1b', up:'#071c3f', ac:'#dbb066'},
   {k:'graphite', name:'Graphite (Apple Music)', bg:'#000000', up:'#2c2c2e', ac:'#fa2d48'},
   {k:'ardoise', name:'Ardoise', bg:'#11151b', up:'#232b36', ac:'#dbb066'},
   {k:'pourpre', name:'Pourpre', bg:'#150a12', up:'#33182d', ac:'#dbb066'},
   {k:'olivier', name:'Olivier', bg:'#0a130e', up:'#17281d', ac:'#dbb066'},
   {k:'bordeaux', name:'Bordeaux', bg:'#160608', up:'#321115', ac:'#dbb066'},
-  {k:'encens', name:'Encens', bg:'#140e08', up:'#2f2114', ac:'#dbb066'},
   {k:'nil', name:'Nil', bg:'#061416', up:'#0f2e33', ac:'#dbb066'},
   {k:'indigo', name:'Indigo', bg:'#080814', up:'#14152f', ac:'#dbb066'},
+  {k:'emeraude', name:'Émeraude', bg:'#05140f', up:'#0f3124', ac:'#dbb066'},
+  {k:'lavande', name:'Lavande', bg:'#120e18', up:'#241d30', ac:'#dbb066'},
+  {k:'ambre', name:'Ambre', bg:'#160f03', up:'#35240a', ac:'#dbb066'},
   {k:'nacre', name:'Nacre (clair)', bg:'#f7f8fb', up:'#eaeef2', ac:'#a67a24'}
 ];
 // Couleur secondaire (boutons, chant en cours, cœurs) : au choix de chacun, sinon celle du thème. d = thèmes sombres, l = Nacre (clair)
@@ -4983,12 +5027,28 @@ const ACCENTS = [
 const curAccent = () => ACCENTS.find(a => a.k === store.get('accent', null)) || null;
 const accentOf = t => { const a = curAccent(); return a ? (t.k === 'nacre' ? a.l[0] : a.d[0]) : t.ac; };
 function setAccent(k) { if (k) store.set('accent', k); else { try { localStorage.removeItem('essai-fil:accent'); } catch (e) {} } applyTheme(); render(true); updateUI(); }
-const curTheme = () => THEMES.find(t => t.k === store.get('theme', 'cierge')) || THEMES[0];
+const curTheme = () => { const k = store.get('theme', 'cierge'); return THEMES.find(t => t.k === (k === 'nuit' ? 'velours' : k)) || THEMES[0]; };   // Saphir de nuit retiré le 19/11
 function applyTheme() {
   const t = curTheme();
   if (t.k === 'cierge') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = t.k;
   const a = curAccent(); if (a) document.documentElement.dataset.accent = a.k; else delete document.documentElement.dataset.accent;
   const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = t.k === 'nacre' ? '#18294a' : t.bg;
+}
+function chZoom(el) {   // photo du chantre en grand, sur la page floutée ; elle part de la bulle et y revient
+  const c = CH[el.dataset.id], av = el.querySelector('.av'), r = av.getBoundingClientRect();
+  const big = c.img.replace('chantres/', 'chantres/grand/'), z = document.createElement('div');
+  z.className = 'chz'; z.setAttribute('role', 'dialog'); z.setAttribute('aria-label', c.name);
+  z.innerHTML = `<img alt="${esc(c.name)}"><div class="chz-n">${esc(c.name)}</div>`;
+  const im = z.querySelector('img'); im.src = big; im.onerror = () => { im.onerror = null; im.src = c.img; };
+  document.body.append(z);
+  const place = () => {   // départ : la bulle ; arrivée : centre de l'écran
+    const w = Math.min(innerWidth - 32, 460), q = im.getBoundingClientRect(), k = r.width / q.width;
+    im.style.transform = `translate(${r.left + r.width / 2 - (q.left + q.width / 2)}px,${r.top + r.height / 2 - (q.top + q.height / 2)}px) scale(${k})`; im.style.borderRadius = '50%';
+    return w;
+  };
+  const go = () => { place(); void im.offsetWidth; z.classList.add('on'); im.style.transform = ''; im.style.borderRadius = ''; };
+  im.complete ? go() : (im.onload = go);
+  z.addEventListener('click', () => { z.classList.remove('on'); place(); setTimeout(() => z.remove(), 320); });
 }
 function setTheme(k) { store.set('theme', k); applyTheme(); render(true); }
 function setCfg(k, v) { S.cfg[k] = v; store.set('cfg', S.cfg); render(true); updateUI(); if (S.full && S.pview === 'lyrics') { renderPBody(); } pokeControls(); }
@@ -5053,7 +5113,7 @@ document.addEventListener('click', e => {
     case 'plmv': plMove(el.dataset.pl, +el.dataset.i, +el.dataset.d); break;
     case 'plrm': plRemove(el.dataset.pl, +el.dataset.i); break;
     case 'plmenu': { const p = plGet(el.dataset.pl); if (!p) break;
-      openSheet(`<div class="sh-head">${artHTML(plTeinte(p), graph(p.name.trim())[0]?.toUpperCase() || '♪', 'sm')}<div class="tt"><div class="tt1 ell">${esc(p.name)}</div><div class="tt2 ell">${plN(listIds('pl:' + p.id).length)}</div></div></div>
+      openSheet(`<div class="sh-head">${artHTML(plTeinte(p), plLettre(p), 'sm')}<div class="tt"><div class="tt1 ell">${esc(p.name)}</div><div class="tt2 ell">${plN(listIds('pl:' + p.id).length)}</div></div></div>
         <button class="mi" data-act="plren" data-pl="${p.id}">Renommer${ic('pencil')}</button>
         <button class="mi" data-act="pldel" data-pl="${p.id}" data-close="1">Supprimer la playlist${ic('trash')}</button>`); break; }
     case 'plren': openSheet(plNameHTML(plGet(el.dataset.pl))); { const f = $('#plName'); f.focus(); f.select(); } break;
@@ -5104,6 +5164,7 @@ document.addEventListener('click', e => {
     case 'trsz': setCfg('trSize', +el.dataset.v); break;
     case 'theme': setTheme(el.dataset.v); break;
     case 'accent': setAccent(el.dataset.v); break;
+    case 'chzoom': chZoom(el); break;
     case 'litqf': {   // bulle d'un prêtre célébrant : seulement ses chants ; la retoucher : tous
       const q = el.closest('.qc'), x = q ? q.scrollLeft : 0, f = document.querySelector('.fil');
       litQF = litQF === el.dataset.id ? '' : el.dataset.id; litFilX = f ? f.scrollLeft : null; render(true);
