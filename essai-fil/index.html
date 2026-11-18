@@ -121,32 +121,71 @@ body.vit-cote .art .lvc{right:-6px;bottom:-6px;width:22px;height:22px;font-size:
 .vit-mu-plus .t3 .chs>*+*{display:none}
 .vit-mu-plus .t3 .chs::after{content:"+1";margin-left:4px;font-size:11px;font-weight:700;line-height:22px;padding:0 5px;border-radius:11px;background:rgba(var(--wash),.12)}
 .vit-mu-plus .t3 .chs.n3::after{content:"+2"}
-/* ===== Barre du bas façon Apple Music (essai du 18/11) =====
+
+/* 19/11 : carte « Liturgies entières » */
+.stepcard.entc{width:100%;text-align:left;margin-top:22px;cursor:pointer}
+.stepcard.entc .eyebrow{color:rgba(255,250,240,.8)}
+.stepcard.entc .sc-n,.stepcard.entc .sc-d{text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.ent-chev{position:relative;flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.25);transform:rotate(-90deg);transition:transform .3s}
+.entc.open .ent-chev{transform:rotate(90deg)}
+/* icônes de Réglages */
+.vitch.gico button{display:inline-flex;align-items:center;gap:6px}
+/* Studio d'apparence */
+.stsw{display:flex;gap:6px;margin:4px 0 10px}
+.studio .grp-h{margin-top:18px}
+.st-prev{border-radius:22px;padding:12px 12px 10px;background:linear-gradient(180deg,var(--u),var(--b) 55%);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(var(--wash),.1);display:flex;flex-direction:column;gap:7px;max-width:250px;margin:6px auto 0}
+.sp-top{display:flex;justify-content:space-between;align-items:center;font-size:15px}.sp-top i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--a)}
+.sp-hero{height:54px;border-radius:12px;background:linear-gradient(135deg,var(--a),color-mix(in srgb,var(--a) 30%,var(--b)))}
+.sp-row{display:flex;align-items:center;gap:8px;padding:2px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 12%,transparent)}
+.sp-art{width:26px;height:26px;border-radius:6px;background:color-mix(in srgb,var(--ink) 22%,var(--u));flex:none}
+.sp-l{flex:1;display:flex;flex-direction:column;gap:4px}.sp-l i{height:5px;border-radius:3px;background:color-mix(in srgb,var(--ink) 70%,transparent);width:70%}.sp-l i+i{width:45%;opacity:.5}
+.sp-h{color:var(--a);font-size:13px}
+.sp-mini{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:16px;background:color-mix(in srgb,var(--u) 80%,var(--ink) 8%);margin-top:4px}.sp-pl{color:var(--a);font-size:11px}
+.sp-tabs{display:flex;gap:4px;padding:4px;border-radius:16px;background:color-mix(in srgb,var(--u) 80%,var(--ink) 8%)}.sp-tabs span{flex:1;height:18px;border-radius:12px}.sp-tabs span.on{background:color-mix(in srgb,var(--ink) 14%,transparent);box-shadow:inset 0 -2px 0 var(--a)}
+.st-th{display:flex;gap:10px;overflow-x:auto;padding:6px 6px 6px;scroll-snap-type:x mandatory;scrollbar-width:none}.st-th::-webkit-scrollbar{display:none}
+.st-th button{flex:none;width:92px;display:flex;flex-direction:column;align-items:center;gap:6px;scroll-snap-align:start}
+.th-card{width:92px;height:120px;border-radius:16px;background:linear-gradient(170deg,var(--u),var(--b) 70%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:flex-end;gap:5px;padding:10px}
+.th-card i{height:6px;border-radius:3px;background:rgba(255,255,255,.35);width:80%}.th-card i:nth-child(2){width:55%;opacity:.6}.th-card i:nth-child(3){width:34px;height:12px;border-radius:6px;background:var(--a);opacity:1}
+.st-th button.on .th-card{box-shadow:0 0 0 2px var(--night),0 0 0 4px var(--gold)}
+.st-th .nm{font-size:12px;color:var(--muted)}.st-th button.on .nm{color:var(--ivory);font-weight:600}
+.st-ac{display:flex;flex-wrap:wrap;gap:12px;padding:6px 2px}
+.st-ac button{width:40px;height:40px;border-radius:50%;background:var(--c);display:grid;place-items:center;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.st-ac button.auto{background:conic-gradient(var(--c) 0 50%,var(--raised) 0)}
+.st-ac button.on{box-shadow:0 0 0 2px var(--night),0 0 0 4px var(--c)}
+.st-acn{font-size:13px;color:var(--muted);margin:2px 2px 0}
+.st-combo{display:flex;flex-wrap:wrap;gap:8px;padding:6px 0}
+.st-combo button{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:99px;background:var(--raised);font-size:13px}
+.st-combo button.on{box-shadow:inset 0 0 0 1.5px var(--gold)}
+.st-combo .cd{width:24px;height:24px;border-radius:50%;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}.st-combo .cd i{position:absolute;right:-2px;bottom:-2px;width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 1.5px var(--raised)}
+/* ===== Barre du bas façon Apple Music (essai du 18-19/11) =====
    body.am : la barre se replie quand on descend (onglet en rond · mini-lecteur · loupe), se rouvre quand on remonte ;
-   la loupe devient un champ de recherche. body.am-lq : verre « liquide » léger (sans filtre SVG, rien qui fasse ramer). */
+   la loupe devient un champ de recherche. body.am-lq : verre liquide, avec la loupe de verre qui suit le doigt.
+   Safari (iPhone) ne sait pas déformer l'arrière-plan (filtre SVG en backdrop-filter) : la loupe grossit donc une copie
+   des icônes, et les reflets irisés du bord sont des dégradés. Tout ce qui bouge pendant le geste ne touche qu'à transform. */
 body.am #dock{--pl:max(14px,env(safe-area-inset-left,0px));--pr:max(14px,env(safe-area-inset-right,0px));--pb:max(8px,calc(env(safe-area-inset-bottom,0px) - 6px));
-  display:block;height:calc(var(--pb) + 128px);padding:0;transition:transform .3s cubic-bezier(.32,.72,0,1)}
+  --ease:cubic-bezier(.25,1,.3,1);--dur:.38s;
+  display:block;height:calc(var(--pb) + 128px);padding:0;transition:transform .3s var(--ease)}
 body.am #dock .tabrow{display:contents}
-body.am #mini,body.am .tabcap,body.am .srch{position:absolute;margin:0;--ease:cubic-bezier(.32,.72,0,1);
-  transition:left .5s var(--ease),right .5s var(--ease),bottom .5s var(--ease),width .5s var(--ease),height .5s var(--ease),border-radius .5s var(--ease),padding .5s var(--ease),opacity .3s}
+body.am #mini,body.am .tabcap,body.am .srch{position:absolute;margin:0;will-change:left,right,width;
+  transition:left var(--dur) var(--ease),right var(--dur) var(--ease),bottom var(--dur) var(--ease),width var(--dur) var(--ease),height var(--dur) var(--ease),border-radius var(--dur) var(--ease),padding var(--dur) var(--ease),opacity .25s,transform .25s var(--ease)}
 /* ouverte */
 body.am #mini{left:var(--pl);right:var(--pr);bottom:calc(var(--pb) + 70px);height:58px}
-body.am .tabcap{left:var(--pl);bottom:var(--pb);width:calc(100% - var(--pl) - var(--pr) - 72px);height:62px;border-radius:31px;overflow:hidden}
+body.am .tabcap{left:var(--pl);bottom:var(--pb);width:calc(100% - var(--pl) - var(--pr) - 72px);height:62px;border-radius:31px;overflow:hidden;touch-action:none}
 body.am .srch{right:var(--pr);bottom:var(--pb);width:62px;height:62px;border-radius:31px;display:flex;align-items:center;justify-content:flex-start;padding:0 0 0 19px}
-body.am .tab{position:relative;z-index:1;transition:color .3s,opacity .25s}
+body.am .srch.press{transform:scale(1.14)}
+body.am .tab{position:relative;z-index:1;transition:color .25s,opacity .2s;-webkit-tap-highlight-color:transparent}
 body.am .tab.on{background:none}
-body.am .tab:active .ic{transform:scale(.9)}
-body.am .tab .ic{transition:transform .2s}
 .am-pill{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 8px) / 3);border-radius:27px;background:rgba(var(--wash),.1);pointer-events:none;
-  transform:translateX(calc(var(--ti,0) * 100%)) scaleX(var(--sx,1));transition:transform .48s cubic-bezier(.34,1.32,.5,1),opacity .25s}
-body:not(.am) .am-pill{display:none}
+  transform:translateX(calc(var(--ti,0) * 100%));transition:transform .42s cubic-bezier(.3,1.25,.5,1),opacity .18s}
+body:not(.am) .am-pill,body:not(.am) .am-lens{display:none}
+body.am-lens-on .am-pill{opacity:0;transition:transform 0s,opacity .08s}
 /* repliée : rond de l'onglet · mini-lecteur au milieu · loupe */
 body.am.am-col #mini{left:calc(var(--pl) + 60px);right:calc(var(--pr) + 60px);bottom:var(--pb);height:52px;border-radius:26px}
 body.am.am-col #mini .t2,body.am.am-col #mNext,body.am.am-sea.am-kb #mini{opacity:0;pointer-events:none}
-body.am #mini .t2,body.am #mNext{transition:opacity .25s}
+body.am #mini .t2,body.am #mNext{transition:opacity .2s}
 body.am.am-col #mini #mNext{position:absolute;right:0}
 body.am.am-col #mini .art{width:36px;height:36px}
-body.am #mini .art{transition:width .4s,height .4s}
+body.am #mini .art{transition:width var(--dur) var(--ease),height var(--dur) var(--ease)}
 body.am.am-col .tabcap,body.am.am-sea .tabcap{width:52px;height:52px;border-radius:26px;padding:0}
 body.am.am-col .tab,body.am.am-sea .tab{position:absolute;inset:0;font-size:0;gap:0;border-radius:50%;opacity:0;pointer-events:none}
 body.am.am-col .tab.am-show,body.am.am-sea .tab.am-show{opacity:1;pointer-events:auto}
@@ -155,26 +194,41 @@ body.am.am-col .srch{width:52px;height:52px;border-radius:26px;padding-left:14px
 /* recherche : rond de l'onglet · grand champ */
 body.am.am-sea #mini{bottom:calc(var(--pb) + 60px)}
 body.am.am-sea .srch{width:calc(100% - var(--pl) - var(--pr) - 60px);height:52px;border-radius:26px;padding-left:16px;color:var(--muted)}
-.amq{position:absolute;bottom:var(--pb);right:calc(var(--pr) + 12px);left:calc(var(--pl) + 60px + 46px);height:52px;display:flex;align-items:center;opacity:0;transition:opacity .2s}
+.amq{position:absolute;bottom:var(--pb);right:calc(var(--pr) + 12px);left:calc(var(--pl) + 60px + 46px);height:52px;display:flex;align-items:center;opacity:0;transition:opacity .15s}
 #dock > .amq{pointer-events:none}
-body.am.am-sea #dock > .amq{opacity:1;pointer-events:auto;transition:opacity .25s .2s}
+body.am.am-sea #dock > .amq{opacity:1;pointer-events:auto;transition:opacity .2s .15s}
 .amq input{flex:1;min-width:0;height:100%;background:none;border:0;outline:0;color:var(--ivory);font:inherit;font-size:16px;-webkit-appearance:none;appearance:none}
 .amq input::placeholder{color:var(--muted)}
 .amq input::-webkit-search-cancel-button{display:none}
 .amq .amx{width:30px;height:30px;border-radius:50%;display:none;place-items:center;color:var(--muted)}
 .amq.has .amx{display:grid}
 body.am.am-sea #screen .sbox:has(#q){display:none}
-body.am .dock-fade{transition:height .4s}
-body.am.am-col .dock-fade{height:calc(110px + env(safe-area-inset-bottom,0px))}
 body.dk.am #dock{display:none}
 
-/* verre liquide léger : plus clair et plus transparent, reflets en bordure, un éclat en haut */
-body.am-lq #dock .glass{background:color-mix(in srgb,var(--glass) 62%,transparent);
-  -webkit-backdrop-filter:blur(16px) saturate(1.9) brightness(1.06);backdrop-filter:blur(16px) saturate(1.9) brightness(1.06);
-  box-shadow:inset 0 1px .5px rgba(255,255,255,.26),inset 0 -1px .5px rgba(255,255,255,.07),inset 0 0 0 .5px rgba(255,255,255,.13),0 10px 28px rgba(0,0,0,.32)}
-body.am-lq #dock .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,0) 42%,rgba(255,255,255,0) 78%,rgba(255,255,255,.04))}
-body.am-lq .am-pill{background:rgba(var(--wash),.13);box-shadow:inset 0 1px .5px rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.1)}
+/* ---------- verre liquide ---------- */
+body.am-lq #dock .glass{background:color-mix(in srgb,var(--glass) 72%,transparent);
+  -webkit-backdrop-filter:blur(14px) saturate(1.8);backdrop-filter:blur(14px) saturate(1.8);
+  box-shadow:inset 0 .5px 0 rgba(255,255,255,.3),inset 0 -.5px 0 rgba(255,255,255,.1),inset 0 0 0 .5px rgba(255,255,255,.1),0 8px 26px rgba(0,0,0,.34)}
+body.am-lq .am-pill{background:rgba(var(--wash),.12);box-shadow:inset 0 .5px 0 rgba(255,255,255,.18)}
+/* la loupe : plus grande que la barre, transparente, grossit et colore ce qu'elle couvre, bord irisé */
+.am-lens{position:absolute;z-index:3;left:0;top:0;pointer-events:none;border-radius:999px;opacity:0;overflow:hidden;
+  transform:translate3d(var(--lx,0),var(--ly,0),0) scale(var(--ls,.7)) scaleX(var(--lsx,1));transform-origin:50% 50%;will-change:transform,opacity;
+  transition:opacity .16s,transform .34s cubic-bezier(.3,1.3,.5,1);
+  background:color-mix(in srgb,var(--glass) 45%,transparent);
+  -webkit-backdrop-filter:blur(5px) saturate(1.6) brightness(1.12);backdrop-filter:blur(5px) saturate(1.6) brightness(1.12);
+  box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.45),inset 0 -1.5px 2px rgba(255,255,255,.22),inset 3px 0 5px rgba(255,255,255,.1),inset -3px 0 5px rgba(255,255,255,.1),
+    inset 0 0 14px rgba(255,255,255,.06),0 6px 22px rgba(0,0,0,.4)}
+.am-lens.on{opacity:1;--ls:1}
+.am-lens.drag{transition:opacity .16s,transform .09s linear}
+.am-lens.out{opacity:0;--ls:.8;transition:opacity .2s,transform .26s cubic-bezier(.4,0,.6,1)}
+.am-lens::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.6px;pointer-events:none;z-index:2;
+  background:conic-gradient(from 200deg,rgba(255,255,255,.75),rgba(120,220,255,.55) 12%,rgba(255,255,255,.1) 25%,rgba(255,120,200,.45) 38%,rgba(255,255,255,.65) 50%,rgba(255,210,120,.5) 62%,rgba(255,255,255,.1) 75%,rgba(140,255,200,.45) 88%,rgba(255,255,255,.75));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.am-lens::after{content:"";position:absolute;inset:3px;border-radius:inherit;pointer-events:none;z-index:2;
+  background:radial-gradient(120% 70% at 30% 0%,rgba(255,255,255,.22),rgba(255,255,255,0) 55%),radial-gradient(90% 60% at 75% 110%,rgba(255,255,255,.12),rgba(255,255,255,0) 60%)}
+.am-lens-in{position:absolute;top:0;display:grid;grid-template-columns:repeat(3,1fr);color:var(--gold);transform-origin:0 50%;will-change:transform}
+.am-lens-in span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10.5px;font-weight:600}
+#dock > .am-lens{pointer-events:none}
 </style>
 </head><body>
 <title>Essai fil</title>
@@ -354,7 +408,6 @@ h1{font-family:var(--f-display);font-weight:400;font-size:34px;letter-spacing:.0
 .badge{position:absolute;top:12px;right:12px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:rgba(0,0,0,.4);color:#f6ecd9;padding:3px 8px;border-radius:99px}
 
 .row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.row:has(.t3){padding-block:5px}   /* lignes à chantre dessous (Liturgie) : traits un peu plus près */
 .row .meta{flex:1;min-width:0}
 .t1{font-size:15.5px}
 .t1 .cop,.c1 .cop,.tt1 .cop{font-size:1.16em;line-height:1}
@@ -1687,7 +1740,7 @@ function vitFilHTML(oldFil) {
 function vitBar() {
   return `<div class="vitbar"><div class="vitrow"><span class="vitl">Fil</span><div class="vitch">${VIT_FILS.map((nm, k) => `<button class="${k === VIT_FIL ? 'on' : ''}" data-vitfil="${k}">${k ? k + ' ' : ''}${nm}</button>`).join('')}</div></div>`
     + `<div class="vitrow"><span class="vitl">Prêtre</span><div class="vitch"><button class="${VIT_QC === 2 ? 'on' : ''}" data-vitqc="2">2 · sous la carte</button><button class="${VIT_QC === 3 ? 'on' : ''}" data-vitqc="3">3 · tout en bas</button></div></div>`
-    + `<div class="vitrow"><span class="vitl">Sceau</span><div class="vitch"><button class="${VIT_SC === 'dedans' ? 'on' : ''}" data-vitsc="dedans">Dans la pochette</button><button class="${VIT_SC === 'cote' ? 'on' : ''}" data-vitsc="cote">Sur le côté</button></div></div>` + vitMuBar() + (typeof amBar === 'function' ? amBar() : '') + `</div>`;
+    + `<div class="vitrow"><span class="vitl">Sceau</span><div class="vitch"><button class="${VIT_SC === 'dedans' ? 'on' : ''}" data-vitsc="dedans">Dans la pochette</button><button class="${VIT_SC === 'cote' ? 'on' : ''}" data-vitsc="cote">Sur le côté</button></div></div>` + vitEntBar() + vitGearBar() + (typeof amBar === 'function' ? amBar() : '') + `</div>`;
 }
 function renderLiturgie() {
   const ids0 = litOrdre(), autres = listIds('univ:liturgie').filter(id => !litStepOf(id));
@@ -1706,7 +1759,7 @@ function renderLiturgie() {
     const qf = id => !VIT_QF || VIT_QC !== 2 || [TR[id].ch, TR[id].ch2, TR[id].ch3].includes(VIT_QF);
     rows = ids.map((id, i) => { if (!qf(id)) return ''; const f = fineOf(id), h = f !== lastF && S[4].length > 1 ? `<div class="sh mom"><h3>${f}</h3></div>` : ''; lastF = f; return h + litRow(id, list, i); }).join('');
   }
-  const ent = autres.length ? `<div class="sh st"><h2>Liturgies entières</h2></div>` + autres.map((id, i) => litRow(id, 'litv:entieres', i)).join('') : '';
+  const ent = autres.length ? vitEntCard(autres) + (VIT_ENT ? autres.map((id, i) => litRow(id, 'litv:entieres', i)).join('') : '') : '';
   return `<section class="season litfil" style="--c1:#eba83a;--c2:#7e420c;--ink:#fffaf0"><div class="s-lt">Ⲗ</div><div class="eyebrow">La sainte liturgie</div><div class="s-name"><span class="lt1">Ⲗ</span>iturgie</div><div class="s-desc">Fais glisser le fil : chaque étape de la messe, dans l’ordre</div><div class="s-actions">
       <button class="s-btn pri" data-act="play" data-list="litv:tout" data-i="0" ${ids0.length ? '' : 'disabled'}>${ic('play', 16)} Dans l’ordre</button>
       <button class="s-btn" data-act="shufplay" data-list="univ:liturgie" ${ids0.length ? '' : 'disabled'}>${ic('shuffle', 16)} Aléatoire</button></div></section>`
@@ -1787,7 +1840,7 @@ document.addEventListener('click', e => {
   document.addEventListener('touchend', e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 2) { const i = VIT_VIS.findIndex(s => s[1] === litStep) + (dx < 0 ? 1 : -1); if (VIT_VIS[i]) vitSelect(VIT_VIS[i][1]); } }, {passive: true}); }
 /* 18/11 : plusieurs chantres sur une ligne : bulles superposées (Instagram), médaillon, ou moitiés */
-let VIT_MU = localStorage.getItem('vit:mu') || 'pile';
+let VIT_MU = 'pile';   // choisi le 18/11 : bulles superposées
 document.body.classList.add('vit-mu-' + VIT_MU);
 litRow = (orig => function (id, list, i) {
   const h = orig(id, list, i), tr = TR[id], ks = [tr.ch, tr.ch2, tr.ch3].filter(k => CH[k]), p = chPic(tr);
@@ -1805,7 +1858,69 @@ document.addEventListener('click', e => {
   document.querySelectorAll('[data-vitmu]').forEach(x => x.classList.toggle('on', x === b));
 }, true);
 
-/* ===== Barre du bas façon Apple Music (essai du 18/11), injectée dans la portée de l'appli ===== */
+/* 19/11 : « Liturgies entières » devient une carte comme celle de l'étape ; la toucher montre ou cache les liturgies entières */
+let VIT_ENT = 0, VIT_EC = localStorage.getItem('vit:ec') || 'trois';
+const VIT_ECS = { trois: ['Les trois messes', ''], encens: ['Encens', '#b07a2a,#3a2208'], lapis: ['Lapis et or', '#2a5ea8,#0b1a38'], pourpre: ['Pourpre', '#8a2f6a,#24081c'], nuit: ['Nuit étoilée', '#3b3f8a,#0d0e26'] };
+function vitEntBg(k) { if (k === 'trois') return `linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),linear-gradient(115deg,${LITC.basile[1]} 0%,${LITC.basile[0]} 30%,#a8946c 50%,${LITC.cyrille[0]} 74%,${LITC.cyrille[1]} 100%)`; const [a, b] = VIT_ECS[k][1].split(','); return `linear-gradient(160deg,${a},${b})`; }
+function vitEntCard(ids) {
+  const L = ['basile', 'gregoire', 'cyrille'].filter(l => ids.some(id => litDe(id) === l)), LVN = {basile:'Saint Basile', gregoire:'Saint Grégoire', cyrille:'Saint Cyrille'};
+  return `<button class="stepcard entc${VIT_ENT ? ' open' : ''}" data-vitent="1" style="background:${vitEntBg(VIT_EC)}"><span class="lt">Ⲗ</span><div><div class="eyebrow">La sainte liturgie · du début à la fin</div><div class="sc-n">Liturgies entières</div><div class="sc-d">${L.map(l => LVN[l]).join(' · ')} · ${ids.length} liturgie${ids.length > 1 ? 's' : ''}</div></div><span class="ent-chev">${ic('back', 18)}</span></button>`;
+}
+function vitEntBar() { return `<div class="vitrow"><span class="vitl">Entières</span><div class="vitch">${Object.entries(VIT_ECS).map(([k, [n]]) => `<button class="${VIT_EC === k ? 'on' : ''}" data-vitec="${k}">${n}</button>`).join('')}</div></div>`; }
+/* 19/11 : un chant de toute l'année qui a aussi un temps (fraction du sacrifice d'Isaac) : deux étiquettes */
+litRow = (orig => function (id, list, i) {
+  const h = orig(id, list, i), tr = TR[id];
+  if (tr.p !== 'annuel' || !tr.p2 || !PERIODS[tr.p2]) return h;
+  return h.replace('<div class="t2 ell">', `<div class="t2 ell"><i class="tg pr" style="--c1:${PERIODS.annuel.c[0]}">Toute l’année</i>`);
+})(litRow);
+/* 19/11 : icône du bouton Réglages, au choix */
+let VIT_GR = localStorage.getItem('vit:gr') || 'actuelle';
+const VIT_GRS = {
+  actuelle: ['Actuelle', ic('gear', 20)],
+  roue: ['Engrenage', `<svg class="ic" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`],
+  points: ['Trois points', `<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9.5"/><circle cx="7.6" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.15" fill="currentColor" stroke="none"/><circle cx="16.4" cy="12" r="1.15" fill="currentColor" stroke="none"/></svg>`],
+  profil: ['Profil (Apple Music)', `<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="10" r="3.2"/><path d="M6.4 18.3a7 7 0 0 1 11.2 0"/></svg>`],
+  palette: ['Palette', `<svg class="ic" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4.5 4H15a2 2 0 0 0-1.5 3.3A1.6 1.6 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1.2" fill="currentColor"/><circle cx="12" cy="7" r="1.2" fill="currentColor"/><circle cx="16.5" cy="10.5" r="1.2" fill="currentColor"/></svg>`],
+  croix: ['Croix copte', `<svg class="ic" width="22" height="22" viewBox="0 0 100 100"><use href="#xc"/></svg>`]
+};
+function vitGearBar() { return `<div class="vitrow"><span class="vitl">Réglages</span><div class="vitch gico">${Object.entries(VIT_GRS).map(([k, [n, svg]]) => `<button class="${VIT_GR === k ? 'on' : ''}" data-vitgr="${k}" aria-label="${n}">${svg}<span>${n}</span></button>`).join('')}</div></div>`; }
+function vitGear() { document.querySelectorAll('#screen .gear').forEach(b => b.innerHTML = VIT_GRS[VIT_GR][1]); }
+render = (orig => function (keep) { orig(keep); vitGear(); })(render);
+/* 19/11 : le nuancier autrement : « Studio » (aperçu en direct, ambiances, couleur secondaire, associations) */
+let VIT_ST = localStorage.getItem('vit:st') || 'studio';
+const VIT_COMBOS = [['cierge', 'or', 'Cierge et or'], ['graphite', 'rouge', 'Apple Music'], ['velours', 'argent', 'Saphir et argent'], ['nuit', 'turquoise', 'Nuit et turquoise'], ['pourpre', 'violet', 'Pourpre et violet'], ['olivier', 'vert', 'Olivier et vert'], ['ardoise', 'orange', 'Ardoise et orange'], ['nacre', 'bleu', 'Nacre et bleu']];
+renderSettings = (orig => function () {
+  let h = orig();
+  const sw = `<div class="vitch stsw">${[['grille', 'Grille actuelle'], ['studio', 'Studio']].map(([k, n]) => `<button class="${VIT_ST === k ? 'on' : ''}" data-vitst="${k}">${n}</button>`).join('')}</div>`;
+  const a = h.indexOf('<div class="grp-h">Couleur principale</div>'), b = h.indexOf('</p>', a) + 4;
+  if (a < 0 || b < 4) return h;
+  if (VIT_ST !== 'studio') return h.slice(0, a) + sw + h.slice(a);
+  const T = curTheme(), A = curAccent(), ac = accentOf(T), nac = T.k === 'nacre';
+  const acc = x => nac ? x.l[0] : x.d[0];
+  const prev = `<div class="st-prev" style="--b:${T.bg};--u:${T.up};--a:${ac};--ink:${nac ? '#1b2333' : '#f3e9d6'}">
+    <div class="sp-top"><b>Accueil</b><i></i></div><div class="sp-hero"></div>
+    ${[0, 1, 2].map(j => `<div class="sp-row"><span class="sp-art" style="opacity:${1 - j * .2}"></span><span class="sp-l"><i></i><i></i></span><span class="sp-h">${j < 2 ? '♥' : '♡'}</span></div>`).join('')}
+    <div class="sp-mini"><span class="sp-art"></span><span class="sp-l"><i></i></span><span class="sp-pl">▶</span></div>
+    <div class="sp-tabs"><span class="on"></span><span></span><span></span></div></div>`;
+  const amb = `<div class="grp-h">Ambiance</div><div class="st-th">${THEMES.map(t => `<button class="${t.k === T.k ? 'on' : ''}" data-act="theme" data-v="${t.k}" style="--b:${t.bg};--u:${t.up};--a:${A ? acc(A) : t.ac}"><span class="th-card"><i></i><i></i><i></i></span><span class="nm">${t.name.replace(' (Apple Music)', '').replace(' (clair)', '')}</span></button>`).join('')}</div>`;
+  const sec = `<div class="grp-h">Couleur secondaire</div><div class="st-ac">${[{ k: '', name: 'Du thème' }, ...ACCENTS].map(x => { const on = (A?.k || '') === x.k, c = x.k ? acc(x) : T.ac; return `<button class="${on ? 'on' : ''}${x.k ? '' : ' auto'}" data-act="accent" data-v="${x.k}" style="--c:${c}" aria-label="${x.name}">${on ? ic('check', 16) : ''}</button>`; }).join('')}</div><p class="st-acn">${A ? A.name : 'Du thème'}</p>`;
+  const com = `<div class="grp-h">Associations</div><div class="st-combo">${VIT_COMBOS.filter(([t, x]) => THEMES.some(z => z.k === t) && ACCENTS.some(z => z.k === x)).map(([t, x, n]) => { const th = THEMES.find(z => z.k === t), xa = ACCENTS.find(z => z.k === x), on = T.k === t && A?.k === x; return `<button class="${on ? 'on' : ''}" data-vitcombo="${t},${x}"><span class="cd" style="background:linear-gradient(135deg,${th.up},${th.bg})"><i style="background:${t === 'nacre' ? xa.l[0] : xa.d[0]}"></i></span>${n}</button>`; }).join('')}</div>`;
+  return h.slice(0, a) + sw + `<div class="studio">${prev}${amb}${sec}${com}</div>` + h.slice(b);
+})(renderSettings);
+document.addEventListener('click', e => {
+  const t = e.target, y = scrollY;
+  const en = t.closest('[data-vitent]'), ec = t.closest('[data-vitec]'), gr = t.closest('[data-vitgr]'), st = t.closest('[data-vitst]'), co = t.closest('[data-vitcombo]');
+  if (!en && !ec && !gr && !st && !co) return;
+  e.preventDefault(); e.stopPropagation();
+  if (en) VIT_ENT = !VIT_ENT;
+  if (ec) { VIT_EC = ec.dataset.vitec; localStorage.setItem('vit:ec', VIT_EC); }
+  if (gr) { VIT_GR = gr.dataset.vitgr; localStorage.setItem('vit:gr', VIT_GR); }
+  if (st) { VIT_ST = st.dataset.vitst; localStorage.setItem('vit:st', VIT_ST); }
+  if (co) { const [th, x] = co.dataset.vitcombo.split(','); store.set('theme', th); setAccent(x); return; }
+  render(true); scrollTo(0, y);
+}, true);
+
+/* ===== Barre du bas façon Apple Music (essai du 18-19/11), injectée dans la portée de l'appli ===== */
 let AM_MODE = localStorage.getItem('vit:dock') || 'liquide';   // actuelle | apple | liquide
 let AM_COL = false, AM_LAST = 'home';
 const AM_TABS = ['home', 'periods', 'library'];
@@ -1813,49 +1928,101 @@ const amDock = $('#dock'), amCap = amDock.querySelector('.tabcap'), amPill = doc
 amPill.className = 'am-pill'; amCap.prepend(amPill);
 const amQ = document.createElement('label'); amQ.className = 'amq';
 amQ.innerHTML = `<input id="amq" type="search" placeholder="Titre, chantre, paroles…" enterkeyhint="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Rechercher"><button class="amx" type="button" aria-label="Effacer">${ic('close', 16)}</button>`;
-amDock.append(amQ);
+const amLens = document.createElement('div'); amLens.className = 'am-lens'; amLens.innerHTML = '<div class="am-lens-in"></div>';
+const amLensIn = amLens.firstChild;
+amDock.append(amQ, amLens);
 const amIn = amQ.querySelector('input');
+const amB = () => document.body.classList;
 function amApply() {
-  document.body.classList.toggle('am', AM_MODE !== 'actuelle');
-  document.body.classList.toggle('am-lq', AM_MODE === 'liquide');
+  amB().toggle('am', AM_MODE !== 'actuelle');
+  amB().toggle('am-lq', AM_MODE === 'liquide');
   amSync();
 }
 function amSync() {   // après chaque rendu : onglet montré dans le rond, place de la pastille, mode recherche
   const t = S.route.tab, sea = t === 'search';
   if (!sea) AM_LAST = t;
   const k = AM_TABS.indexOf(AM_LAST);
-  if (amPill.dataset.ti !== String(k)) {   // la pastille glisse et s'étire un instant, comme une goutte
-    const was = amPill.dataset.ti; amPill.dataset.ti = k; amPill.style.setProperty('--ti', k);
-    if (was !== undefined && document.body.classList.contains('am-lq')) { amPill.style.setProperty('--sx', 1.14); setTimeout(() => amPill.style.setProperty('--sx', 1), 170); }
-  }
+  amPill.style.setProperty('--ti', k);
   AM_TABS.forEach(n => $('#tab-' + n).classList.toggle('am-show', n === AM_LAST));
-  document.body.classList.toggle('am-sea', sea);
-  if (sea) { AM_COL = false; document.body.classList.remove('am-col'); if (document.activeElement !== amIn) amIn.value = S.q || ''; amQ.classList.toggle('has', !!amIn.value); }
+  amB().toggle('am-sea', sea);
+  if (sea) { AM_COL = false; amB().remove('am-col'); if (document.activeElement !== amIn) amIn.value = S.q || ''; amQ.classList.toggle('has', !!amIn.value); }
   else if (document.activeElement === amIn) amIn.blur();
 }
 render = (orig => function (keep) { orig(keep); amSync(); })(render);
 function amCollapse(on) {
-  if (on === AM_COL || document.body.classList.contains('am-sea')) return;
-  AM_COL = on; document.body.classList.toggle('am-col', on);
+  if (on === AM_COL || amB().contains('am-sea')) return;
+  AM_COL = on; amB().toggle('am-col', on);
 }
 { let lastY = scrollY, acc = 0;   // descendre : la barre se replie ; remonter : elle se rouvre
   addEventListener('scroll', () => {
-    if (!document.body.classList.contains('am')) return;
+    if (!amB().contains('am')) return;
     const y = scrollY, d = y - lastY; lastY = y;
     if (y < 40) { acc = 0; amCollapse(false); return; }
     if (Math.sign(d) !== Math.sign(acc)) acc = 0;
     acc += d;
-    if (acc > 28) amCollapse(true); else if (acc < -28) amCollapse(false);
+    if (acc > 24) amCollapse(true); else if (acc < -24) amCollapse(false);
   }, {passive: true}); }
+
+/* ---------- la loupe de verre (verre liquide) : apparaît sous le doigt, le suit, se pose sur l'onglet et redevient pastille ---------- */
+let AM_G = null;   // géométrie et état du geste en cours
+function amLensAt(x, drag) {
+  const g = AM_G, lo = g.capL + 4 + g.tw / 2 - 8, hi = g.capL + 4 + g.tw * 2.5 + 8, cx = Math.max(lo, Math.min(hi, x));
+  const now = performance.now(), v = g.t ? Math.abs(cx - g.cx) / Math.max(1, now - g.t) : 0; g.t = now; g.cx = cx;
+  const lx = cx - g.W / 2, ly = g.capT + 31 - g.H / 2;
+  amLens.style.setProperty('--lx', lx + 'px'); amLens.style.setProperty('--ly', ly + 'px');
+  amLens.style.setProperty('--lsx', drag ? 1 + Math.min(v * .09, .22) : 1);
+  const px = cx - (g.capL + 4);   // point des icônes sous le centre de la loupe
+  amLensIn.style.transformOrigin = `${px}px 27px`;
+  amLensIn.style.transform = `translate3d(${g.capL + 4 - lx}px,${g.capT + 4 - ly}px,0) scale(1.22)`;
+  amLens.classList.toggle('drag', !!drag);
+}
+function amDown(e) {
+  if (!amB().contains('am-lq') || AM_COL || amB().contains('am-sea') || e.button > 0) return;
+  const capW = amCap.offsetWidth, tw = (capW - 8) / 3, r = amDock.getBoundingClientRect();
+  AM_G = { capL: amCap.offsetLeft, capT: amCap.offsetTop, tw, W: tw + 22, H: 80, dx: r.left, x0: e.clientX, cx: 0, t: 0, id: e.pointerId };
+  amLens.style.width = AM_G.W + 'px'; amLens.style.height = AM_G.H + 'px';
+  amLensIn.style.width = capW - 8 + 'px'; amLensIn.style.height = '54px';
+  amLensIn.innerHTML = AM_TABS.map(n => `<span>${$('#tab-' + n).innerHTML}</span>`).join('');
+  amLens.classList.remove('out', 'drag'); amLens.style.transition = 'none';
+  amLensAt(e.clientX - r.left); void amLens.offsetWidth; amLens.style.transition = '';
+  amLens.classList.add('on'); amB().add('am-lens-on');
+  try { amCap.setPointerCapture(e.pointerId); } catch (_) {}
+}
+function amMove(e) { if (AM_G && e.pointerId === AM_G.id) amLensAt(e.clientX - AM_G.dx, true); }
+function amUp(e) {
+  if (!AM_G || e.pointerId !== AM_G.id) return;
+  const g = AM_G; AM_G = null;
+  const i = Math.max(0, Math.min(2, Math.floor((g.cx - g.capL - 4) / g.tw)));
+  AM_G = g; amLensAt(g.capL + 4 + g.tw * (i + .5), false); AM_G = null;   // la loupe se pose au centre de l'onglet
+  amPill.style.setProperty('--ti', i);
+  setTimeout(() => { amLens.classList.add('out'); amB().remove('am-lens-on'); }, 190);
+  setTimeout(() => amLens.classList.remove('on', 'out'), 470);
+  if (e.type === 'pointercancel') return;
+  const b = $('#tab-' + AM_TABS[i]);
+  requestAnimationFrame(() => requestAnimationFrame(() => { b.__am = 1; b.click(); }));   // l'animation part d'abord, le rendu ensuite
+}
+amCap.addEventListener('pointerdown', amDown);
+amCap.addEventListener('pointermove', amMove);
+amCap.addEventListener('pointerup', amUp);
+amCap.addEventListener('pointercancel', amUp);
+{ const s = $('#tab-search'), off = () => s.classList.remove('press');   // la loupe de recherche gonfle sous le doigt
+  s.addEventListener('pointerdown', () => { if (amB().contains('am-lq')) s.classList.add('press'); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(t => s.addEventListener(t, () => setTimeout(off, 120))); }
+
 document.addEventListener('click', e => {
-  if (!document.body.classList.contains('am')) return;
+  if (!amB().contains('am')) return;
+  const tab = e.target.closest('.tab');
+  if (tab && tab.__am) { tab.__am = 0; return; }   // clic lancé par la loupe : on laisse passer
   const cap = e.target.closest('.tabcap');
   if (cap && AM_COL) { e.preventDefault(); e.stopPropagation(); amCollapse(false); return; }   // rond replié : rouvre la barre
   if (cap && S.route.tab === 'search') { e.preventDefault(); e.stopPropagation(); S.route = { tab: AM_LAST, stack: [] }; render(); return; }   // rond en recherche : retour à l'onglet
+  if (cap && amB().contains('am-lq')) { e.preventDefault(); e.stopPropagation(); return; }   // la loupe s'en occupe
   if (e.target.closest('#tab-search') && S.route.tab === 'search' && !S.route.stack.length) { e.preventDefault(); e.stopPropagation(); amIn.focus(); return; }
   if (e.target.closest('.amx')) { e.preventDefault(); e.stopPropagation(); amIn.value = ''; amPush(); amIn.focus(); }
 }, true);
-function amPush() {   // le champ du bas pilote la recherche de l'appli
+
+/* ---------- le champ de recherche du bas pilote la recherche de l'appli ---------- */
+function amPush() {
   amQ.classList.toggle('has', !!amIn.value);
   if (S.route.stack.length) { S.route.stack = []; render(); }
   const q = $('#q'); if (q) { q.value = amIn.value; q.dispatchEvent(new Event('input')); } else S.q = amIn.value;
@@ -1867,7 +2034,7 @@ amIn.addEventListener('keydown', e => { if (e.key === 'Enter') amIn.blur(); });
 if (window.visualViewport) {   // clavier ouvert : la barre monte au-dessus du clavier, le mini-lecteur s'efface
   const vv = visualViewport, kb = () => {
     const h = Math.max(0, innerHeight - vv.height - vv.offsetTop), on = h > 80 && document.activeElement === amIn;
-    document.body.classList.toggle('am-kb', on);
+    amB().toggle('am-kb', on);
     amDock.style.transform = on ? `translateY(${-h + 22}px)` : '';
   };
   vv.addEventListener('resize', kb); vv.addEventListener('scroll', kb);
@@ -3451,7 +3618,10 @@ const ACCENTS = [
   {k:'rouge', name:'Rouge', d:['#fa2d48','#ffffff'], l:['#d61f3c','#ffffff']},
   {k:'bleu', name:'Bleu', d:['#0a84ff','#ffffff'], l:['#0068d6','#ffffff']},
   {k:'violet', name:'Violet', d:['#bf5af2','#ffffff'], l:['#8a3fc4','#ffffff']},
-  {k:'argent', name:'Argent', d:['#d1d1d6','#000000'], l:['#5f6370','#ffffff']}
+  {k:'argent', name:'Argent', d:['#d1d1d6','#000000'], l:['#5f6370','#ffffff']},
+  {k:'turquoise', name:'Turquoise', d:['#64d2ff','#00202b'], l:['#0a86ad','#ffffff']},
+  {k:'orange', name:'Orange', d:['#ff9f0a','#2a1600'], l:['#c46a00','#ffffff']},
+  {k:'vert', name:'Vert', d:['#30d158','#002a0c'], l:['#1f8f3a','#ffffff']}
 ];
 (() => { const st = document.createElement('style');
   st.textContent = ACCENTS.map(a => `:root[data-accent="${a.k}"],:root[data-accent="${a.k}"] #player{--gold:${a.d[0]};--on-gold:${a.d[1]}}:root[data-theme="nacre"][data-accent="${a.k}"]{--gold:${a.l[0]};--on-gold:${a.l[1]}}`).join('\n');
