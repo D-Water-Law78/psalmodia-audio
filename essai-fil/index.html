@@ -160,6 +160,7 @@ body.am-gl.am-col #dock > .amgl,body.am-gl.am-sea #dock > .amgl{opacity:0;pointe
 :root[data-theme="ambre"]{--night:#140d04;--surface:#1f1508;--raised:#33230d;--muted:#b4a088;--faint:#82725e;--glass:rgba(48,33,12,.8);--sheet:rgba(40,27,10,.95);--fade:20,13,4;--top:#140d04;--av1:#4c3514;--av2:#1f1508;--avph:#35250f}
 :root[data-theme="fumee"]{--night:#0e0e10;--surface:#17171a;--raised:#26262b;--muted:#a1a1a8;--faint:#73737a;--glass:rgba(34,34,38,.8);--sheet:rgba(28,28,32,.95);--fade:14,14,16;--top:#0e0e10;--av1:#38383e;--av2:#17171a;--avph:#29292e}
 .es-card .eyebrow,.es-card .sc-n,.es-card .sc-d{color:#fffaf0;text-shadow:0 1px 2px rgba(60,20,0,.7),0 0 16px rgba(60,20,0,.6)}.es-card .sc-d{font-weight:600}
+.es-tri{display:flex;gap:6px;margin:-4px 0 14px}.es-tri button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:99px;background:var(--raised);color:var(--ivory);font-size:13.5px;font-weight:600}.es-tri button.on{background:var(--gold);color:var(--on-gold)}
 </style>
 </head><body>
 <title>Psalmodia</title>
@@ -3901,13 +3902,20 @@ renderDetail = (o => it => {
       <div>${ids.map((id, i) => rowHTML(TR[id], 'estop:all', i, true).replace(/<span class="dur">[^<]*<\/span>/, `<span class="dur es-cnt">${n[id]}×</span>`)).join('')}</div>`;
   }
   let h = o(it);
-  if (it.type === 'chanters' && esG('chs', 'vos') === 'vos') h = h.replace('<h1>Chantres</h1>', '<h1>Vos chantres</h1><p class="lead">Tes favoris d’abord, puis ceux que tu écoutes le plus, puis tous les autres.</p>');
+  if (it.type === 'chanters') {   // 19/11 : tri au choix dans la page des chantres
+    const v = esG('chs', 'vos'), tri = `<div class="es-tri" role="group" aria-label="Trier les chantres"><button class="${v === 'vos' ? 'on' : ''}" data-estri="vos">${ic('heart', 15)}Favoris et plus écoutés</button><button class="${v === 'alpha' ? 'on' : ''}" data-estri="alpha">A → Z</button></div>`;
+    h = h.replace('<h1>Chantres</h1>', (v === 'vos' ? '<h1>Vos chantres</h1>' : '<h1>Chantres</h1>') + tri + (v === 'vos' ? '<p class="lead">Tes favoris d’abord (cœur sur la page d’un chantre), puis ceux que tu écoutes le plus, puis tous les autres.</p>' : ''));
+  }
   if (it.type === 'chanter' && esG('chs', 'vos') === 'vos') {
     const on = esChFav().includes(it.id), k = esChScore()[it.id] || 0;
     h = h.replace('<div class="h-sub">Chantre</div>', `<div class="h-sub">Chantre${k ? ` · ${k} écoute${k > 1 ? 's' : ''}` : ''}</div><button class="es-chfav${on ? ' on' : ''}" data-eschfav="${it.id}">${ic(on ? 'heartf' : 'heart', 16)}${on ? 'Chantre favori' : 'Ajouter aux favoris'}</button>`);
   }
   return h;
 })(renderDetail);
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-estri]'); if (!t) return;
+  e.preventDefault(); e.stopPropagation(); esS('chs', t.dataset.estri); render(true);
+}, true);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-eschfav]'); if (!b) return;
   e.preventDefault(); e.stopPropagation();
@@ -4045,7 +4053,7 @@ const ES_CHOIX = [
   ['2', 'Autres rubriques proposées', 'rub', 'jour', [['jour', 'Chant du jour'], ['jamais', 'Pas encore écoutés'], ['deux', 'Les deux'], ['aucune', 'Aucune']],
     'Chant du jour : un chant du temps présent, qui change chaque jour. Pas encore écoutés : les chants du temps que tu n’as jamais lancés.'],
   ['7', 'Vos chantres', 'chs', 'vos', [['vos', 'Favoris puis plus écoutés'], ['alpha', 'Actuel (A → Z)']],
-    'Cœur « Ajouter aux favoris » sur la page d’un chantre. « Tout voir » les montre tous, dans le même ordre.'],
+    'Cœur « Ajouter aux favoris » sur la page d’un chantre. « Tout voir » les montre tous, dans le même ordre ; en haut de cette page, le tri se change aussi (favoris et plus écoutés, ou A → Z).'],
   ['10', 'Barre du bas', 'dock', 'apple', [['apple', 'Apple Music (se replie)'], ['fixe', 'Apple Music (fixe)'], ['actuelle', 'Actuelle']],
     'Sans verre liquide (pour la vraie appli plus tard). En descendant, elle se replie : onglet en rond, mini-lecteur, loupe.'],
   ['15', 'Barre du haut', 'topbar', 'bas', [['bas', 'Comme la barre du bas'], ['actuelle', 'Actuelle']],
