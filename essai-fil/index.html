@@ -1791,6 +1791,8 @@ function litRow(id, list, i) {   // sceau de la messe sur l'image ; traduction, 
 /* ===== Vitrine du fil de la liturgie (18/11) : 8 fils + Prêtre célébrant 2 ou 3 ===== */
 let VIT_SC = localStorage.getItem('vit:sceau') || 'dedans'; document.body.classList.toggle('vit-cote', VIT_SC === 'cote');
 let VIT_MUTE = 0, VIT_FIL = +(localStorage.getItem('vit:fil') || 4), VIT_QC = 2, VIT_VIS = [], VIT_N = {}, VIT_DIR = 0, VIT_QF = '';   // VIT_QF : chantre choisi dans les bulles (filtre la liste de l'étape)
+const VIT_FILS_GARDES = [0, 4, 6];   // 19/11 : le user a éliminé Fil aéré, Pilules, Cartes, Onglets, Barre, Pastilles
+if (!VIT_FILS_GARDES.includes(VIT_FIL)) VIT_FIL = 6;
 const VIT_FILS = ['Actuel', 'Fil aéré', 'Pilules', 'Cartes', 'Carrousel', 'Onglets', 'Progression', 'Barre', 'Pastilles'];
 const vitPC = s => LITP.find(p => p[0] === s[0]);
 const vitV = s => { const p = vitPC(s)[2]; return `--c1:${p[0]};--c2:${p[1]}`; };
@@ -1811,7 +1813,7 @@ function vitFilHTML(oldFil) {
   return oldFil;
 }
 function vitBar() {
-  return `<div class="vitbar"><div class="vitrow"><span class="vitl">Fil</span><div class="vitch">${VIT_FILS.map((nm, k) => `<button class="${k === VIT_FIL ? 'on' : ''}" data-vitfil="${k}">${k ? k + ' ' : ''}${nm}</button>`).join('')}</div></div>`
+  return `<div class="vitbar"><div class="vitrow"><span class="vitl">Fil</span><div class="vitch">${VIT_FILS.map((nm, k) => !VIT_FILS_GARDES.includes(k) ? '' : `<button class="${k === VIT_FIL ? 'on' : ''}" data-vitfil="${k}">${nm}</button>`).join('')}</div></div>`
     + `<div class="vitrow" hidden><span class="vitl">Prêtre</span><div class="vitch"><button class="${VIT_QC === 2 ? 'on' : ''}" data-vitqc="2">2 · sous la carte</button><button class="${VIT_QC === 3 ? 'on' : ''}" data-vitqc="3">3 · tout en bas</button></div></div>`
     + vitQmBar() + `<div class="vitrow" hidden><span class="vitl">Sceau</span><div class="vitch"><button class="${VIT_SC === 'dedans' ? 'on' : ''}" data-vitsc="dedans">Dans la pochette</button><button class="${VIT_SC === 'cote' ? 'on' : ''}" data-vitsc="cote">Sur le côté</button></div></div>` + vitEntBar() + vitGearBar() + (typeof amBar === 'function' ? amBar() : '') + `</div>`;
 }
@@ -1948,7 +1950,8 @@ function vitEntBar() { return `<div class="vitrow"><span class="vitl">Entières<
 document.addEventListener('click', e => { const b = e.target.closest('[data-vitep]'); if (!b) return; e.preventDefault(); e.stopPropagation(); VIT_EP = b.dataset.vitep; localStorage.setItem('vit:ep', VIT_EP); const y = scrollY; render(true); scrollTo(0, y); }, true);
 /* 19/11 : l'étiquette « Annuel » (fraction d'Isaac) est maintenant dans psalmodia.html */
 /* 19/11 : icône du bouton Réglages, au choix */
-let VIT_GR = localStorage.getItem('vit:gr') || 'actuelle';
+const VIT_GRS_GARDES = ['actuelle', 'roue', 'points', 'profil', 'avatar'];   // 19/11 : éliminés grappe, palette, croix copte, curseurs, trois traits, roue simple, croix dans un cercle, monogramme
+let VIT_GR = localStorage.getItem('vit:gr') || 'actuelle'; if (!VIT_GRS_GARDES.includes(VIT_GR)) VIT_GR = 'actuelle';
 const VIT_GRS = {
   actuelle: ['Actuelle', ic('gear', 20)],
   roue: ['Engrenage', `<svg class="ic" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>`],
@@ -1964,7 +1967,7 @@ const VIT_GRS = {
   monogramme: ['Monogramme Ⲯ', `<span style="font-family:var(--f-lettrine);font-size:22px;line-height:1">Ⲯ</span>`],
   avatar: ['Profil plein', `<svg class="ic" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="currentColor" opacity=".22"/><circle cx="12" cy="9.6" r="3.4" fill="currentColor"/><path d="M5.6 18.6a7.6 7.6 0 0 1 12.8 0A10.4 10.4 0 0 1 12 22.5a10.4 10.4 0 0 1-6.4-3.9z" fill="currentColor"/></svg>`]
 };
-function vitGearBar() { return `<div class="vitrow"><span class="vitl">Réglages</span><div class="vitch gico">${Object.entries(VIT_GRS).map(([k, [n, svg]]) => `<button class="${VIT_GR === k ? 'on' : ''}" data-vitgr="${k}" aria-label="${n}">${svg}<span>${n}</span></button>`).join('')}</div></div>`; }
+function vitGearBar() { return `<div class="vitrow"><span class="vitl">Réglages</span><div class="vitch gico">${Object.entries(VIT_GRS).filter(([k]) => VIT_GRS_GARDES.includes(k)).map(([k, [n, svg]]) => `<button class="${VIT_GR === k ? 'on' : ''}" data-vitgr="${k}" aria-label="${n}">${svg}<span>${n}</span></button>`).join('')}</div></div>`; }
 function vitGear() { document.querySelectorAll('#screen .gear').forEach(b => b.innerHTML = VIT_GRS[VIT_GR][1]); }
 render = (orig => function (keep) { orig(keep); vitGear(); })(render);
 /* 19/11 : le nuancier autrement : « Studio » (aperçu en direct, ambiances, couleur secondaire, associations) */
