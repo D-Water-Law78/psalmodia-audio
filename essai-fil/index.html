@@ -103,7 +103,7 @@ body.am-gl.am-col #dock > .amgl,body.am-gl.am-sea #dock > .amgl{opacity:0;pointe
 .es-q p{margin:8px 0 0;font-size:12.5px;line-height:1.4;color:var(--muted)}
 .es-ex{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--on-gold);background:var(--gold);border-radius:6px;padding:2px 5px;margin-left:8px;vertical-align:middle}
 
-/* 2 : plus écoutés */
+/* 2 : plus écoutés, chant du jour */
 .es-topc .card{position:relative}
 .es-rk{position:absolute;z-index:2;left:8px;top:8px;min-width:30px;height:30px;padding:0 8px;border-radius:15px;display:grid;place-items:center;font-weight:800;font-size:15px;color:var(--on-gold);background:var(--gold);box-shadow:0 2px 10px rgba(0,0,0,.45)}
 .dur.es-cnt{color:var(--gold);font-weight:700}
@@ -111,56 +111,57 @@ body.am-gl.am-col #dock > .amgl,body.am-gl.am-sea #dock > .amgl{opacity:0;pointe
 .es-jour .art{flex:none;width:64px!important;height:64px!important;border-radius:12px}
 .ej-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}.ej-t small{font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.8}.ej-t b{font-size:17px}.ej-t span{font-size:13px;opacity:.85}
 .ej-p{width:42px;height:42px;border-radius:50%;background:rgba(255,250,240,.92);color:#2a1a06;display:grid;place-items:center;flex:none}
-.es-chfav{margin:10px auto 0;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;background:var(--raised);color:var(--ivory);font-size:13px;font-weight:600}
-.es-chfav.on{color:var(--gold)}
 
-/* 6 : une seule carte en haut de Liturgie */
-.stepcard.es-card{display:block;cursor:default;padding:16px 16px 14px}
-.es-card .sc-n{font-family:var(--f-display);font-size:30px;line-height:1.1}
-.es-card .sc-d{margin-top:4px}
-.es-card .s-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.es-card .s-btn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 14px;border-radius:99px;font-weight:600;font-size:14px;background:rgba(40,12,4,.38);color:#fffaf0;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-.es-card .s-btn.pri{background:#fffaf0;color:#3a1a06}
-.es-card .s-btn.on .ic:last-child{transform:rotate(90deg)}
-.es-card .s-btn .etq{width:18px;height:18px;font-size:11px;margin-right:-3px;box-shadow:0 0 0 1.5px rgba(255,250,240,.7)}
+/* 6 : une seule carte, décor et couleurs de « Liturgies entières » */
+.stepcard.es-card{display:block;cursor:default}
+.es-card .es-row{position:relative;display:flex;align-items:center;gap:12px}.es-card .es-row>div:first-child{flex:1;min-width:0}
+.es-ronds{display:flex;gap:8px;flex:none}
+.es-rond{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.es-rond.blanc{background:#fffaf0;color:#3a1a06}
+.es-rond.sombre{width:40px;height:40px;background:rgba(60,8,8,.32);color:#fffaf0}
+.es-rond.sombre .ic{transform:rotate(-90deg);transition:transform .3s}.es-rond.sombre.open .ic{transform:rotate(90deg)}
+.es-pills{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.es-pill-b{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border-radius:99px;font-weight:600;font-size:14px;background:rgba(60,8,8,.32);color:#fffaf0}
+.es-pill-b.blanc{background:#fffaf0;color:#3a1a06}
+.es-pill-b.open .ic:last-child{transform:rotate(90deg)}
+.es-s3{display:inline-flex;margin-right:2px}.es-s3 .etq{width:18px;height:18px;font-size:11px;margin-right:-5px;box-shadow:0 0 0 1.5px rgba(255,250,240,.75)}
 .etq{font-style:normal;width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;font-family:var(--f-cop);font-size:13px;font-weight:600;color:#fff;background:linear-gradient(160deg,var(--c1),var(--c2))}
 .etq[data-l="gregoire"]{color:#2a2010}
-.es-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.es-3 button{display:flex;align-items:center;gap:8px;padding:8px;border-radius:14px;background:rgba(40,12,4,.38);color:#fffaf0;text-align:left;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.es-3{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.es-3 button{display:flex;align-items:center;gap:8px;padding:8px;border-radius:14px;background:rgba(60,8,8,.32);color:#fffaf0;text-align:left}
 .es-3 button.on{background:#fffaf0;color:#3a1a06}
-.es-3 span{display:flex;flex-direction:column;font-weight:700;font-size:13px}.es-3 small{font-weight:500;font-size:11px;opacity:.8}
-.es-band{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 6px;padding:12px 14px 12px 16px;border-radius:16px;background:linear-gradient(115deg,#b8860b 0%,#f5c542 24%,#fff8e7 50%,#d62839 76%,#8b0d1c 100%);color:#fffaf0;text-shadow:0 1px 2px rgba(60,20,0,.55),0 0 14px rgba(60,20,0,.45)}
-.es-band b{font-family:var(--f-display);font-size:24px;font-weight:400}
-.es-bplay{width:46px;height:46px;border-radius:50%;background:#fffaf0;color:#3a1a06;display:grid;place-items:center;flex:none;text-shadow:none}
-.es-entrow .es-s3{display:inline-flex;margin-right:4px}.es-entrow .es-s3 .etq{width:20px;height:20px;font-size:11px;margin-right:-5px;box-shadow:0 0 0 2px var(--night)}
-.es-entrow.open>.ic:last-child{transform:rotate(90deg)}
+.es-3 span{display:flex;flex-direction:column;font-weight:700;font-size:13px}.es-3 small{font-weight:500;font-size:11px;opacity:.85}
 .sh.mom h3 .etq{width:18px;height:18px;font-size:11px;vertical-align:-3px;margin-right:4px}
 
-/* 15 : barre du haut comme celle du bas */
-.es-seg{position:relative;height:62px;padding:4px!important;border-radius:31px!important;gap:0}
-.es-seg button{position:relative;z-index:1;flex:1 1 0;min-width:0;height:54px;flex-direction:column;gap:2px;padding:0 2px;border-radius:27px;font-size:10.5px;font-weight:500;background:none!important}
-.es-seg button.on{color:var(--gold)}
-.es-pill{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 8px) / var(--n));border-radius:27px;background:rgba(var(--wash),.1);transform:translateX(calc(var(--ti,0) * 100%));transition:transform .42s cubic-bezier(.3,1.25,.5,1);pointer-events:none}
+/* 15 : barre du haut au même effet que la barre du bas (verre, pastille qui glisse) ; « défile » : on la fait glisser */
+.useg.es-seg{position:relative;padding:4px!important;height:50px;border-radius:25px!important;overflow:hidden}
+.es-seg-in{position:relative;display:flex;height:100%;overflow-x:auto;scrollbar-width:none;border-radius:21px}.es-seg-in::-webkit-scrollbar{display:none}
+.useg.es-seg button{position:relative;z-index:1;flex:1 0 auto;height:100%;padding:0 12px;border-radius:21px;background:none!important;font-size:clamp(12px,3.6vw,14px);font-weight:600;color:var(--ivory)}
+.useg.es-seg button.on{color:var(--gold)}
+.es-pill{position:absolute;z-index:0;top:0;bottom:0;left:0;width:0;border-radius:21px;background:rgba(var(--wash),.1);transition:transform .42s cubic-bezier(.3,1.25,.5,1),width .42s cubic-bezier(.3,1.25,.5,1);pointer-events:none}
+.useg.es-seg.es-defile button{flex:0 0 auto;padding:0 14px}
+.useg.es-seg.es-defile::after{content:"";position:absolute;right:4px;top:4px;bottom:4px;width:26px;border-radius:0 21px 21px 0;background:linear-gradient(90deg,transparent,var(--glass));pointer-events:none}
 
-/* 16 : Enseignements (maquette) */
+/* 16 : Enseignements (maquette 1 et 2 Samuel) */
 .es-note{font-size:12px;color:var(--faint);margin:-4px 2px 10px}
 .es-chips .chip.on{background:var(--gold);color:var(--on-gold)}
+.es-num{position:absolute;left:10%;top:6%;font-family:var(--f-display);font-size:30cqi;line-height:1;opacity:.9}
+.es-vide{color:var(--faint)!important;font-style:italic}
 .es-rep{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:16px;background:var(--surface);text-align:left;color:var(--ivory)}
 .es-rep>span{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}.es-rep small{color:var(--muted);font-size:12.5px}
 .es-bar{display:block;height:4px;border-radius:2px;background:rgba(var(--wash),.15);overflow:hidden}.es-bar i{display:block;height:100%;background:var(--gold)}
-.es-erow{width:100%;text-align:left}.es-erow .tt{flex:1;min-width:0}.es-erow .t1{font-weight:600}.es-erow .t2{font-size:13px;color:var(--muted)}
+.es-erow{width:100%;text-align:left}
 .es-sheet h4{margin:16px 0 8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
-.es-pl{display:flex;align-items:center;gap:12px;margin:8px 0}.es-pl .es-bar{flex:1}.es-pl .es-bplay{background:var(--gold);color:var(--on-gold)}.es-pl span{font-size:13px;color:var(--muted)}
+.es-pl{display:flex;align-items:center;gap:12px;margin:8px 0}.es-pl .es-bar{flex:1}.es-pl span{font-size:13px;color:var(--muted)}
+.es-bplay{width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--on-gold);display:grid;place-items:center;flex:none}
 .es-chap{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px}.es-chap span{color:var(--gold);font-variant-numeric:tabular-nums}
 
-/* 12 : thèmes proposés (seuls les fonds changent) */
-:root[data-theme="encre"]{--night:#05070d;--surface:#0b0f19;--raised:#151b2b;--muted:#949cb0;--faint:#686f80;--glass:rgba(16,21,34,.8);--sheet:rgba(12,16,27,.95);--fade:5,7,13;--top:#05070d;--av1:#1d2740;--av2:#0b0f19;--avph:#141a2a}
-:root[data-theme="cedre"]{--night:#071210;--surface:#0b1b18;--raised:#16302a;--muted:#93aca5;--faint:#667a74;--glass:rgba(16,40,35,.8);--sheet:rgba(12,32,28,.95);--fade:7,18,16;--top:#071210;--av1:#1e4239;--av2:#0b1b18;--avph:#13302a}
-:root[data-theme="porphyre"]{--night:#12070c;--surface:#1c0b13;--raised:#301520;--muted:#ae94a0;--faint:#7d6671;--glass:rgba(44,16,28,.8);--sheet:rgba(36,13,23,.95);--fade:18,7,12;--top:#12070c;--av1:#47202f;--av2:#1c0b13;--avph:#311722}
-:root[data-theme="ambre"]{--night:#140d04;--surface:#1f1508;--raised:#33230d;--muted:#b4a088;--faint:#82725e;--glass:rgba(48,33,12,.8);--sheet:rgba(40,27,10,.95);--fade:20,13,4;--top:#140d04;--av1:#4c3514;--av2:#1f1508;--avph:#35250f}
-:root[data-theme="fumee"]{--night:#0e0e10;--surface:#17171a;--raised:#26262b;--muted:#a1a1a8;--faint:#73737a;--glass:rgba(34,34,38,.8);--sheet:rgba(28,28,32,.95);--fade:14,14,16;--top:#0e0e10;--av1:#38383e;--av2:#17171a;--avph:#29292e}
-.es-card .eyebrow,.es-card .sc-n,.es-card .sc-d{color:#fffaf0;text-shadow:0 1px 2px rgba(60,20,0,.7),0 0 16px rgba(60,20,0,.6)}.es-card .sc-d{font-weight:600}
-.es-tri{display:flex;gap:6px;margin:-4px 0 14px}.es-tri button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:99px;background:var(--raised);color:var(--ivory);font-size:13.5px;font-weight:600}.es-tri button.on{background:var(--gold);color:var(--on-gold)}
+/* 12 : thèmes clairs proposés (mêmes règles que Nacre, fonds et encres à eux) — :root:root pour passer devant les règles de Nacre */
+:root:root[data-theme="parchemin"]{--night:#f6f1e7;--surface:#fffdf8;--raised:#ece4d4;--ivory:#2a1d10;--muted:#6e5e4b;--faint:#93836f;--gold:#9a6a08;--line:rgba(42,29,16,.1);--glass:rgba(255,253,248,.82);--sheet:rgba(246,241,231,.96);--fade:246,241,231;--wash:42,29,16;--top:#3a2410;--av1:#e8dcc6;--av2:#d6c6a8;--avph:#ece2cf}
+:root:root[data-theme="poudre"]{--night:#f8eff0;--surface:#fffafa;--raised:#efdfe1;--ivory:#2e1418;--muted:#7a5a5f;--faint:#9c8186;--gold:#a33b4c;--line:rgba(46,20,24,.1);--glass:rgba(255,250,250,.82);--sheet:rgba(248,239,240,.96);--fade:248,239,240;--wash:46,20,24;--top:#4a1c26;--av1:#f0d9dc;--av2:#dcbcc1;--avph:#f2e2e4}
+:root:root[data-theme="lilas"]{--night:#f2eff8;--surface:#fdfcff;--raised:#e3ddef;--ivory:#1e1630;--muted:#625a78;--faint:#877f9c;--gold:#6a4fb0;--line:rgba(30,22,48,.1);--glass:rgba(253,252,255,.82);--sheet:rgba(242,239,248,.96);--fade:242,239,248;--wash:30,22,48;--top:#2a1f4a;--av1:#e0d9ef;--av2:#c8bde0;--avph:#e8e3f3}
+:root:root[data-theme="sauge"]{--night:#eef3ee;--surface:#fbfdfb;--raised:#dde7de;--ivory:#14261a;--muted:#4f6656;--faint:#7a8d7f;--gold:#2f7a4a;--line:rgba(20,38,26,.1);--glass:rgba(251,253,251,.82);--sheet:rgba(238,243,238,.96);--fade:238,243,238;--wash:20,38,26;--top:#1d3a28;--av1:#d6e3d8;--av2:#bccfc0;--avph:#e2ebe3}
+.art .es-num{position:absolute;z-index:2;left:auto;top:auto;right:9%;bottom:3%;font-family:var(--f-display);font-size:36cqi;line-height:1;color:#fffaf0;opacity:1;text-shadow:0 2px 10px rgba(0,0,0,.55)}
 </style>
 </head><body>
 <title>Psalmodia</title>
@@ -205,14 +206,38 @@ body.am-gl.am-col #dock > .amgl,body.am-gl.am-sea #dock > .amgl{opacity:0;pointe
 :root[data-theme="emeraude"]{--night:#05140f;--surface:#081f16;--raised:#0f3124;--muted:#91aca2;--faint:#657b73;--glass:rgba(11,45,33,.8);--sheet:rgba(10,39,28,.95);--fade:5,20,15;--top:#05140f;--av1:#1a4a38;--av2:#081f16;--avph:#123327}
 :root[data-theme="lavande"]{--night:#120e18;--surface:#181221;--raised:#241d30;--muted:#9a91ac;--faint:#6d657b;--glass:rgba(32,25,44,.8);--sheet:rgba(28,22,39,.95);--fade:18,14,24;--top:#120e18;--av1:#352c45;--av2:#181221;--avph:#262032}   /* 19/11 : Bordeaux, Nil, Indigo, Émeraude, Lavande */
 /* Nacre (clair) : texte bleu marine, or assombri pour rester lisible. Sous l'heure de l'iPhone, une bande bleu nuit, car l'heure y est toujours écrite en blanc. */
-:root[data-theme="nacre"]{--night:#f7f8fb;--surface:#ffffff;--raised:#eaeef2;--ivory:#142039;--muted:#5a6680;--faint:#7d879b;--gold:#a67a24;--on-gold:#ffffff;
+:root[data-theme="nacre"], car l'heure y est toujours écrite en blanc. */
+:root[data-theme="parchemin"], car l'heure y est toujours écrite en blanc. */
+:root[data-theme="poudre"], car l'heure y est toujours écrite en blanc. */
+:root[data-theme="lilas"], car l'heure y est toujours écrite en blanc. */
+:root[data-theme="sauge"]{--night:#f7f8fb;--surface:#ffffff;--raised:#eaeef2;--ivory:#142039;--muted:#5a6680;--faint:#7d879b;--gold:#a67a24;--on-gold:#ffffff;
   --line:rgba(20,33,61,.09);--glass:rgba(255,255,255,.8);--glass-sh:0 1px 0 rgba(20,33,61,.06),0 8px 24px rgba(20,33,61,.10);
   --sheet:rgba(247,248,251,.96);--fade:247,248,251;--wash:20,33,61;--top:#18294a;--av1:#d7dfea;--av2:#bdc9db;--avph:#dee4ed;--pop-sh:0 10px 30px rgba(20,33,61,.18);--warn:#b4532a;color-scheme:light}
 /* Boutons du formulaire « Modifier les infos » (prévus pour fond sombre) */
-:root[data-theme="nacre"] #sheet .sy-btns .btn{background:var(--raised);color:var(--ivory)}
-:root[data-theme="nacre"] #sheet .sy-btns .btn.pri{background:var(--gold);color:var(--on-gold)}
+:root[data-theme="nacre"] #sheet .sy-btns .btn,
+/* Boutons du formulaire « Modifier les infos » (prévus pour fond sombre) */
+:root[data-theme="parchemin"] #sheet .sy-btns .btn,
+/* Boutons du formulaire « Modifier les infos » (prévus pour fond sombre) */
+:root[data-theme="poudre"] #sheet .sy-btns .btn,
+/* Boutons du formulaire « Modifier les infos » (prévus pour fond sombre) */
+:root[data-theme="lilas"] #sheet .sy-btns .btn,
+/* Boutons du formulaire « Modifier les infos » (prévus pour fond sombre) */
+:root[data-theme="sauge"] #sheet .sy-btns .btn{background:var(--raised);color:var(--ivory)}
+:root[data-theme="nacre"] #sheet .sy-btns .btn.pri,
+:root[data-theme="parchemin"] #sheet .sy-btns .btn.pri,
+:root[data-theme="poudre"] #sheet .sy-btns .btn.pri,
+:root[data-theme="lilas"] #sheet .sy-btns .btn.pri,
+:root[data-theme="sauge"] #sheet .sy-btns .btn.pri{background:var(--gold);color:var(--on-gold)}
 /* Le lecteur plein écran garde ses couleurs sombres dans tous les thèmes */
-:root[data-theme="nacre"] #player{--night:#0f0c0a;--surface:#1a1512;--raised:#272019;--ivory:#f3e9d6;--muted:#a7988a;--faint:#7a6d61;--gold:#dbb066;--on-gold:#1b140c;--line:rgba(243,233,214,.09);--wash:255,255,255;color-scheme:dark}
+:root[data-theme="nacre"] #player,
+/* Le lecteur plein écran garde ses couleurs sombres dans tous les thèmes */
+:root[data-theme="parchemin"] #player,
+/* Le lecteur plein écran garde ses couleurs sombres dans tous les thèmes */
+:root[data-theme="poudre"] #player,
+/* Le lecteur plein écran garde ses couleurs sombres dans tous les thèmes */
+:root[data-theme="lilas"] #player,
+/* Le lecteur plein écran garde ses couleurs sombres dans tous les thèmes */
+:root[data-theme="sauge"] #player{--night:#0f0c0a;--surface:#1a1512;--raised:#272019;--ivory:#f3e9d6;--muted:#a7988a;--faint:#7a6d61;--gold:#dbb066;--on-gold:#1b140c;--line:rgba(243,233,214,.09);--wash:255,255,255;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%}
 /* Rien ne se sélectionne en bleu, sauf les champs de saisie */
@@ -296,6 +321,8 @@ h1{font-family:var(--f-display);font-weight:400;font-size:34px;letter-spacing:.0
 .card .c1{font-size:14px;font-weight:550}
 .card .c2{font-size:12.5px;color:var(--muted)}
 /* Page « Chantres » : tous les chantres d'un coup, en grille (au lieu du défilement de l'accueil) */
+.chtri{display:flex;flex-wrap:wrap;gap:6px;margin:-4px 0 14px}.chtri button{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:99px;background:var(--raised);color:var(--ivory);font-size:13.5px;font-weight:600}.chtri button.on{background:var(--gold);color:var(--on-gold)}
+.chfav{margin:10px auto 0;display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;background:var(--raised);color:var(--ivory);font-size:13.5px;font-weight:600}.chfav.on{color:var(--gold)}
 .chgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:20px 8px;margin-top:8px}
 .chgrid .chan{width:auto}
 .chan small{color:var(--faint);font-size:11.5px;margin-top:-5px}
@@ -785,7 +812,7 @@ body.dk-big .p-queue,body.dk-big .p-find{padding-top:40px}
 .qc .etq::before,.qleg .etq::before{content:"";display:inline-block;width:0;height:calc(50% + .39em);vertical-align:baseline}
 .qc .etq[data-l="gregoire"],.qleg .etq[data-l="gregoire"]{color:#2a2010}
 .sh.mom+.qleg{margin-top:4px}.qleg{display:flex;gap:14px;margin:-6px 2px 14px;font-size:12.5px;color:var(--faint)}.qleg span{display:inline-flex;align-items:center;gap:6px}.qleg .etq{width:18px;height:18px;font-size:11px}
-.qc.mini{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0!important;margin-inline:0;padding:6px 6px 4px;margin-top:-6px}.qc.mini .chan{width:calc((100% - 30px) / 3.6);gap:6px;scroll-snap-align:start;transition:opacity .2s}.qc.mini .av{width:70px;height:70px}.qc.mini .chan>span:not(.etqs){font-size:13px;line-height:1.2}.qc.mini .etq{width:20px;height:20px;font-size:12px}
+.qc.mini{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0!important;margin-inline:0;padding:6px 6px 4px;margin-top:-6px}.qc.mini{gap:8px!important}.qc.mini .chan{width:calc((100% - 32px) / 4.45);gap:6px;scroll-snap-align:start;transition:opacity .2s}.qc.mini .av{width:64px;height:64px}.qc.mini .chan>span:not(.etqs){font-size:13px;line-height:1.2}.qc.mini .etq{width:20px;height:20px;font-size:12px}
 .qc.mini .chan>span:not(.etqs){min-height:calc(2 * 1.2em)}.qc.mini.l3 .chan>span:not(.etqs){min-height:calc(3 * 1.2em)}   /* noms sur 2 ou 3 lignes : nombres de chants et sceaux tous à la même hauteur */
 .sh h2 .h2s{font-weight:500;color:var(--faint)}.qleg .qn{margin-left:auto;font-size:12px;color:var(--faint);display:inline-flex;align-items:center;gap:3px;white-space:nowrap}.qc.mini .chan{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}.qc.mini .chan.off{opacity:.4}.qc.mini .chan.on .av{box-shadow:0 0 0 2px var(--night),0 0 0 4px var(--gold)}.qc.mini .chan.on>span:not(.etqs){color:var(--gold);font-weight:600}
 </style>
@@ -1004,7 +1031,11 @@ const OFFICES = {vepres:'Vêpres',tasbeha:'Tasbeha',matines:'Matines',liturgie:'
 const initials = n => String(n).split(/\s+/).filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase();
 // Rond du chantre : sa photo s'il en a une, sinon ses initiales
 // Chantres par ordre alphabétique (accueil, bibliothèque, choix du chantre)
-let chOrdre = () => Object.entries(CH).sort((a, b) => a[1].name.localeCompare(b[1].name, 'fr'));
+const chFav = () => store.get('chFav', []);   // 19/11 : chantres favoris (cœur sur la page du chantre)
+const chTri = () => store.get('chTri', 'vos');   // 'vos' : favoris, puis les plus écoutés sur cet iPhone ; 'alpha' : A → Z
+function chEcoutes() { const sc = {}; store.get('ecoutes', []).forEach(e => { const t = TR[e.id]; if (t) [t.ch, t.ch2, t.ch3].filter(c => CH[c]).forEach(c => { sc[c] = (sc[c] || 0) + 1; }); }); return sc; }
+const chVos = () => chTri() === 'vos' && (chFav().length > 0 || Object.keys(chEcoutes()).length > 0);
+const chOrdre = () => { const L = Object.entries(CH).sort((a, b) => a[1].name.localeCompare(b[1].name, 'fr')); if (chTri() !== 'vos') return L; const sc = chEcoutes(), fav = chFav(); return L.sort((a, b) => (fav.includes(b[0]) - fav.includes(a[0])) || ((sc[b[0]] || 0) - (sc[a[0]] || 0))); };
 const avHTML = (c, cls = '') => c.img ? `<span class="av ${cls} ph" style="background-image:url(${c.img})"></span>` : `<span class="av ${cls}">${initials(c.name)}</span>`;
 const CH = {ayad:{name:'Ibrahim Ayad',img:'chantres/ayad.jpg'},antonios:{name:'Anba Antonios',img:'chantres/antonios.jpg'},mounir:{name:'Bola Mounir',img:'chantres/mounir.jpg'},raphael:{name:'Anba Raphaël',img:'chantres/raphael.jpg'},philopater:{name:'Abouna Philopater Kamal',img:'chantres/philopater.jpg'},villejuif:{name:'Chœur de Villejuif',img:'chantres/villejuif.jpg'},markmoheb:{name:'Mark Moheb',img:'chantres/markmoheb.jpg'},muharraq:{name:'Monastère d’Al-Muharraq',img:'chantres/muharraq.jpg'},seminaire:{name:'Chœur du Séminaire',img:'chantres/seminaire.jpg'},karas:{name:'Anba Karas',img:'chantres/karas.jpg'},arsanios:{name:'Abouna Arsanios El-Baramousy',img:'chantres/arsanios.jpg'},johnibrahim:{name:'Abouna John Ibrahim',img:'chantres/johnibrahim.jpg'},mettias:{name:'Abouna Mettias Nasr'},karasyoussef:{name:'Abouna Karas Youssef',img:'chantres/karasyoussef.jpg'},zakaemad:{name:'Abouna Zaka Emad'},yoannes:{name:'Anba Yoannes'},polikarpos:{name:'Abouna Polikarpos El-Souriani',img:'chantres/polikarpos.jpg'},minaabood:{name:'Abouna Mina Abood',img:'chantres/minaabood.jpg'},boktor:{name:'Abouna Boktor Nessim',img:'chantres/boktor.jpg'},abakir:{name:'Anba Abakir',img:'chantres/abakir.jpg'},antoniosayad:{name:'Abouna Antonios Ayad',img:'chantres/antoniosayad.jpg'},youhannanassif:{name:'Abouna Youhanna Nassif'},mathieu:{name:'Abouna Mathieu',img:'chantres/mathieu.jpg'},abraham:{name:'Abouna Abraham Shenouda',img:'chantres/abraham.jpg'},rewisfarid:{name:'Abouna Rewis Farid',img:'chantres/rewisfarid.jpg'},lukamaher:{name:'Abouna Luka Maher',img:'chantres/lukamaher.jpg'},zosima:{name:'Anba Zosima',img:'chantres/zosima.jpg'},mousaroshdy:{name:'Abouna Moussa Roshdy'},bolesmalak:{name:'Boles Malak'},anbamarc:{name:'Anba Marc',img:'chantres/anbamarc.jpg?v=4'},draveil:{name:'Chœur de Draveil',img:'chantres/draveil.jpg'}, ...store.get('chanters', {})};
 
@@ -1699,12 +1730,10 @@ const litDe = id => {   // basile | gregoire | cyrille | commun
 };
 const LITC = {basile:['#f5c542', '#9a6a08'], gregoire:['#fffaf0', '#d9c9a3'], cyrille:['#d62839', '#6e0a14']};   // 19/11 : couleurs de la carte « Liturgies entières »   // usage copte : or (tous les jours), blanc (grandes fêtes), rouge (saint Marc, martyr)
 const LITL = {basile:'Ⲃ', gregoire:'Ⲅ', cyrille:'Ⲕ'};
-const LIT_DEG = [[0, [184, 134, 11]], [.25, [236, 184, 62]], [.5, [246, 214, 140]], [.75, [214, 40, 57]], [1, [139, 13, 28]]];   // 19/11 : frise aux couleurs de la carte, le blanc du milieu remplacé par un or clair
-function litPoint(t, dark = 0) {
-  t = Math.max(0, Math.min(1, t)); let k = 1; while (k < LIT_DEG.length - 1 && LIT_DEG[k][0] < t) k++;
-  const [t0, a] = LIT_DEG[k - 1], [t1, b] = LIT_DEG[k], f = (t - t0) / (t1 - t0 || 1);
-  return `rgb(${a.map((v, j) => Math.round((v + (b[j] - v) * f) * (1 - dark))).join(',')})`;
-}
+const LIT_PAL = [[160, 112, 10], [184, 134, 11], [212, 160, 32], [236, 184, 62], [245, 197, 66], [224, 52, 62], [214, 40, 57], [184, 28, 44], [160, 20, 32], [139, 13, 28]];   // 19/11 : frise en ors purs puis rouges purs (le dégradé or → rouge donnait du beige et du saumon)
+const litK = t => Math.round(Math.max(0, Math.min(1, t)) * (LIT_PAL.length - 1));
+function litPoint(t, dark = 0) { return `rgb(${LIT_PAL[litK(t)].map(v => Math.round(v * (1 - dark))).join(',')})`; }
+const litInk = t => { const k = litK(t); return k >= 2 && k <= 4 ? '#3a2208' : '#fffaf0'; };
 const LITP = [['offrande', 'Offrande', ['#e0bc6a', '#6a4a14']], ['catechumenes', 'Catéchumènes', ['#c8732e', '#4a1e08']], ['croyants', 'Croyants', ['#8a2a4e', '#2a0816']]];
 const LITS = [   // partie, clé, nom, lettre, moments
   ['offrande', 'offrande', 'Action de grâces', 'Ⲟ', ['Offrande de l’Agneau']],
@@ -1749,7 +1778,7 @@ function renderLiturgie() {
   const vis = LITS.filter(s => ids0.some(id => litStepOf(id) === s[1]));
   if (!vis.some(s => s[1] === litStep) && vis.length) litStep = vis[0][1];
   let k = 0;
-  const nV = vis.length, tOf = i => nV > 1 ? i / (nV - 1) : 0, ndSt = i => { const t = tOf(i); return `--c1:${litPoint(t)};--c2:${litPoint(t, .45)};--ink:${t > .36 && t < .62 ? '#3a2208' : '#fffaf0'}`; };
+  const nV = vis.length, tOf = i => nV > 1 ? i / (nV - 1) : 0, ndSt = i => { const t = tOf(i); return `--c1:${litPoint(t)};--c2:${litPoint(t, .45)};--ink:${litInk(t)}`; };
   const fil = `<div class="fil"><div class="fil-in">${LITP.map(([pk, pn]) => { const ss = vis.filter(s => s[0] === pk); if (!ss.length) return ''; const k0 = k; return `<div class="pgrp" style="--c1:${litPoint(tOf(k0 + (ss.length - 1) / 2))}"><div class="pgh">${pn}</div><div class="pgb">${ss.map(s => { const n = ids0.filter(id => litStepOf(id) === s[1]).length, i = k++; return `<button class="nd${s[1] === litStep ? ' on' : ''}" data-litst="${s[1]}" style="${ndSt(i)}"><span class="fl${i ? '' : ' first'}${i === vis.length - 1 ? ' last' : ''}"></span><span class="dot">${s[3]}</span><span class="nl">${s[2]}</span><span class="nn">${n} chant${n > 1 ? 's' : ''}</span></button>`; }).join('')}</div></div>`; }).join('')}</div></div>`;
   const S = vis.find(s => s[1] === litStep), list = 'litv:' + litStep, ids = listIds(list);
   let card = '', rows = '';
@@ -1828,7 +1857,7 @@ function renderHome() {
   ${dlHTML()}
   <div class="sh"><button class="shl" data-act="open" data-type="recent" data-id="all"><h2>Reprendre</h2>${ic('chev', 18)}</button><button data-act="open" data-type="recent" data-id="all">Tout voir</button></div>
   <div class="hscroll">${recentIds().map((id, i) => { const t = TR[id]; return `<button class="card" data-act="play" data-list="recent" data-i="${i}">${trArt(t, 'md')}<div class="c1 ell">${titleTop(t)}</div><div class="c2 ell">${titleSub(t) || esc(chName(t))}</div></button>`; }).join('')}</div>
-  <div class="sh"><button class="shl" data-act="open" data-type="chanters" data-id="all"><h2>Chantres</h2>${ic('chev', 18)}</button><button data-act="open" data-type="chanters" data-id="all">Tout voir</button></div>
+  <div class="sh"><button class="shl" data-act="open" data-type="chanters" data-id="all"><h2>${chVos() ? 'Vos chantres' : 'Chantres'}</h2>${ic('chev', 18)}</button><button data-act="open" data-type="chanters" data-id="all">Tout voir</button></div>
   <div class="hscroll">${chOrdre().map(([id, c]) => `<button class="chan" data-act="open" data-type="chanter" data-id="${id}">${avHTML(c)}<span>${esc(c.name)}</span></button>`).join('')}</div>
   <div class="sh"><h2>Offices et collections</h2></div>
   <div class="chips">${chipsHTML()}</div>
@@ -2151,7 +2180,7 @@ function renderSettings() {
   <div class="grp-h">Couleur principale</div>
   <div class="grp"><div class="cpk">${THEMES.map(t => `<button class="${t.k === curTheme().k ? 'on' : ''}" data-act="theme" data-v="${t.k}" aria-pressed="${t.k === curTheme().k}"><span class="thd" style="background:linear-gradient(135deg,${t.up},${t.bg})">${t.k === curTheme().k ? ic('check', 18) : ''}</span><span class="nm">${t.name.replace(' (Apple Music)', '').replace(' (clair)', '')}</span></button>`).join('')}</div></div>
   <div class="grp-h">Couleur secondaire</div>
-  <div class="grp"><div class="cpk acc">${[{ k: '', name: 'Du thème' }, ...ACCENTS].map(a => { const on = (curAccent()?.k || '') === a.k, c = a.k ? (curTheme().k === 'nacre' ? a.l[0] : a.d[0]) : curTheme().ac; return `<button class="${on ? 'on' : ''}" data-act="accent" data-v="${a.k}" aria-pressed="${on}"><span class="acd${a.k ? '' : ' auto'}" style="--c:${c}">${on ? ic('check', 16) : ''}</span><span class="nm">${a.name}</span></button>`; }).join('')}</div>
+  <div class="grp"><div class="cpk acc">${[{ k: '', name: 'Du thème' }, ...ACCENTS].map(a => { const on = (curAccent()?.k || '') === a.k, c = a.k ? (ESCL(curTheme().k) ? a.l[0] : a.d[0]) : curTheme().ac; return `<button class="${on ? 'on' : ''}" data-act="accent" data-v="${a.k}" aria-pressed="${on}"><span class="acd${a.k ? '' : ' auto'}" style="--c:${c}">${on ? ic('check', 16) : ''}</span><span class="nm">${a.name}</span></button>`; }).join('')}</div>
     <div class="cprev"><span class="btn pri">${ic('play', 16)}Lecture</span><span class="btn">${ic('shuffle', 16)}Aléatoire</span><span class="cp-h">${ic('heartf', 20)}</span></div></div>
   <p class="grp-f">« Du thème » : ${curTheme().k === 'graphite' ? 'le rouge' : 'l’or'} prévu pour ${curTheme().name.replace(' (Apple Music)', '').replace(' (clair)', '')}. Ces couleurs restent enregistrées sur cet iPhone, chacun choisit les siennes.</p>
   <div class="grp-h">Boutons du lecteur</div>
@@ -2181,15 +2210,17 @@ const ids0 = k => listIds(k).length;
 function renderDetail(it) {
   if (it.type === 'settings') return renderSettings();
   if (it.type === 'chanters') {
-    return `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div><h1>Chantres</h1>
+    return `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div><h1>${chTri() === 'vos' ? 'Vos chantres' : 'Chantres'}</h1>
+    <div class="chtri" role="group" aria-label="Trier les chantres"><button class="${chTri() === 'vos' ? 'on' : ''}" data-act="chtri" data-v="vos">${ic('heart', 15)}Favoris et plus écoutés</button><button class="${chTri() === 'alpha' ? 'on' : ''}" data-act="chtri" data-v="alpha">A → Z</button></div>
+    ${chTri() === 'vos' ? '<p class="lead">Tes favoris d’abord (cœur sur la page d’un chantre), puis ceux que tu écoutes le plus, puis tous les autres.</p>' : ''}
     <div class="chgrid">${chOrdre().map(([id, c]) => { const n = listIds('chanter:' + id).length; return `<button class="chan" data-act="open" data-type="chanter" data-id="${id}">${avHTML(c)}<span>${esc(c.name)}</span><small>${n} chant${n > 1 ? 's' : ''}</small></button>`; }).join('')}</div>`;
   }
-  let title, sub = '', desc = '', head, list;
+  let title, sub = '', desc = '', head, list, extra = '';
   if (it.type === 'period') {
     const P = PERIODS[it.id]; list = 'period:' + it.id; title = P.name; sub = rangeText(it.id); desc = P.desc;
     head = artHTML(it.id, graph(P.word)[0], 'xl');
   } else if (it.type === 'chanter') {
-    list = 'chanter:' + it.id; title = esc(CH[it.id].name); sub = 'Chantre';
+    list = 'chanter:' + it.id; title = esc(CH[it.id].name); { const k = chEcoutes()[it.id] || 0, on = chFav().includes(it.id); sub = `Chantre${k ? ` · ${k} écoute${k > 1 ? 's' : ''}` : ''}`; extra = `<button class="chfav${on ? ' on' : ''}" data-act="chfav" data-id="${it.id}">${ic(on ? 'heartf' : 'heart', 16)}${on ? 'Chantre favori' : 'Ajouter aux favoris'}</button>`; }
     head = CH[it.id].img ? `<button class="chzoom" data-act="chzoom" data-id="${it.id}" aria-label="Voir la photo en grand">${avHTML(CH[it.id], 'lg')}</button>` : avHTML(CH[it.id], 'lg');
   } else if (it.type === 'office') {
     list = 'office:' + it.id; title = OFFICES[it.id]; sub = 'Office';
@@ -2233,7 +2264,7 @@ function renderDetail(it) {
     ? ids.map((id, i) => (i === 0 || etapeTasbeha(id) !== etapeTasbeha(ids[i - 1]) ? `<div class="sh mom"><h3>${etapeTasbeha(id)}</h3></div>` : '') + rowHTML(TR[id], list, i, numbered)).join('')
     : ids.map((id, i) => (it.type === 'col' ? momHead(ids, i) : '') + rowHTML(TR[id], list, i, numbered)).join('');
   return `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div>
-  <div class="hero">${head}<h1 class="h-title">${title}</h1><div class="h-sub">${sub}</div>${desc ? `<p class="h-desc">${desc}</p>` : ''}
+  <div class="hero">${head}<h1 class="h-title">${title}</h1><div class="h-sub">${sub}</div>${extra}${desc ? `<p class="h-desc">${desc}</p>` : ''}
     <div class="h-actions">
       <button class="btn pri" data-act="play" data-list="${list}" data-i="0" ${ids.length ? '' : 'disabled'}>${ic('play', 18)}Lecture</button>
       <button class="btn" data-act="shufplay" data-list="${list}" ${ids.length ? '' : 'disabled'}>${ic('shuffle', 18)}Aléatoire</button>
@@ -3336,6 +3367,8 @@ document.addEventListener('submit', e => {
   if (add) { render(true); toast(`Ajouté à « ${name} »`); return; }
   S.plEdit = null; S.route = { tab: 'library', stack: [{ type: 'pl', id: p.id }] }; render(); toast('Playlist créée');
 });
+const ES_CLAIRS = ['parchemin', 'poudre', 'lilas', 'sauge'];
+function ESCL(k) { return k === 'nacre' || ES_CLAIRS.includes(k); }
 const THEMES = [
   {k:'cierge', name:'Cierge', bg:'#0f0c0a', up:'#272019', ac:'#dbb066'},
   {k:'velours', name:'Saphir velours', bg:'#061123', up:'#0c254b', ac:'#dbb066'},
@@ -3361,17 +3394,17 @@ const ACCENTS = [
   {k:'vert', name:'Vert', d:['#30d158','#002a0c'], l:['#1f8f3a','#ffffff']}
 ];
 (() => { const st = document.createElement('style');
-  st.textContent = ACCENTS.map(a => `:root[data-accent="${a.k}"],:root[data-accent="${a.k}"] #player{--gold:${a.d[0]};--on-gold:${a.d[1]}}:root[data-theme="nacre"][data-accent="${a.k}"]{--gold:${a.l[0]};--on-gold:${a.l[1]}}`).join('\n');
+  st.textContent = ACCENTS.map(a => `:root[data-accent="${a.k}"],:root[data-accent="${a.k}"] #player{--gold:${a.d[0]};--on-gold:${a.d[1]}}${['nacre', ...ES_CLAIRS].map(k => `:root[data-theme="${k}"][data-accent="${a.k}"]`).join(',')}{--gold:${a.l[0]};--on-gold:${a.l[1]}}`).join('\n');
   document.body.appendChild(st); })();   // après la feuille principale, pour passer devant les couleurs du thème
 const curAccent = () => ACCENTS.find(a => a.k === store.get('accent', null)) || null;
-const accentOf = t => { const a = curAccent(); return a ? (t.k === 'nacre' ? a.l[0] : a.d[0]) : t.ac; };
+const accentOf = t => { const a = curAccent(); return a ? (ESCL(t.k) ? a.l[0] : a.d[0]) : t.ac; };
 function setAccent(k) { if (k) store.set('accent', k); else { try { localStorage.removeItem('essai-fil:accent'); } catch (e) {} } applyTheme(); render(true); updateUI(); }
 const curTheme = () => { const k = store.get('theme', 'cierge'); return THEMES.find(t => t.k === ({nuit:'velours', olivier:'emeraude'}[k] || k)) || THEMES[0]; };   // retirés le 19/11 : Saphir de nuit (→ Saphir velours), Olivier (→ Émeraude)
 function applyTheme() {
   const t = curTheme();
   if (t.k === 'cierge') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = t.k;
   const a = curAccent(); if (a) document.documentElement.dataset.accent = a.k; else delete document.documentElement.dataset.accent;
-  const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = t.k === 'nacre' ? '#18294a' : t.bg;
+  const m = document.querySelector('meta[name=theme-color]'); if (m) m.content = ESCL(t.k) ? '#18294a' : t.bg;
 }
 function chZoom(el) {   // photo du chantre en grand, sur la page floutée ; elle part de la bulle et y revient
   const c = CH[el.dataset.id], av = el.querySelector('.av'), r = av.getBoundingClientRect();
@@ -3505,6 +3538,8 @@ document.addEventListener('click', e => {
     case 'theme': setTheme(el.dataset.v); break;
     case 'accent': setAccent(el.dataset.v); break;
     case 'chzoom': chZoom(el); break;
+    case 'chtri': store.set('chTri', el.dataset.v); render(true); break;
+    case 'chfav': { const f = chFav(), k = el.dataset.id; store.set('chFav', f.includes(k) ? f.filter(x => x !== k) : [k, ...f]); render(true); break; }
     case 'litent': litEnt = !litEnt; render(true); break;
     case 'litqf': {   // bulle d'un prêtre célébrant : seulement ses chants ; la retoucher : tous
       const q = el.closest('.qc'), x = q ? q.scrollLeft : 0, f = document.querySelector('.fil');
@@ -3833,249 +3868,216 @@ function amGlMount() {
 }
 amApply();
 
-/* ===== Page d'essai du 19/11 (soir) : la vraie appli + les grosses idées à choisir =====
+/* ===== Page d'essai du 19/11 (soir) : la vraie appli + les idées encore à choisir =====
    Injecté à la fin du script de l'appli (même portée : S, TR, render, listIds…). Choix gardés dans localStorage « es:* ».
-   Bouton « Essais » (à droite) : une feuille avec tous les choix, rangés par numéro de demande. */
+   Bouton « Essais » (à droite) : seulement les points pas encore tranchés (un point tranché passe dans la vraie appli et sort d'ici). */
 function esG(k, d) { try { return localStorage.getItem('es:' + k) || d; } catch (e) { return d; } }
 function esS(k, v) { try { localStorage.setItem('es:' + k, v); } catch (e) {} }
+var esEnt = '';   // liturgies entières dépliées : '' | 'tout' | 'basile' | 'gregoire' | 'cyrille'
 const ES_DEMO = ['tenthinou-kiahk-draveil', 'omonogenis', 'aspasmos-watos-careme-ayad', 'evlogimenos', 'agios-gregorien-abraham', 'meghalo-ayad', 'ontos-villejuif', 'atai-parthenos-villejuif'];
 
-/* ---------- écoutes de cet iPhone (le journal « ecoutes » existe déjà dans la vraie appli) ---------- */
+/* ---------- 2 : vos plus écoutés (journal « ecoutes » de l'appli, propre à chaque iPhone) ---------- */
 function esEcoutes() {
-  const log = store.get('ecoutes', []), n = {};
-  log.forEach(e => { if (TR[e.id]) n[e.id] = (n[e.id] || 0) + 1; });
+  const n = {}; store.get('ecoutes', []).forEach(e => { if (TR[e.id]) n[e.id] = (n[e.id] || 0) + 1; });
   let demo = false;
   if (Object.keys(n).length < 4) { demo = true; ES_DEMO.filter(id => TR[id]).forEach((id, i) => { n[id] = (n[id] || 0) + 14 - i * 2; }); }
   return { n, demo };
 }
 function esTop() { const { n } = esEcoutes(); return Object.keys(n).sort((a, b) => n[b] - n[a]).slice(0, 25); }
-function esChScore() {   // chantres : favoris d'abord, puis les plus écoutés
-  const { n } = esEcoutes(), sc = {};
-  Object.entries(n).forEach(([id, k]) => { const t = TR[id]; [t.ch, t.ch2, t.ch3].filter(c => CH[c]).forEach(c => { sc[c] = (sc[c] || 0) + k; }); });
-  return sc;
-}
-const esChFav = () => store.get('chFav', []);
-
-/* ---------- 2 et 7 : rubriques de l'accueil ---------- */
 listIds = (o => key => key === 'estop:all' ? esTop() : o(key))(listIds);
-chOrdre = (o => () => {
-  if (esG('chs', 'vos') !== 'vos') return o();
-  const sc = esChScore(), fav = esChFav();
-  return o().sort((a, b) => (fav.includes(b[0]) - fav.includes(a[0])) || ((sc[b[0]] || 0) - (sc[a[0]] || 0)) || a[1].name.localeCompare(b[1].name, 'fr'));
-})(chOrdre);
+const esCnt = (h, k) => h.replace(/<span class="dur">[^<]*<\/span>/, `<span class="dur es-cnt">${k}×</span>`);
 function esTopHTML() {
   const m = esG('top', 'cartes'), { n, demo } = esEcoutes(), ids = esTop(); if (m === 'biblio' || !ids.length) return '';
-  const tag = demo ? '<span class="es-ex">exemple</span>' : '';
-  const head = `<div class="sh"><button class="shl" data-act="open" data-type="estop" data-id="all"><h2>Vos plus écoutés${tag}</h2>${ic('chev', 18)}</button><button data-act="open" data-type="estop" data-id="all">Tout voir</button></div>`;
-  if (m === 'liste') return head + `<div class="es-toplist">${ids.slice(0, 5).map((id, i) => rowHTML(TR[id], 'estop:all', i, true).replace(/<span class="dur">[^<]*<\/span>/, `<span class="dur es-cnt">${n[id]}×</span>`)).join('')}</div>`;
+  const head = `<div class="sh"><button class="shl" data-act="open" data-type="estop" data-id="all"><h2>Vos plus écoutés${demo ? '<span class="es-ex">exemple</span>' : ''}</h2>${ic('chev', 18)}</button><button data-act="open" data-type="estop" data-id="all">Tout voir</button></div>`;
+  if (m === 'liste') return head + ids.slice(0, 5).map((id, i) => esCnt(rowHTML(TR[id], 'estop:all', i, true), n[id])).join('');
   return head + `<div class="hscroll es-topc">${ids.slice(0, 10).map((id, i) => { const t = TR[id]; return `<button class="card" data-act="play" data-list="estop:all" data-i="${i}"><span class="es-rk">${i + 1}</span>${trArt(t, 'md')}<div class="c1 ell">${titleTop(t)}</div><div class="c2 ell">${n[id]} écoute${n[id] > 1 ? 's' : ''} · ${esc(chName(t))}</div></button>`; }).join('')}</div>`;
 }
 function esJourHTML() {   // autres rubriques proposées
-  const r = esG('rub', 'jour'), out = [];
+  const r = esG('rub', 'jour'), out = [], per = listIds('period:' + SEASON_NOW);
   if (r === 'jour' || r === 'deux') {
-    const ids = listIds('period:' + SEASON_NOW).filter(id => au(TR[id])), d = new Date(), j = (d.getFullYear() * 400 + d.getMonth() * 31 + d.getDate()) % Math.max(1, ids.length), id = ids[j];
-    if (id) { const t = TR[id], P = PERIODS[SEASON_NOW]; out.push(`<div class="sh"><h2>Le chant du jour</h2></div><button class="es-jour" data-act="play" data-list="period:${SEASON_NOW}" data-i="${listIds('period:' + SEASON_NOW).indexOf(id)}" style="--c1:${P.c[0]};--c2:${P.c[1]}">${trArt(t, 'sm')}<span class="ej-t"><small>${P.name} · ${new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</small><b class="ell">${titleTop(t)}</b><span class="ell">${titleSub(t) || esc(chName(t))}</span></span><span class="ej-p">${ic('play', 20)}</span></button>`); }
+    const ids = per.filter(id => au(TR[id])), d = new Date(), id = ids[(d.getFullYear() * 400 + d.getMonth() * 31 + d.getDate()) % Math.max(1, ids.length)];
+    if (id) { const t = TR[id], P = PERIODS[SEASON_NOW]; out.push(`<div class="sh"><h2>Le chant du jour</h2></div><button class="es-jour" data-act="play" data-list="period:${SEASON_NOW}" data-i="${per.indexOf(id)}" style="--c1:${P.c[0]};--c2:${P.c[1]}">${trArt(t, 'sm')}<span class="ej-t"><small>${P.name} · ${d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</small><b class="ell">${titleTop(t)}</b><span class="ell">${titleSub(t) || esc(chName(t))}</span></span><span class="ej-p">${ic('play', 20)}</span></button>`); }
   }
   if (r === 'jamais' || r === 'deux') {
-    const vus = new Set(store.get('ecoutes', []).map(e => e.id)), ids = listIds('period:' + SEASON_NOW).filter(id => !vus.has(id)).slice(0, 10);
-    if (ids.length) out.push(`<div class="sh"><h2>Pas encore écoutés ce temps-ci</h2></div><div class="hscroll">${ids.map(id => { const t = TR[id]; return `<button class="card" data-act="play" data-list="period:${SEASON_NOW}" data-i="${listIds('period:' + SEASON_NOW).indexOf(id)}">${trArt(t, 'md')}<div class="c1 ell">${titleTop(t)}</div><div class="c2 ell">${titleSub(t) || esc(chName(t))}</div></button>`; }).join('')}</div>`);
+    const vus = new Set(store.get('ecoutes', []).map(e => e.id)), ids = per.filter(id => !vus.has(id)).slice(0, 10);
+    if (ids.length) out.push(`<div class="sh"><h2>Pas encore écoutés ce temps-ci</h2></div><div class="hscroll">${ids.map(id => { const t = TR[id]; return `<button class="card" data-act="play" data-list="period:${SEASON_NOW}" data-i="${per.indexOf(id)}">${trArt(t, 'md')}<div class="c1 ell">${titleTop(t)}</div><div class="c2 ell">${titleSub(t) || esc(chName(t))}</div></button>`; }).join('')}</div>`);
   }
   return out.join('');
 }
 renderHome = (o => () => {
   let h = o(); if (S.univ !== 'chants') return h;
   const A = '<div class="sh"><button class="shl" data-act="open" data-type="chanters"';
-  if (h.includes(A)) h = h.replace(A, esTopHTML() + esJourHTML() + A);
-  if (esG('chs', 'vos') === 'vos') h = h.replace('<h2>Chantres</h2>', `<h2>Vos chantres${esEcoutes().demo && !esChFav().length ? '<span class="es-ex">exemple</span>' : ''}</h2>`);
+  if (h.includes(A)) h = h.replace(A, esTopHTML() + esJourHTML() + (esG('serm', 'defile') === 'accueil' ? esSermAccueil() : '') + A);
   return h;
 })(renderHome);
 renderLibrary = (o => () => {
-  let h = o(); if (esG('top', 'cartes') !== 'biblio') return h;
-  const A = '<button class="lrow" data-act="open" data-type="all"';
-  return h.replace(A, `<button class="lrow" data-act="open" data-type="estop" data-id="all">${ic('starf')}Les plus écoutés<span class="cnt">${esTop().length}</span></button>` + A);
+  let h = o(); const A = '<button class="lrow" data-act="open" data-type="all"';
+  if (esG('top', 'cartes') === 'biblio') h = h.replace(A, `<button class="lrow" data-act="open" data-type="estop" data-id="all">${ic('starf')}Les plus écoutés<span class="cnt">${esTop().length}</span></button>` + A);
+  if (esG('serm', 'defile') === 'biblio') h = h.replace(A, `<button class="lrow" data-act="open" data-type="essermons" data-id="all">${ES_IC_SERM}Enseignements<span class="cnt">2 livres</span></button>` + A);
+  return h;
 })(renderLibrary);
+
+/* ---------- 16 : Enseignements — études bibliques de 1 et 2 Samuel, titres à venir (pour voir le rendu) ---------- */
+const ES_IC_SERM = '<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v14"/></svg>';
+const ES_LIVRES = [
+  {k:'1s', t:'Premier livre de Samuel', court:'1 Samuel', abr:'1 S', n:31, l:'Ⲥ', num:'1', c:['#c9973a', '#4a2c08']},
+  {k:'2s', t:'Deuxième livre de Samuel', court:'2 Samuel', abr:'2 S', n:24, l:'Ⲥ', num:'2', c:['#a8433a', '#3a0e0a']}
+];
+const esCover = (L, cls) => artHTML({c:L.c}, L.l, cls).replace('<span class="gl">', `<span class="es-num">${L.num}</span><span class="gl">`);
+const esChapRow = (L, i) => `<button class="row es-erow" data-essep="${L.k}-${i}"><span class="num">${i + 1}</span><div class="meta"><div class="t1 ell es-vide">Titre à venir</div><div class="t2 ell">${L.abr} ${i + 1} · Étude biblique</div></div><span class="dur">— min</span></button>`;
+function esSermons(detail) {
+  const back = detail ? `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div><h1>Enseignements</h1>` : '';
+  return back + `<section class="season" style="--c1:#7a5a3a;--c2:#1f140a;--ink:#f6ecd9"><div class="s-lt">Ⲕ</div><div class="eyebrow">Études bibliques et sermons</div><div class="s-name">Enseignements</div><div class="s-desc">Livre par livre, chapitre par chapitre, avec les versets lus.</div><div class="s-actions"><button class="s-btn pri" data-essep="1s-0">${ic('play', 16)} Commencer</button><button class="s-btn" data-esliv="1s">${ES_LIVRES.reduce((a, L) => a + L.n, 0)} rencontres</button></div></section>
+  <p class="es-note">Maquette : les titres et les durées viendront avec les enregistrements.</p>
+  <div class="chips es-chips"><button class="chip on">Études bibliques</button><button class="chip">Sermons</button><button class="chip">Par livre</button><button class="chip">Par prédicateur</button></div>
+  <div class="sh"><h2>Livres étudiés</h2></div>
+  <div class="hscroll">${ES_LIVRES.map(L => `<button class="card" data-esliv="${L.k}">${esCover(L, 'md')}<div class="c1 ell">${L.court}</div><div class="c2 ell">${L.n} chapitres</div></button>`).join('')}</div>
+  <div class="sh"><h2>À reprendre</h2></div>
+  <button class="es-rep" data-essep="1s-2">${esCover(ES_LIVRES[0], 'sm')}<span class="ell"><b class="es-vide">Titre à venir</b><small>1 Samuel 3 · reste — min</small><i class="es-bar"><i style="width:40%"></i></i></span>${ic('play', 20)}</button>
+  ${ES_LIVRES.map(L => `<div class="sh"><button class="shl" data-esliv="${L.k}"><h2>${L.court}</h2>${ic('chev', 18)}</button><button data-esliv="${L.k}">Tout voir</button></div>` + Array.from({ length: 4 }, (_, i) => esChapRow(L, i)).join('')).join('')}`;
+}
+function esLivre(k) {
+  const L = ES_LIVRES.find(x => x.k === k);
+  return `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div><div class="hero">${esCover(L, 'xl')}<h1 class="h-title">${L.t}</h1><div class="h-sub">Étude biblique · ${L.n} chapitres</div>
+    <div class="h-actions"><button class="btn pri" data-essep="${L.k}-0">${ic('play', 18)}Commencer</button><button class="btn" data-essep="${L.k}-2">${ic('back', 18)}Reprendre</button></div></div>
+    <div>${Array.from({ length: L.n }, (_, i) => esChapRow(L, i)).join('')}</div>`;
+}
+function esSermAccueil() {
+  return `<div class="sh"><button class="shl" data-act="open" data-type="essermons" data-id="all"><h2>Enseignements</h2>${ic('chev', 18)}</button><button data-act="open" data-type="essermons" data-id="all">Tout voir</button></div>
+  <div class="hscroll">${ES_LIVRES.map(L => `<button class="card" data-esliv="${L.k}">${esCover(L, 'md')}<div class="c1 ell">${L.court}</div><div class="c2 ell">Étude biblique · ${L.n} chapitres</div></button>`).join('')}</div>`;
+}
 renderDetail = (o => it => {
   if (it.type === 'estop') {
     const { n, demo } = esEcoutes(), ids = esTop();
     return `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div><div class="hero">${artHTML('nativite', '★', 'xl')}<h1 class="h-title">Vos plus écoutés</h1><div class="h-sub">Sur cet iPhone${demo ? ' · exemple tant que tu n’as pas écouté ici' : ''}</div>
       <div class="h-actions"><button class="btn pri" data-act="play" data-list="estop:all" data-i="0">${ic('play', 18)}Lecture</button><button class="btn" data-act="shufplay" data-list="estop:all">${ic('shuffle', 18)}Aléatoire</button></div></div>
-      <div>${ids.map((id, i) => rowHTML(TR[id], 'estop:all', i, true).replace(/<span class="dur">[^<]*<\/span>/, `<span class="dur es-cnt">${n[id]}×</span>`)).join('')}</div>`;
+      <div>${ids.map((id, i) => esCnt(rowHTML(TR[id], 'estop:all', i, true), n[id])).join('')}</div>`;
   }
-  let h = o(it);
-  if (it.type === 'chanters') {   // 19/11 : tri au choix dans la page des chantres
-    const v = esG('chs', 'vos'), tri = `<div class="es-tri" role="group" aria-label="Trier les chantres"><button class="${v === 'vos' ? 'on' : ''}" data-estri="vos">${ic('heart', 15)}Favoris et plus écoutés</button><button class="${v === 'alpha' ? 'on' : ''}" data-estri="alpha">A → Z</button></div>`;
-    h = h.replace('<h1>Chantres</h1>', (v === 'vos' ? '<h1>Vos chantres</h1>' : '<h1>Chantres</h1>') + tri + (v === 'vos' ? '<p class="lead">Tes favoris d’abord (cœur sur la page d’un chantre), puis ceux que tu écoutes le plus, puis tous les autres.</p>' : ''));
-  }
-  if (it.type === 'chanter' && esG('chs', 'vos') === 'vos') {
-    const on = esChFav().includes(it.id), k = esChScore()[it.id] || 0;
-    h = h.replace('<div class="h-sub">Chantre</div>', `<div class="h-sub">Chantre${k ? ` · ${k} écoute${k > 1 ? 's' : ''}` : ''}</div><button class="es-chfav${on ? ' on' : ''}" data-eschfav="${it.id}">${ic(on ? 'heartf' : 'heart', 16)}${on ? 'Chantre favori' : 'Ajouter aux favoris'}</button>`);
-  }
-  return h;
+  if (it.type === 'essermons') return esSermons(true);
+  if (it.type === 'esliv') return esLivre(it.id);
+  return o(it);
 })(renderDetail);
+renderUniv = (o => () => S.univ === 'sermons' ? esSermons(false) : o())(renderUniv);
+if (esG('serm', 'defile') === 'defile') UNIVS.push(['sermons', 'Enseignements']);
+else if (S.univ === 'sermons') S.univ = 'chants';
 document.addEventListener('click', e => {
-  const t = e.target.closest('[data-estri]'); if (!t) return;
-  e.preventDefault(); e.stopPropagation(); esS('chs', t.dataset.estri); render(true);
-}, true);
-document.addEventListener('click', e => {
-  const b = e.target.closest('[data-eschfav]'); if (!b) return;
+  const l = e.target.closest('[data-esliv]'), b = e.target.closest('[data-essep]'); if (!l && !b) return;
   e.preventDefault(); e.stopPropagation();
-  const k = b.dataset.eschfav, f = esChFav(); store.set('chFav', f.includes(k) ? f.filter(x => x !== k) : [k, ...f]); render(true);
+  if (l) { S.route.stack.push({ type: 'esliv', id: l.dataset.esliv }); render(); return; }
+  const [k, i] = b.dataset.essep.split('-'), L = ES_LIVRES.find(x => x.k === k), c = +i + 1;   // une rencontre : ce qu'on verrait en l'ouvrant
+  openSheet(`<div class="sh-head">${esCover(L, 'sm')}<div class="tt"><div class="tt1 ell es-vide">Titre à venir</div><div class="tt2 ell">${L.court}, chapitre ${c} · Étude biblique</div></div></div>
+    <div class="es-sheet"><p class="es-note">Maquette : ce que montrerait une rencontre.</p>
+    <div class="es-pl"><button class="es-bplay" aria-label="Lecture">${ic('play', 22)}</button><i class="es-bar"><i style="width:0"></i></i><span>×1,25</span></div>
+    <h4>Chapitres</h4>${['Lecture du chapitre', 'Explication', 'Ce que disent les Pères', 'Pour notre vie', 'Questions'].map(t => `<div class="es-chap"><span>--:--</span>${t}</div>`).join('')}
+    <h4>Versets lus</h4><div class="chips"><button class="chip">${L.abr} ${c}</button></div>
+    <h4>Pour aller plus loin</h4><div class="es-chap">Notes de la rencontre · Questions pour le groupe</div></div>`);
 }, true);
 
-/* ---------- 6a / 6c : une seule carte en haut de Liturgie ---------- */
-var esEnt = '';   // '' fermé ; 'tout' | 'basile' | 'gregoire' | 'cyrille'
+/* ---------- 6 : une seule carte en haut de Liturgie, avec le décor de la carte « Liturgies entières » ---------- */
 function esLitTop(ids0, autres) {
   const v = esG('lit', 'v1'), LV = {basile:'Saint Basile', gregoire:'Saint Grégoire', cyrille:'Saint Cyrille'};
   const L3 = ['basile', 'gregoire', 'cyrille'].filter(l => autres.some(id => litDe(id) === l));
   const sceau = l => `<i class="etq" data-l="${l}" style="--c1:${LITC[l][0]};--c2:${LITC[l][1]}">${LITL[l]}</i>`;
-  const play = `<button class="s-btn pri" data-act="play" data-list="litv:tout" data-i="0" ${ids0.length ? '' : 'disabled'}>${ic('play', 16)} Dans l’ordre</button>`;
-  const head = `<div class="eyebrow">La sainte liturgie</div><div class="sc-n">Liturgie</div><div class="sc-d">Fais glisser le fil : chaque étape de la messe, dans l’ordre</div>`;
+  const texte = `<div><div class="eyebrow">La sainte liturgie</div><div class="sc-n">Liturgie</div><div class="sc-d">${L3.map(l => LV[l]).join(' · ')} · ${autres.length} entières</div></div>`;
+  const carte = (droite, dessous) => `<div class="stepcard entc es-card"><span class="lt">Ⲗ</span><div class="es-row">${texte}${droite}</div>${dessous || ''}</div>`;
+  const rond = (cls, attrs, icone, label) => `<button class="es-rond ${cls}" ${attrs} aria-label="${label}">${icone}</button>`;
+  const play = rond('blanc', `data-act="play" data-list="litv:tout" data-i="0"`, ic('play', 20), 'Toute la messe dans l’ordre');
+  const chev = rond(`sombre${esEnt ? ' open' : ''}`, `data-esent="tout"`, ic('back', 18), 'Liturgies entières');
   const liste = (ids, groupe) => groupe
     ? L3.map(l => { const s = ids.filter(id => litDe(id) === l); return s.length ? `<div class="sh mom"><h3>${sceau(l)} ${LV[l]}</h3></div>` + s.map(id => litRow(id, 'litv:entieres', autres.indexOf(id))).join('') : ''; }).join('')
     : ids.map(id => litRow(id, 'litv:entieres', autres.indexOf(id))).join('');
-  if (v === 'v2') {   // carte + trois sceaux : chaque messe ouvre ses liturgies entières
-    return `<div class="stepcard entc es-card">${head}<div class="s-actions">${play}</div><div class="es-3">${L3.map(l => { const k = autres.filter(id => litDe(id) === l).length; return `<button class="${esEnt === l ? 'on' : ''}" data-esent="${l}">${sceau(l)}<span>${LV[l].replace('Saint ', '')}<small>${k} entière${k > 1 ? 's' : ''}</small></span></button>`; }).join('')}</div></div>`
+  if (v === 'v2') {   // texte + boutons en pastilles dessous
+    return carte('', `<div class="es-pills"><button class="es-pill-b blanc" data-act="play" data-list="litv:tout" data-i="0">${ic('play', 16)} Dans l’ordre</button><button class="es-pill-b${esEnt ? ' open' : ''}" data-esent="tout"><span class="es-s3">${L3.map(sceau).join('')}</span>${autres.length} entières ${ic('chev', 14)}</button></div>`) + (esEnt ? liste(autres, true) : '');
+  }
+  if (v === 'v3') {   // rond lecture + les trois sceaux dessous : chaque messe ouvre ses liturgies entières
+    return carte(play, `<div class="es-3">${L3.map(l => { const k = autres.filter(id => litDe(id) === l).length; return `<button class="${esEnt === l ? 'on' : ''}" data-esent="${l}">${sceau(l)}<span>${LV[l].replace('Saint ', '')}<small>${k} entière${k > 1 ? 's' : ''}</small></span></button>`; }).join('')}</div>`)
       + (esEnt && esEnt !== 'tout' ? liste(autres.filter(id => litDe(id) === esEnt), false) : '');
   }
-  if (v === 'v3') {   // carte + « Reprendre » à la dernière étape écoutée ; liturgies entières en pochettes dessous
+  if (v === 'v4') {   // rond lecture + « Reprendre » à la dernière étape écoutée + entières
     const last = S.recent.find(id => TR[id] && litStepOf(id)), st = last && LITS.find(s => s[1] === litStepOf(last));
-    const rep = st ? `<button class="s-btn" data-act="play" data-list="litv:${st[1]}" data-i="${listIds('litv:' + st[1]).indexOf(last)}">${ic('back', 16)} Reprendre · ${st[2]}</button>` : `<button class="s-btn" data-act="play" data-list="litv:${litStep}" data-i="0">${ic('play', 16)} Cette étape</button>`;
-    return `<div class="stepcard entc es-card">${head}<div class="s-actions">${play}${rep}</div></div>`
-      + `<div class="sh"><h2>Liturgies entières</h2></div><div class="hscroll">${autres.map(id => { const t = TR[id], l = litDe(id); return `<button class="card" data-act="play" data-list="litv:entieres" data-i="${autres.indexOf(id)}">${trArt(t, 'md').replace('<svg class="xc">', `<i class="lvc" data-l="${l}" style="--c1:${LITC[l][0]};--c2:${LITC[l][1]}">${LITL[l]}</i><svg class="xc">`)}<div class="c1 ell">${LV[l] || ''}</div><div class="c2 ell">${esc(chName(t))}</div></button>`; }).join('')}</div>`;
+    const rep = st ? `<button class="es-pill-b" data-act="play" data-list="litv:${st[1]}" data-i="${listIds('litv:' + st[1]).indexOf(last)}">${ic('back', 15)} Reprendre · ${st[2]}</button>` : '';
+    return carte(play, `<div class="es-pills">${rep}<button class="es-pill-b${esEnt ? ' open' : ''}" data-esent="tout">${autres.length} entières ${ic('chev', 14)}</button></div>`) + (esEnt ? liste(autres, true) : '');
   }
-  if (v === 'v4') {   // bande fine : juste le titre et la lecture ; « Liturgies entières » devient une ligne dépliable
-    return `<div class="es-band"><div><div class="eyebrow">La sainte liturgie</div><b>Liturgie</b></div><button class="es-bplay" data-act="play" data-list="litv:tout" data-i="0" aria-label="Toute la messe dans l’ordre">${ic('play', 20)}</button></div>`
-      + `<button class="lrow es-entrow${esEnt ? ' open' : ''}" data-esent="tout"><span class="es-s3">${L3.map(sceau).join('')}</span>Liturgies entières<span class="cnt">${autres.length}</span>${ic('chev', 16)}</button>`
-      + (esEnt ? liste(autres, true) : '');
-  }
-  // v1 : une carte, « Dans l’ordre » + « Liturgies entières » (dépliées et rangées par messe)
-  return `<div class="stepcard entc es-card">${head}<div class="s-actions">${play}<button class="s-btn${esEnt ? ' on' : ''}" data-esent="tout">${L3.map(sceau).join('')} ${autres.length} entières ${ic('chev', 14)}</button></div></div>`
-    + (esEnt ? liste(autres, true) : '');
+  return carte(`<div class="es-ronds">${play}${chev}</div>`) + (esEnt ? liste(autres, true) : '');   // v1 : comme la carte « Liturgies entières », deux ronds à droite
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-esent]'); if (!b) return;
-  e.preventDefault(); e.stopPropagation();
-  esEnt = esEnt === b.dataset.esent ? '' : b.dataset.esent; render(true);
+  e.preventDefault(); e.stopPropagation(); esEnt = esEnt === b.dataset.esent ? '' : b.dataset.esent; render(true);
 }, true);
 
-/* ---------- 15 : barre du haut comme la barre du bas ---------- */
-const ES_UIC = {
-  chants: '<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',
-  liturgie: '<path d="M7 3h10c0 5-2 8-5 8s-5-3-5-8z"/><path d="M12 11v8"/><path d="M8 21h8"/><path d="M12 5.5v3M10.5 7h3"/>',
-  psaumes: '<path d="M6 3c5 2 9 7 10 18"/><path d="M6 3v18h10"/><path d="M9 9v12M12 13v8"/>',
-  lectures: '<path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v14"/>',
-  taranim: '<path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4"/>',
-  sermons: '<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>'
-};
-let esUnivPrev = null;
+/* ---------- 15 : barre du haut au même effet que la barre du bas (verre, pastille qui glisse, couleur de l'onglet choisi) ---------- */
+let esPillAvant = null;
 segHTML = (o => () => {
-  if (esG('topbar', 'bas') !== 'bas') return o();
-  const i = UNIVS.findIndex(u => u[0] === S.univ), from = esUnivPrev == null ? i : esUnivPrev;
-  return `<div class="useg glass es-seg" style="--n:${UNIVS.length}"><i class="es-pill" style="--ti:${from}" data-to="${i}"></i>${UNIVS.map(([k, n]) => `<button class="${S.univ === k ? 'on' : ''}" data-act="univ" data-u="${k}"><svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ES_UIC[k] || ''}</svg>${n}</button>`).join('')}</div>`;
+  const m = esG('topbar', 'bas'); if (m === 'actuelle' && esG('serm', 'defile') !== 'defile') return o();
+  return `<div class="useg glass es-seg${esG('serm', 'defile') === 'defile' ? ' es-defile' : ''}${m === 'bas' ? ' es-bas' : ''}"><div class="es-seg-in"><i class="es-pill"></i>${UNIVS.map(([k, n]) => `<button class="${S.univ === k ? 'on' : ''}" data-act="univ" data-u="${k}">${n}</button>`).join('')}</div></div>`;
 })(segHTML);
-render = (o => function (keep) {
-  o(keep);
-  const p = document.querySelector('.es-pill'); if (p) { requestAnimationFrame(() => requestAnimationFrame(() => p.style.setProperty('--ti', p.dataset.to))); esUnivPrev = +p.dataset.to; }
-  document.body.classList.toggle('es-topbar', esG('topbar', 'bas') === 'bas');
-})(render);
-
-/* ---------- 16 : Enseignements (sermons et études bibliques), tout est un EXEMPLE ---------- */
-if (esG('serm', 'onglet') === 'onglet') UNIVS.push(['sermons', 'Enseign.']);
-const ES_SERIES = [
-  {t:'L’Évangile de Jean', s:'Étude biblique · 12 rencontres', l:'Ⲓ', c:['#d6a447', '#5a3a0c'], ep:[['Au commencement était le Verbe', 'Jn 1, 1-18', 48], ['Les noces de Cana', 'Jn 2, 1-11', 41], ['Nicodème, renaître d’en haut', 'Jn 3, 1-21', 52]]},
-  {t:'Les Psaumes de la Psalmodie', s:'Étude · 8 rencontres', l:'Ⲯ', c:['#5d8fc2', '#122a46'], ep:[['Pourquoi chanter les psaumes ?', 'Ps 150', 37], ['Le psaume 135 et le Hos', 'Ps 135', 44]]},
-  {t:'Le Carême avec les Pères', s:'Sermons · 7 dimanches', l:'Ⲛ', c:['#8a6a9e', '#2a1838'], ep:[['Le jeûne qui plaît à Dieu', 'Is 58', 29], ['Le fils prodigue', 'Lc 15, 11-32', 33]]},
-  {t:'Comprendre la liturgie', s:'Catéchèse · 10 rencontres', l:'Ⲗ', c:['#c0603a', '#3e1206'], ep:[['L’offrande de l’Agneau', 'Messe', 35], ['La prière de réconciliation', 'Messe', 31]]}
-];
-function esSermons() {
-  const tous = ES_SERIES.flatMap((s, si) => s.ep.map((e, ei) => ({ s, si, ei, e })));
-  return `<section class="season" style="--c1:#6a5a8e;--c2:#1c1430;--ink:#f6ecd9"><div class="s-lt">Ⲕ</div><div class="eyebrow">Paroles et études</div><div class="s-name">Enseignements</div><div class="s-desc">Sermons, études bibliques et catéchèses, avec les versets cités.</div><div class="s-actions"><button class="s-btn pri" data-essep="0-0">${ic('play', 16)} Le plus récent</button><button class="s-btn">${tous.length} rencontres</button></div></section>
-  <p class="es-note">Maquette : titres et durées sont des exemples, il n’y a pas encore d’enregistrement.</p>
-  <div class="chips es-chips"><button class="chip on">Tout</button><button class="chip">Sermons</button><button class="chip">Études bibliques</button><button class="chip">Catéchèses</button><button class="chip">Par livre</button><button class="chip">Par prédicateur</button></div>
-  <div class="sh"><h2>Séries</h2></div>
-  <div class="hscroll">${ES_SERIES.map((s, si) => `<button class="card es-serie" data-essep="${si}-0">${artHTML({c:s.c}, s.l, 'md')}<div class="c1 ell">${s.t}</div><div class="c2 ell">${s.s}</div></button>`).join('')}</div>
-  <div class="sh"><h2>À reprendre</h2></div>
-  <button class="es-rep" data-essep="0-1">${artHTML({c:ES_SERIES[0].c}, 'Ⲓ', 'sm')}<span class="ell"><b>${ES_SERIES[0].ep[1][0]}</b><small>${ES_SERIES[0].t} · reste 23 min</small><i class="es-bar"><i style="width:44%"></i></i></span>${ic('play', 20)}</button>
-  <div class="sh"><h2>Derniers ajoutés</h2></div>
-  ${tous.slice(0, 6).map(({ s, si, ei, e }) => `<button class="row es-erow" data-essep="${si}-${ei}">${artHTML({c:s.c}, s.l, 'sm')}<div class="tt"><div class="t1 ell">${e[0]}</div><div class="t2 ell"><i class="tg pr" style="--c1:${s.c[0]}">${e[1]}</i>${s.t}</div></div><span class="dur">${e[2]} min</span></button>`).join('')}
-  <div class="sh"><h2>Par livre de la Bible</h2></div>
-  <div class="chips">${['Genèse', 'Exode', 'Psaumes', 'Isaïe', 'Matthieu', 'Marc', 'Luc', 'Jean', 'Actes', 'Romains', 'Hébreux', 'Apocalypse'].map(b => `<button class="chip">${b}</button>`).join('')}</div>`;
+function esPillPlace() {
+  const seg = document.querySelector('.es-seg'), p = seg && seg.querySelector('.es-pill'), on = seg && seg.querySelector('button.on'); if (!p || !on) return;
+  const to = [on.offsetLeft, on.offsetWidth];
+  if (esPillAvant) { p.style.transition = 'none'; p.style.transform = `translateX(${esPillAvant[0]}px)`; p.style.width = esPillAvant[1] + 'px'; void p.offsetWidth; p.style.transition = ''; }
+  p.style.transform = `translateX(${to[0]}px)`; p.style.width = to[1] + 'px'; esPillAvant = to;
+  const sc = seg.querySelector('.es-seg-in'); if (seg.classList.contains('es-defile')) sc.scrollLeft = Math.max(0, to[0] - (sc.clientWidth - to[1]) / 2);
 }
-renderUniv = (o => () => S.univ === 'sermons' ? esSermons() : o())(renderUniv);
-document.addEventListener('click', e => {   // une rencontre : ce qu'on verrait en l'ouvrant (feuille)
-  const b = e.target.closest('[data-essep]'); if (!b) return;
-  e.preventDefault(); e.stopPropagation();
-  const [si, ei] = b.dataset.essep.split('-').map(Number), s = ES_SERIES[si], ep = s.ep[ei];
-  openSheet(`<div class="sh-head">${artHTML({c:s.c}, s.l, 'sm')}<div class="tt"><div class="tt1 ell">${ep[0]}</div><div class="tt2 ell">${s.t} · ${ep[2]} min</div></div></div>
-    <div class="es-sheet"><p class="es-note">Exemple de ce que montrerait une rencontre.</p>
-    <div class="es-pl"><button class="es-bplay">${ic('play', 22)}</button><i class="es-bar"><i style="width:18%"></i></i><span>×1,25</span></div>
-    <h4>Chapitres</h4>${['Introduction', 'Lecture du passage', 'Ce que disent les Pères', 'Pour notre vie', 'Questions'].map((c, i) => `<div class="es-chap"><span>${String(i * 9).padStart(2, '0')}:00</span>${c}</div>`).join('')}
-    <h4>Versets cités</h4><div class="chips"><button class="chip">${ep[1]}</button><button class="chip">Ps 118, 105</button></div>
-    <h4>Pour aller plus loin</h4><div class="es-chap">Notes de la rencontre (PDF) · Questions pour le groupe</div></div>`);
-}, true);
+render = (o => function (keep) { o(keep); requestAnimationFrame(esPillPlace); })(render);
 
-/* ---------- 12 : couleurs proposées ---------- */
+/* ---------- 12 : couleurs — seulement des teintes qui manquent, rangées comme un nuancier ---------- */
 ACCENTS.push(
   {k:'jaune', name:'Jaune', d:['#ffd60a','#2a2200'], l:['#a88600','#ffffff']},
   {k:'rose', name:'Rose', d:['#ff6fae','#2a0616'], l:['#c2346f','#ffffff']},
-  {k:'cuivre', name:'Cuivre', d:['#e0915f','#2a1406'], l:['#a85a2a','#ffffff']},
-  {k:'pervenche', name:'Pervenche', d:['#8e8cff','#0a0a2a'], l:['#4f4cd6','#ffffff']},
-  {k:'corail', name:'Corail', d:['#ff7a6b','#2a0a06'], l:['#c8443a','#ffffff']},
-  {k:'menthe', name:'Menthe', d:['#5ee6b8','#002a1c'], l:['#13896a','#ffffff']},
-  {k:'ciel', name:'Ciel', d:['#9fd0ff','#06203a'], l:['#3a7cc0','#ffffff']},
-  {k:'pourpre-roi', name:'Pourpre royal', d:['#d05ad8','#22052a'], l:['#8e2d96','#ffffff']}
+  {k:'indigo', name:'Indigo', d:['#7d7aff','#0a0a2a'], l:['#4b49c8','#ffffff']},
+  {k:'menthe', name:'Menthe', d:['#63e6be','#002a1c'], l:['#13896a','#ffffff']}
 );
-THEMES.splice(THEMES.length - 1, 0,
-  {k:'encre', name:'Encre (bleu-noir)', bg:'#05070d', up:'#151b2b', ac:'#dbb066'},
-  {k:'cedre', name:'Cèdre', bg:'#071210', up:'#16302a', ac:'#dbb066'},
-  {k:'porphyre', name:'Porphyre', bg:'#12070c', up:'#301520', ac:'#dbb066'},
-  {k:'ambre', name:'Ambre', bg:'#140d04', up:'#33230d', ac:'#dbb066'},
-  {k:'fumee', name:'Fumée d’encens', bg:'#0e0e10', up:'#26262b', ac:'#dbb066'}
+{ const O = ['or', 'jaune', 'orange', 'rouge', 'rose', 'violet', 'indigo', 'bleu', 'turquoise', 'menthe', 'vert', 'argent'];
+  ACCENTS.sort((a, b) => O.indexOf(a.k) - O.indexOf(b.k));
+  const st = document.createElement('style');
+  st.textContent = ACCENTS.filter(a => ['jaune', 'rose', 'indigo', 'menthe'].includes(a.k)).map(a => `:root[data-accent="${a.k}"],:root[data-accent="${a.k}"] #player{--gold:${a.d[0]};--on-gold:${a.d[1]}}${['nacre', ...ES_CLAIRS].map(k => `:root[data-theme="${k}"][data-accent="${a.k}"]`).join(',')}{--gold:${a.l[0]};--on-gold:${a.l[1]}}`).join('');
+  document.body.appendChild(st); }
+THEMES.push(
+  {k:'parchemin', name:'Parchemin (clair)', bg:'#f6f1e7', up:'#ece4d4', ac:'#9a6a08'},
+  {k:'poudre', name:'Rose poudré (clair)', bg:'#f8eff0', up:'#efdfe1', ac:'#a33b4c'},
+  {k:'lilas', name:'Lilas (clair)', bg:'#f2eff8', up:'#e3ddef', ac:'#6a4fb0'},
+  {k:'sauge', name:'Sauge (clair)', bg:'#eef3ee', up:'#dde7de', ac:'#2f7a4a'}
 );
-{ const st = document.createElement('style');   // couleurs secondaires ajoutées : même CSS que dans l'appli
-  st.textContent = ACCENTS.slice(-8).map(a => `:root[data-accent="${a.k}"],:root[data-accent="${a.k}"] #player{--gold:${a.d[0]};--on-gold:${a.d[1]}}:root[data-theme="nacre"][data-accent="${a.k}"]{--gold:${a.l[0]};--on-gold:${a.l[1]}}`).join('');
-  document.body.appendChild(st); applyTheme(); }
+{ const O = ['cierge', 'bordeaux', 'pourpre', 'lavande', 'indigo', 'velours', 'ardoise', 'nil', 'emeraude', 'graphite', 'parchemin', 'poudre', 'lilas', 'nacre', 'sauge'];
+  THEMES.sort((a, b) => O.indexOf(a.k) - O.indexOf(b.k)); }
+applyTheme();
 
 /* ---------- 10 : barre du bas façon Apple Music, sans verre liquide ---------- */
 if (typeof AM_MODE !== 'undefined') {
-  const d = esG('dock', 'apple');
-  AM_MODE = d === 'actuelle' ? 'actuelle' : 'apple';
+  AM_MODE = esG('dock', 'apple') === 'actuelle' ? 'actuelle' : 'apple';
   amCollapse = (o => on => { if (esG('dock', 'apple') === 'fixe' && on) return; o(on); })(amCollapse);
   amApply();
 }
 
-/* ---------- la feuille « Essais » ---------- */
+/* ---------- la feuille « Essais » : seulement ce qui reste à choisir ---------- */
 const ES_CHOIX = [
-  ['6', 'Liturgie : la carte du haut', 'lit', 'v1', [['v1', '1 · Une carte (ordre + entières)'], ['v2', '2 · Les trois sceaux'], ['v3', '3 · Reprendre + pochettes'], ['v4', '4 · Bande fine'], ['actuel', 'Actuelle (deux cartes)']],
-    'L’ancienne carte or est retirée, « Aléatoire » aussi. 1 : « Dans l’ordre » et les liturgies entières, rangées par messe. 2 : Basile, Grégoire, Cyrille ouvrent chacun leurs liturgies entières. 3 : « Reprendre » à la dernière étape écoutée, entières en pochettes. 4 : une bande fine, entières sur une ligne.'],
+  ['6', 'Liturgie : la carte du haut', 'lit', 'v1', [['v1', '1 · Deux ronds à droite'], ['v2', '2 · Pastilles dessous'], ['v3', '3 · Les trois sceaux'], ['v4', '4 · Reprendre'], ['actuel', 'Actuelle (deux cartes)']],
+    'Même carte que « Liturgies entières » (décor en fond, or, blanc, rouge), sans « Aléatoire ». 1 : lecture et liturgies entières en deux ronds, comme aujourd’hui. 2 : deux pastilles dessous. 3 : Basile, Grégoire, Cyrille ouvrent chacun leurs liturgies entières. 4 : « Reprendre » à la dernière étape écoutée.'],
   ['2', 'Vos plus écoutés', 'top', 'cartes', [['cartes', 'Cartes numérotées'], ['liste', 'Top 5 en liste'], ['biblio', 'Dans Bibliothèque']],
     'Compté sur chaque iPhone (30 s d’écoute au moins), rien n’est partagé. Tant que cette page n’a pas d’écoutes, des exemples s’affichent.'],
-  ['2', 'Autres rubriques proposées', 'rub', 'jour', [['jour', 'Chant du jour'], ['jamais', 'Pas encore écoutés'], ['deux', 'Les deux'], ['aucune', 'Aucune']],
-    'Chant du jour : un chant du temps présent, qui change chaque jour. Pas encore écoutés : les chants du temps que tu n’as jamais lancés.'],
-  ['7', 'Vos chantres', 'chs', 'vos', [['vos', 'Favoris puis plus écoutés'], ['alpha', 'Actuel (A → Z)']],
-    'Cœur « Ajouter aux favoris » sur la page d’un chantre. « Tout voir » les montre tous, dans le même ordre ; en haut de cette page, le tri se change aussi (favoris et plus écoutés, ou A → Z).'],
+  ['2', 'Autres rubriques', 'rub', 'jour', [['jour', 'Chant du jour'], ['jamais', 'Pas encore écoutés'], ['deux', 'Les deux'], ['aucune', 'Aucune']],
+    'Chant du jour : un chant du temps présent, qui change chaque jour. Pas encore écoutés : les chants du temps jamais lancés.'],
+  ['16', 'Où mettre Enseignements', 'serm', 'defile', [['defile', 'Barre du haut qui glisse'], ['accueil', 'Rubrique de l’Accueil'], ['biblio', 'Dans Bibliothèque']],
+    'Barre qui glisse : on fait défiler la barre du haut vers la gauche pour l’atteindre. Accueil : une rangée « Enseignements » avec les livres. Bibliothèque : une ligne. Contenu d’essai : 1 et 2 Samuel, titres à venir.'],
+  ['15', 'Barre du haut', 'topbar', 'bas', [['bas', 'Même effet que la barre du bas'], ['actuelle', 'Actuelle']],
+    'Sans icônes : même verre, même pastille qui glisse vers l’onglet choisi, même couleur pour l’onglet choisi.'],
   ['10', 'Barre du bas', 'dock', 'apple', [['apple', 'Apple Music (se replie)'], ['fixe', 'Apple Music (fixe)'], ['actuelle', 'Actuelle']],
-    'Sans verre liquide (pour la vraie appli plus tard). En descendant, elle se replie : onglet en rond, mini-lecteur, loupe.'],
-  ['15', 'Barre du haut', 'topbar', 'bas', [['bas', 'Comme la barre du bas'], ['actuelle', 'Actuelle']],
-    'Même hauteur, mêmes icônes au-dessus du nom, même pastille qui glisse vers l’onglet choisi.'],
-  ['16', 'Enseignements', 'serm', 'onglet', [['onglet', 'Onglet en haut'], ['non', 'Caché']],
-    'Sermons, études bibliques, catéchèses : séries, reprise, chapitres, versets cités. Tout est un exemple.'],
-  ['12', 'Couleurs', '', '', [], 'Nouveaux thèmes : Encre, Cèdre, Porphyre, Ambre, Fumée d’encens. Nouvelles couleurs secondaires : Jaune, Rose, Cuivre, Pervenche, Corail, Menthe, Ciel, Pourpre royal. Dans Réglages → Thème.']
+    'Sans verre liquide. En descendant, elle se replie : onglet en rond, mini-lecteur, loupe.'],
+  ['12', 'Couleurs', '', '', [], 'Thèmes clairs ajoutés : Parchemin, Rose poudré, Lilas, Sauge (les sombres couvrent déjà toutes les teintes). Couleurs secondaires ajoutées : Jaune, Rose, Indigo, Menthe. Les deux listes sont rangées comme un nuancier. Dans Réglages → Thème.']
 ];
 function esPanel() {
-  return `<div class="sh-head"><div class="tt"><div class="tt1">Essais du 19/11</div><div class="tt2">Choisis, l’écran change aussitôt</div></div></div><div class="es-panel">${ES_CHOIX.map(([n, t, k, d, opts, txt]) => `<div class="es-q"><div class="es-qh"><span class="es-n">${n}</span>${t}</div>${opts.length ? `<div class="es-o">${opts.map(([v, l]) => `<button class="${esG(k, d) === v ? 'on' : ''}" data-eso="${k}" data-v="${v}">${l}</button>`).join('')}</div>` : `<button class="es-go" data-act="open" data-type="settings" data-id="s">Ouvrir les réglages</button>`}<p>${txt}</p></div>`).join('')}</div>`;
+  return `<div class="sh-head"><div class="tt"><div class="tt1">Essais en cours</div><div class="tt2">Choisis, l’écran change aussitôt</div></div></div><div class="es-panel">${ES_CHOIX.map(([n, t, k, d, opts, txt]) => `<div class="es-q"><div class="es-qh"><span class="es-n">${n}</span>${t}</div>${opts.length ? `<div class="es-o">${opts.map(([v, l]) => `<button class="${esG(k, d) === v ? 'on' : ''}" data-eso="${k}" data-v="${v}">${l}</button>`).join('')}</div>` : `<button class="es-go" data-act="open" data-type="settings" data-id="s">Ouvrir les réglages</button>`}<p>${txt}</p></div>`).join('')}</div>`;
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-eso]'), f = e.target.closest('#esFab'); if (!b && !f) return;
   e.preventDefault(); e.stopPropagation();
   if (f) { openSheet(esPanel()); return; }
   const k = b.dataset.eso, v = b.dataset.v; esS(k, v);
-  if (k === 'serm') location.reload();
+  if (k === 'serm') { location.reload(); return; }
   if (k === 'dock' && typeof AM_MODE !== 'undefined') { AM_MODE = v === 'actuelle' ? 'actuelle' : 'apple'; amApply(); }
-  if (k === 'lit') esEnt = '';
-  if (k === 'top' || k === 'rub' || k === 'chs') { S.route = { tab: k === 'top' && v === 'biblio' ? 'library' : 'home', stack: [] }; if (S.univ !== 'chants') S.univ = 'chants'; }
-  if (k === 'lit') { S.route = { tab: 'home', stack: [] }; S.univ = 'liturgie'; }
-  if (k === 'topbar') S.route = { tab: 'home', stack: [] };
+  if (k === 'lit') { esEnt = ''; S.univ = 'liturgie'; }
+  if (k === 'top' || k === 'rub') S.univ = 'chants';
+  S.route = { tab: k === 'top' && v === 'biblio' ? 'library' : 'home', stack: [] };
   render(); openSheet(esPanel());
 }, true);
 { const f = document.createElement('button'); f.id = 'esFab'; f.textContent = 'Essais'; f.setAttribute('aria-label', 'Choix de la page d’essai'); document.body.append(f); }
