@@ -1080,13 +1080,13 @@ const PERIODS = {
   assomption:{name:'Jeûne de la Vierge',word:'Ⲙⲁⲣⲓⲁ',c:['#4a78d4','#14244f'],desc:"Quinze jours de jeûne jusqu'à l'Assomption."}
 };
 const PERIOD_ORDER = ['annuel','nayrouz','kiahk','nativite','theophanie','ninive','careme','rameaux','pascha','resurrection','pentecote','apotres','assomption'];
-const COLS = {apprentissage:'Apprentissage', psaumes:'Psaumes', messe:'Extraits de messe', lectures:'Évangiles', taranim:'Chant'};
+const COLS = {apprentissage:'Apprentissage', psaumes:'Psaumes', messe:'Extraits de messe', lectures:'Évangiles', taranim:'Chant', test:'Test'};
 // Les quatre évangélistes (lectures lues, rangées par livre puis par chapitre ; ev = livre)
 const EVANG = {mt:{cop:'Ⲙⲁⲧⲑⲉⲟⲥ',fr:'Matthieu',l:'Ⲙ',img:'evangiles/case-mt-6f3efe.jpg',c:['#70a8e1','#1c365f']}, mc:{cop:'Ⲙⲁⲣⲕⲟⲥ',fr:'Marc',l:'Ⲙ',img:'evangiles/marc-c-b57ad8.jpg',c:['#ec4a3a','#6b0f1a']}, lc:{cop:'Ⲗⲟⲩⲕⲁⲥ',fr:'Luc',l:'Ⲗ',img:'evangiles/case-lc-f34d62.jpg',c:['#b08ad8','#2a1240']}, jn:{cop:'Ⲓⲱⲁⲛⲛⲏⲥ',fr:'Jean',l:'Ⲓ',img:'evangiles/case-jn-3e3cbb.jpg',c:['#ffd24d','#b07818']}};
 // Univers de l'accueil : les psaumes et les lectures ont leur page et leur aléatoire, à part des chants
 // Ordre : les chants de l'office (Hymnes, puis la Liturgie), la Parole dans l'ordre où elle est lue à la messe (Psaume puis Évangile), enfin les chants hors office
 const UNIVS = [['chants','Hymnes'],['liturgie','Liturgie'],['psaumes','Psaumes'],['lectures','Évangiles'],['taranim','Chant']];
-const horsChants = t => t.col === 'psaumes' || t.col === 'lectures' || t.col === 'taranim';
+const horsChants = t => t.col === 'test' || t.col === 'psaumes' || t.col === 'lectures' || t.col === 'taranim';
 const OFFICES = {vepres:'Vêpres',tasbeha:'Tasbeha',matines:'Matines',liturgie:'Liturgie',mariage:'Mariage',bapteme:'Baptême',funerailles:'Funérailles'};
 const initials = n => String(n).split(/\s+/).filter(Boolean).map(w => w[0]).join('').slice(0, 2).toUpperCase();
 // Rond du chantre : sa photo s'il en a une, sinon ses initiales
@@ -1133,7 +1133,7 @@ const ORDRE = {
       'evangile-sixte-vendredi-abraham', 'evangile-sixte-vendredi-mounir', 'amanat-al-less', 'amanat-al-less-batanouny', 'ethve-ti-anastasis',
       'ti-shouri', 'ethve-ti-anastasis-2', 'lamentations-jeremie-2024', 'lamentations-jeremie-3', 'lamentations-jeremie-mounir',
       'lamentations-jeremie-abraham', 'lamentations-jeremie-villejuif', 'pek-thronos', 'pek-thronos-villejuif', 'golgotha', 'golgotha-villejuif'],
-    'Samedi de la Joie': ['anok-pe-pikouji', 'louanges-samedi-joie-seminaire', 'louanges-samedi-joie-seminaire-deepgram', 'aube-samedi-joie-seminaire', 'doxologie-aube-samedi-joie-seminaire']
+    'Samedi de la Joie': ['anok-pe-pikouji', 'louanges-samedi-joie-seminaire', 'aube-samedi-joie-seminaire', 'doxologie-aube-samedi-joie-seminaire']
   },
   resurrection: ['psali-watos-resurrection-philopater', 'fraction-pere-resurrection-philopater', 'fraction-resurrection-philopater',
     'fraction-resurrection-mina-abood', 'psaume-150-resurrection-ayad', 'onemnai-ayad', 'ya-kol-al-soufouf', 'ya-kol-al-soufouf-seminaire'],
@@ -1333,7 +1333,7 @@ const TRACKS = [
   {id:'doxologie-aube-samedi-joie-seminaire',dur:525,ti:"Lumière véritable",cop:'Ⲡⲓⲟⲩⲱⲓⲛⲓ ⲛ̀ⲧⲁⲫ̀ⲙⲏⲓ',note:"Doxologie de l’aube, en arabe",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:robeir-samir/zoksologiat-baker-arabic-sabt-el-fara7'},
   {id:'aube-samedi-joie-seminaire',dur:1252,ti:"Psalie et théotokie du samedi",cop:'Ⲁϥϯ ⲙ̀ⲡ̀ⲟⲩⲛⲟϥ ⲛ̀ⲛⲉⲛⲯⲩⲭⲏ',note:"Aube du Samedi de la Joie, en arabe · la psalie propre du jour (5:22-9:36) est sans paroles",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:christian-library/dfuu6dqlzv6u'},
   {id:'louanges-samedi-joie-seminaire',dur:2240,ti:"3e Hos et Aripsalin",cop:'Ⲕⲥ̀ⲙⲁⲣⲱⲟⲩⲧ Ⲡ̀ⲟ̅ⲥ̅ Ⲫϯ ⲛ̀ⲧⲉ ⲛⲉⲛⲓⲟϯ',note:"Louanges du Samedi de la Joie, en copte et en arabe · l’air long d’Aripsalin (10:20-23:45) et Ⲧⲉⲛⲉⲛ (29:40-fin) sont sans paroles",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:christian-library/el-tasabe7'},
-  {id:'louanges-samedi-joie-seminaire-deepgram',aud:'louanges-samedi-joie-seminaire',dur:2240,ti:"3e Hos et Aripsalin · Deepgram",cop:'Ⲕⲥ̀ⲙⲁⲣⲱⲟⲩⲧ Ⲡ̀ⲟ̅ⲥ̅ Ⲫϯ ⲛ̀ⲧⲉ ⲛⲉⲛⲓⲟϯ',note:"Test : mêmes paroles, calées par Deepgram au lieu de Whisper · à comparer avec l’original",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:christian-library/el-tasabe7'},
+  {id:'louanges-samedi-joie-seminaire-deepgram',aud:'louanges-samedi-joie-seminaire',dur:2240,ti:"Deepgram",cop:'',note:"3e Hos et Aripsalin du Samedi de la Joie (Séminaire) · paroles calées par Deepgram au lieu de Whisper",p:PS,col:'test',ch:'seminaire',yt:'sc:christian-library/el-tasabe7'},
   {id:'lamentations-jeremie-abraham',dur:620,ti:'Lamentations de Jérémie, chapitre 3',cop:'',note:'En français et en arabe · 12e heure du Vendredi saint',p:PS,sec:'Vendredi saint',ch:'abraham',ch2:'anbamarc',yt:'sc:merael_2006/lamentations-de-jeremie-arabe'},
   {id:'pihmot-gar-long',dur:319,ti:"La grâce de Dieu le Père",cop:'Ⲡⲓϩ̀ⲙⲟⲧ ⲅⲁⲣ',note:"Air long, après l’Épître de saint Paul",p:'annuel',of:'liturgie',col:'messe',m:'parole',ch:null,yt:'sc:merael_2006/h-long'},
   {id:'psali-adam-nayrouz-philopater',dur:517,ti:"Je me prosterne vers Toi",cop:'Ϯⲛⲁⲟⲩⲱϣⲧ ⲙ̀ⲙⲟⲕ',note:"Psalie Adam du Nayrouz",p:'nayrouz',of:'tasbeha',ch:'philopater',yt:'sc:sotem-efnoti/7z7hhptfhvmd'},
@@ -1947,7 +1947,7 @@ function renderHome() {
 function chipsHTML() {
   // Pastilles à leur taille, dans un ordre qui remplit bien les lignes : apprentissage, offices dans l'ordre de la journée, messe, lectures, psaumes, chant (taranim), sacrements
   // (sur iPhone : 4 lignes de 3, presque pleines)
-  const ORDRE_CHIPS = ['col:apprentissage', 'office:vepres', 'office:tasbeha', 'office:matines', 'office:liturgie', 'col:messe', 'col:lectures', 'col:psaumes', 'col:taranim', 'office:bapteme', 'office:mariage', 'office:funerailles'];
+  const ORDRE_CHIPS = ['col:test', 'col:apprentissage', 'office:vepres', 'office:tasbeha', 'office:matines', 'office:liturgie', 'col:messe', 'col:lectures', 'col:psaumes', 'col:taranim', 'office:bapteme', 'office:mariage', 'office:funerailles'];
   const tous = [...Object.keys(OFFICES).map(id => 'office:' + id), ...Object.keys(COLS).map(id => 'col:' + id)];
   return [...ORDRE_CHIPS.filter(c => tous.includes(c)), ...tous.filter(c => !ORDRE_CHIPS.includes(c))].map(c => {
     const [type, id] = c.split(':'), n = type === 'col' ? COLS[id] : OFFICES[id], k = listIds(c).length;
@@ -2309,8 +2309,8 @@ function renderDetail(it) {
     head = E.img ? `<div class="art xl" style="background:url(${E.img}) center top/cover" aria-hidden="true"></div>` : artHTML(E.c ? {c:E.c} : 'annuel', E.l, 'xl');   // même icône et même cadrage que la case
   } else if (it.type === 'col') {
     list = 'col:' + it.id; title = COLS[it.id];
-    sub = {psaumes:'Numérotation de la Septante', messe:'Passages extraits de liturgies', lectures:'Les 4 Évangiles, chapitre par chapitre'}[it.id] || 'Chants enseignés pas à pas';
-    head = it.id === 'psaumes' ? artHTML(TEINTES.psaumes, 'Ⲯ', 'xl') : it.id === 'lectures' ? artHTML('annuel', 'Ⲉ', 'xl') : it.id === 'messe' ? artHTML('annuel', '☩', 'xl') : artHTML('pascha', 'Ⲁ', 'xl');
+    sub = {psaumes:'Numérotation de la Septante', messe:'Passages extraits de liturgies', lectures:'Les 4 Évangiles, chapitre par chapitre', test:'Paroles calées par Deepgram, à comparer avec Whisper'}[it.id] || 'Chants enseignés pas à pas';
+    head = it.id === 'psaumes' ? artHTML(TEINTES.psaumes, 'Ⲯ', 'xl') : it.id === 'lectures' ? artHTML('annuel', 'Ⲉ', 'xl') : it.id === 'test' ? artHTML('annuel', 'Ⲧ', 'xl') : it.id === 'messe' ? artHTML('annuel', '☩', 'xl') : artHTML('pascha', 'Ⲁ', 'xl');
   } else if (it.type === 'fav') {
     list = 'fav'; title = 'Favoris'; sub = `${ids0('fav')} chant${ids0('fav') > 1 ? 's' : ''}`;
     head = artHTML('assomption', '♡', 'xl');
