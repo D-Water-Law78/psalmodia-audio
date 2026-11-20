@@ -207,6 +207,20 @@ body.es-dock4 .am-pill{width:calc((100% - 8px) / 4)}
 .es-evj{margin-top:8px}.es-evj .s-btn{width:100%;justify-content:center;gap:8px}.es-evj .s-btn .ic{width:18px;height:18px}.es-evj small{opacity:.7;font-weight:500;margin-left:6px}
 .es-cbar{position:relative;margin:-12px 8px 8px}
 .es-evc .es-rep,.es-prt .hscroll{margin-bottom:6px}
+
+/* 20/11 (3) : grande case, étiquette « Étude » dans Reprendre, ligne dans « En ce moment » */
+.ptile.es-tuile{grid-column:1/-1;min-height:120px}
+.ptile.es-tuile .pt-name{font-size:24px}
+.es-cw{position:relative;display:block}
+.es-tag{position:absolute;left:8px;top:8px;display:inline-flex;align-items:center;gap:4px;padding:3px 8px 3px 6px;border-radius:10px;background:rgba(0,0,0,.55);color:#fffaf0;font-size:11.5px;font-weight:700;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.es-tag .ic{width:14px;height:14px}
+.es-or{color:var(--gold)!important}
+.es-ligne{border-top:1px solid rgba(255,255,255,.12)}
+.s-next + .es-ligne{margin-top:0}
+.es-ligne .es-li{display:inline-flex;align-self:center}.es-ligne .es-li .ic{width:16px;height:16px}
+.es-ligne .ic:last-child{align-self:center;opacity:.75}
+.season .s-next:has(+ .es-ligne){margin-bottom:0}
+.season .es-ligne{margin-top:0;background:rgba(0,0,0,.32)}
 </style>
 </head><body>
 <title>Psalmodia</title>
@@ -3972,6 +3986,8 @@ renderLibrary = (o => () => {
   return h;
 })(renderLibrary);
 
+/* 20/11 : couleur d'Enseignements au choix (le marron ne plaît pas) */
+function esColCSS() { const k = esG('scoul', 'nuit'), C = {nuit:['#22336f', '#060a1c', '#f3d78f'], pourpre:['#8a3aa8', '#24092f', '#f6ecd9'], paon:['#13838a', '#042528', '#f6ecd9'], cramoisi:['#b3263f', '#2e0711', '#f6ecd9']}[k] || ['#22336f', '#060a1c', '#f3d78f']; return `--c1:${C[0]};--c2:${C[1]};--ink:${C[2]}` + (k === 'nuit' || !C ? ';box-shadow:inset 0 0 0 1.5px rgba(232,196,110,.6)' : ''); }
 /* ---------- 16 : Enseignements — études bibliques de 1 et 2 Samuel, titres à venir (pour voir le rendu) ---------- */
 const ES_IC_SERM = '<svg class="ic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v14"/></svg>';
 const ES_LIVRES = [
@@ -3982,7 +3998,7 @@ const esCover = (L, cls) => artHTML({c:L.c}, L.l, cls).replace('<span class="gl"
 const esChapRow = (L, i) => `<button class="row es-erow" data-essep="${L.k}-${i}"><span class="num">${i + 1}</span><div class="meta"><div class="t1 ell es-vide">Titre à venir</div><div class="t2 ell">${L.abr} ${i + 1} · Étude biblique</div></div><span class="dur">— min</span></button>`;
 function esSermons(detail) {
   const back = detail ? `<div class="bar"><button class="backb" data-act="back">${ic('back')}Retour</button></div><h1>Enseignements</h1>` : '';
-  return back + `<section class="season" style="--c1:#7a5a3a;--c2:#1f140a;--ink:#f6ecd9"><div class="s-lt">Ⲕ</div><div class="eyebrow">Études bibliques et sermons</div><div class="s-name">Enseignements</div><div class="s-desc">Livre par livre, chapitre par chapitre, avec les versets lus.</div><div class="s-actions"><button class="s-btn pri" data-essep="1s-0">${ic('play', 16)} Commencer</button><button class="s-btn" data-esliv="1s">${ES_LIVRES.reduce((a, L) => a + L.n, 0)} rencontres</button></div></section>
+  return back + `<section class="season" style="${esColCSS()}"><div class="s-lt">Ⲕ</div><div class="eyebrow">Études bibliques et sermons</div><div class="s-name">Enseignements</div><div class="s-desc">Livre par livre, chapitre par chapitre, avec les versets lus.</div><div class="s-actions"><button class="s-btn pri" data-essep="1s-0">${ic('play', 16)} Commencer</button><button class="s-btn" data-esliv="1s">${ES_LIVRES.reduce((a, L) => a + L.n, 0)} rencontres</button></div></section>
   <p class="es-note">Maquette : les titres et les durées viendront avec les enregistrements.</p>
   <div class="chips es-chips"><button class="chip on">Études bibliques</button><button class="chip">Sermons</button><button class="chip">Par livre</button><button class="chip">Par prédicateur</button></div>
   <div class="sh"><h2>Livres étudiés</h2></div>
@@ -4110,10 +4126,12 @@ const ES_CHOIX = [
     'Compté sur chaque iPhone (30 s d’écoute au moins), rien n’est partagé. Tant que cette page n’a pas d’écoutes, des exemples s’affichent.'],
   ['2', 'Autres rubriques', 'rub', 'jour', [['jour', 'Chant du jour'], ['jamais', 'Pas encore écoutés'], ['deux', 'Les deux'], ['aucune', 'Aucune']],
     'Chant du jour : un chant du temps présent, qui change chaque jour. Pas encore écoutés : les chants du temps jamais lancés.'],
-  ['16', 'Où mettre Enseignements', 'serm', 'defile', [['defile', 'Barre du haut qui glisse'], ['accueil', 'Rubrique de l’Accueil'], ['lect', 'Sous les Évangiles'], ['biblio', 'Dans Bibliothèque'], ['dock', 'Onglet en bas'], ['bible', 'Onglet « Bible »'], ['carte', 'Grande carte Accueil'], ['periodes', 'Case dans Périodes'], ['reprendre', 'Dans « Reprendre »'], ['entete', 'Livre près des Réglages'], ['evjour', 'Bouton sous l’Évangile du jour'], ['evchap', 'Page de l’évangéliste'], ['pretre', 'Page du prêtre']],
-    'Barre qui glisse : on fait défiler la barre du haut vers la gauche pour l’atteindre. Accueil : une rangée « Enseignements » avec les livres. Sous les Évangiles : une rangée « Études bibliques » dans l’onglet Évangiles, sous les évangélistes. Bibliothèque : une ligne. Onglet en bas : 4e onglet « Études » à côté d’Accueil, Périodes, Bibliothèque. Onglet « Bible » : l’onglet Évangiles devient « Bible », avec deux boutons Évangiles / Études bibliques. Grande carte : sous « En ce moment », une carte « Reprendre l’étude ». Case dans Périodes : un carré « Enseignements » à côté des Psaumes, aussi dans Recherche → Parcourir. Dans « Reprendre » : l’étude en cours est la 1re pochette de la rangée Reprendre. Livre près des Réglages : une icône de livre en haut de l’Accueil, à gauche de la roue. Bouton sous l’Évangile du jour : « Études bibliques » sous Veille, Matin, Messe. Page de l’évangéliste : « Étude de cet Évangile » en haut de la page de saint Jean, Marc… Page du prêtre : « Ses enseignements » en haut de la page d’un abouna. Contenu d’essai : 1 et 2 Samuel, titres à venir.'],
+  ['16', 'Où mettre Enseignements', 'serm', 'defile', [['defile', 'Barre du haut qui glisse'], ['accueil', 'Rubrique de l’Accueil'], ['lect', 'Sous les Évangiles'], ['biblio', 'Dans Bibliothèque'], ['dock', 'Onglet en bas'], ['bible', 'Onglet « Bible »'], ['carte', 'Grande carte Accueil'], ['periodes', 'Grande case dans Périodes'], ['haut', 'Rangée sous « En ce moment »'], ['ligne', 'Ligne dans « En ce moment »'], ['reprendre', 'Dans « Reprendre »'], ['entete', 'Livre près des Réglages'], ['pretre', 'Page du prêtre']],
+    'Barre qui glisse : on fait défiler la barre du haut vers la gauche pour l’atteindre. Accueil : une rangée « Enseignements » avec les livres. Sous les Évangiles : une rangée « Études bibliques » dans l’onglet Évangiles, sous les évangélistes. Bibliothèque : une ligne. Onglet en bas : 4e onglet « Études » à côté d’Accueil, Périodes, Bibliothèque. Onglet « Bible » : l’onglet Évangiles devient « Bible », avec deux boutons Évangiles / Études bibliques. Grande carte : sous « En ce moment », une carte « Reprendre l’étude ». Grande case : une case « Enseignements » sur toute la largeur dans Périodes, et dans Recherche → Parcourir. Rangée sous « En ce moment » : les livres étudiés juste sous la grande carte du temps, visibles dès l’ouverture. Ligne dans « En ce moment » : une 2e ligne en bas de la grande carte, comme « Ensuite Kiahk » : « Étude biblique · 1 Samuel 3 · Reprendre ». Dans « Reprendre » : l’étude en cours est la 1re pochette de la rangée Reprendre, avec l’étiquette « Étude » et sa barre d’avancement. Livre près des Réglages : une icône de livre en haut de l’Accueil, à gauche de la roue. Page du prêtre : « Ses enseignements » en haut de la page d’un abouna. Contenu d’essai : 1 et 2 Samuel, titres à venir.'],
   ['7', 'Liturgie : la frise', 'fil', 'actuel', [['actuel', 'Actuelle'], ['carrousel', 'Carrousel'], ['progression', 'Progression']],
     'Les trois gardés le 19/11. Carrousel : la roue des étapes, celle du milieu grossit, on la fait tourner du doigt. Progression : toutes les étapes sur un trait qui se colore jusqu’à l’étape choisie ; on glisse le doigt dessus. Couleurs de la carte « Liturgies entières », lettres blanches.'],
+  ['16', 'Couleur d’Enseignements', 'scoul', 'nuit', [['nuit', 'Nuit et or'], ['pourpre', 'Pourpre royal'], ['paon', 'Bleu paon'], ['cramoisi', 'Cramoisi']],
+    'Couleur de la carte et de la case Enseignements (le marron est retiré). Nuit et or : bleu nuit bordé d’or, pour ne pas ressembler aux Psaumes.'],
   ['13', 'Icône des Réglages', 'gr', 'actuelle', [['actuelle', 'Actuelle'], ['roue', 'Engrenage'], ['points', 'Trois points'], ['profil', 'Profil'], ['avatar', 'Profil plein']],
     'Le bouton en haut à droite de l’Accueil. Les cinq gardées le 19/11.'],
   ['15', 'Barre du haut', 'topbar', 'bas', [['bas', 'Même effet que la barre du bas'], ['actuelle', 'Actuelle']],
@@ -4165,7 +4183,7 @@ if (ES_SP === 'carte') {
   renderHome = (o => () => {
     let h = o(); if (S.univ !== 'chants' || ES_ET) return h;
     const L = ES_LIVRES[0], i = h.indexOf('</section>');
-    const c = `<section class="season es-carte" style="--c1:#7a5a3a;--c2:#1f140a;--ink:#f6ecd9"><div class="s-lt">Ⲕ</div><div class="eyebrow">Étude biblique · Reprendre</div><div class="s-name">1 Samuel, chapitre 3</div><div class="s-desc">Titre à venir · reste — min</div><i class="es-bar" style="margin:10px 0 4px"><i style="width:40%"></i></i><div class="s-actions"><button class="s-btn pri" data-essep="1s-2">${ic('play', 16)} Reprendre</button><button class="s-btn" data-act="open" data-type="essermons" data-id="all">Toutes les études</button></div></section>`;
+    const c = `<section class="season es-carte" style="${esColCSS()}"><div class="s-lt">Ⲕ</div><div class="eyebrow">Étude biblique · Reprendre</div><div class="s-name">1 Samuel, chapitre 3</div><div class="s-desc">Titre à venir · reste — min</div><i class="es-bar" style="margin:10px 0 4px"><i style="width:40%"></i></i><div class="s-actions"><button class="s-btn pri" data-essep="1s-2">${ic('play', 16)} Reprendre</button><button class="s-btn" data-act="open" data-type="essermons" data-id="all">Toutes les études</button></div></section>`;
     return i < 0 ? h : h.slice(0, i + 10) + c + h.slice(i + 10);
   })(renderHome);
 }
@@ -4188,15 +4206,16 @@ function esGo(k, v) {
     else if (v === 'dock') { S.route = { tab: 'etudes', stack: [] }; cible = q('#tab-etudes'); }
     else if (v === 'bible') { esS('bibvue', 'et'); home('lectures'); cible = q('.es-bibseg'); }
     else if (v === 'carte') { home(); cible = q('.es-carte'); }
+    else if (v === 'haut') { home(); cible = q('.es-haut'); }
+    else if (v === 'ligne') { home(); cible = q('.es-ligne'); }
     else if (v === 'periodes') { S.route = { tab: 'periods', stack: [] }; cible = q('.ptile[data-type="essermons"]'); }
     else if (v === 'reprendre') { home(); cible = q('.es-repc'); }
     else if (v === 'entete') { home(); cible = q('.es-book'); }
-    else if (v === 'evjour') { home('lectures'); cible = q('.es-evj'); }
-    else if (v === 'evchap') { S.route = { tab: 'home', stack: [{ type: 'ev', id: 'jn' in EVANG ? 'jn' : Object.keys(EVANG).pop() }] }; cible = q('.es-evc'); }
     else if (v === 'pretre') { S.route = { tab: 'home', stack: [{ type: 'chanter', id: esPretre() }] }; cible = q('.es-prt'); }
   }
   else if (k === 'fil') { home('liturgie'); cible = q('.vfil, .fil'); }
   else if (k === 'gr') { home(); cible = q('#screen .gear'); }
+  else if (k === 'scoul') { const sp = esG('serm', 'defile'); if (sp === 'periodes') { S.route = { tab: 'periods', stack: [] }; cible = q('.ptile[data-type="essermons"]'); } else { home('sermons'); S.route = { tab: 'home', stack: [{ type: 'essermons', id: 'all' }] }; cible = q('#screen .season'); } }
   else if (k === 'topbar') { home(); cible = q('.useg'); }
   else if (k === 'dock') { home(); cible = q('#dock .tabcap'); }
   else home();
@@ -4293,16 +4312,16 @@ render = (o => function (k) { o(k); const g = ES_GRS[esG('gr', 'actuelle')] || E
 render();
 
 /* ---------- 20/11 (2) : six autres places pour Enseignements ---------- */
-const ES_TUILE = `<button class="ptile" data-act="open" data-type="essermons" data-id="all" style="--c1:#7a5a3a;--c2:#1f140a;--ink:#f6ecd9"><span class="pt-glyph">Ⲅ</span><span class="pt-word">Ⲅⲣⲁⲫⲏ</span><span><span class="pt-name">Enseignements</span><span class="pt-date">Études bibliques · 2 livres</span></span></button>`;
+const esTuile = () => `<button class="ptile es-tuile" data-act="open" data-type="essermons" data-id="all" style="${esColCSS()}"><span class="pt-glyph">Ⲅ</span><span class="pt-word">Ⲅⲣⲁⲫⲏ</span><span><span class="pt-name">Enseignements</span><span class="pt-date">Études bibliques et sermons · 2 livres · 55 rencontres</span></span></button>`;
 function esPretre() { const c = chOrdre().find(([, x]) => /^(Abouna|Anba)/.test(x.name)); return c ? c[0] : chOrdre()[0][0]; }
 if (ES_SP === 'periodes') {
-  renderPeriods = (o => () => { const h = o(), i = h.indexOf('</div>', h.indexOf('<div class="pgrid">')); return i < 0 ? h : h.slice(0, i) + ES_TUILE + h.slice(i); })(renderPeriods);
-  renderResults = (o => q => { o(q); if (String(q || '').trim()) return; const g = document.querySelector('#screen .pgrid'); if (g && !g.querySelector('[data-type="essermons"]')) g.insertAdjacentHTML('beforeend', ES_TUILE); })(renderResults);
+  renderPeriods = (o => () => { const h = o(), i = h.indexOf('</div>', h.indexOf('<div class="pgrid">')); return i < 0 ? h : h.slice(0, i) + esTuile() + h.slice(i); })(renderPeriods);
+  renderResults = (o => q => { o(q); if (String(q || '').trim()) return; const g = document.querySelector('#screen .pgrid'); if (g && !g.querySelector('[data-type="essermons"]')) g.insertAdjacentHTML('beforeend', esTuile()); })(renderResults);
 }
 if (ES_SP === 'reprendre') renderHome = (o => () => {
   let h = o(); if (S.univ !== 'chants' || ES_ET) return h;
   const a = h.indexOf('<h2>Reprendre</h2>'), b = a < 0 ? -1 : h.indexOf('<div class="hscroll">', a); if (b < 0) return h;
-  const L = ES_LIVRES[0], c = `<button class="card es-repc" data-essep="1s-2">${esCover(L, 'md')}<i class="es-bar es-cbar"><i style="width:40%"></i></i><div class="c1 ell">1 Samuel, chapitre 3</div><div class="c2 ell">Étude biblique · reste — min</div></button>`;
+  const L = ES_LIVRES[0], c = `<button class="card es-repc" data-essep="1s-2"><span class="es-cw">${esCover(L, 'md')}<b class="es-tag">${ES_IC_SERM}Étude</b></span><i class="es-bar es-cbar"><i style="width:40%"></i></i><div class="c1 ell">1 Samuel, chapitre 3</div><div class="c2 ell es-or">Étude biblique · reprendre</div></button>`;
   return h.slice(0, b + 21) + c + h.slice(b + 21);
 })(renderHome);
 if (ES_SP === 'entete') renderHome = (o => () => {
@@ -4310,22 +4329,25 @@ if (ES_SP === 'entete') renderHome = (o => () => {
   const a = h.indexOf('<button class="gear"'), b = h.indexOf('</button></header>', a); if (a < 0 || b < 0) return h;
   return h.slice(0, a) + `<span class="es-hb"><button class="gear es-book" data-act="open" data-type="essermons" data-id="all" aria-label="Enseignements">${ES_IC_SERM}</button>` + h.slice(a, b + 9) + '</span>' + h.slice(b + 9);
 })(renderHome);
-if (ES_SP === 'evjour') renderUniv = (o => () => {
-  let h = o(); if (S.univ !== 'lectures') return h;
-  const a = h.indexOf('<div class="s-actions jour">'), b = a < 0 ? -1 : h.indexOf('</div>', a); if (b < 0) return h;
-  return h.slice(0, b + 6) + `<div class="s-actions es-evj"><button class="s-btn" data-act="open" data-type="essermons" data-id="all">${ES_IC_SERM}Études bibliques<small>2 livres</small></button></div>` + h.slice(b + 6);
-})(renderUniv);
-if (ES_SP === 'evchap' || ES_SP === 'pretre') renderDetail = (o => it => {
+if (ES_SP === 'pretre') renderDetail = (o => it => {
   let h = o(it); const a = h.search(/<(button|div) class="row/);
-  if (a < 0 || it.type !== (ES_SP === 'evchap' ? 'ev' : 'chanter')) return h;
-  if (ES_SP === 'evchap') {
-    const E = EVANG[it.id];
-    return h.slice(0, a) + `<div class="es-evc"><div class="sh"><h2>Étude de cet Évangile</h2></div><button class="es-rep" data-essep="1s-0">${esCover(ES_LIVRES[0], 'sm')}<span class="ell"><b class="es-vide">Titre à venir</b><small>Saint ${E.fr} · étude biblique</small></span>${ic('play', 20)}</button></div><div class="sh"><h2>Chapitres</h2></div>` + h.slice(a);
-  }
+  if (a < 0 || it.type !== 'chanter') return h;
   if (!/^(Abouna|Anba)/.test(CH[it.id].name)) return h;
   const sh = h.lastIndexOf('<div class="sh', a), at = sh > h.indexOf('h-actions') ? sh : a;   // avant le 1er titre de catégorie
   return h.slice(0, at) + `<div class="es-prt"><div class="sh"><h2>Ses enseignements</h2></div><div class="hscroll">${ES_LIVRES.map(L => `<button class="card" data-esliv="${L.k}">${esCover(L, 'md')}<div class="c1 ell">${L.court}</div><div class="c2 ell">Étude biblique · ${L.n} chapitres</div></button>`).join('')}</div></div><div class="sh"><h2>Ses chants</h2></div>` + h.slice(at);
 })(renderDetail);
+render();
+
+/* ---------- 20/11 (3) : deux places visibles dès l'ouverture ---------- */
+if (ES_SP === 'haut') renderHome = (o => () => {
+  let h = o(); if (S.univ !== 'chants' || ES_ET) return h;
+  const i = h.indexOf('</section>'); return i < 0 ? h : h.slice(0, i + 10) + `<div class="es-haut">${esSermAccueil()}</div>` + h.slice(i + 10);
+})(renderHome);
+if (ES_SP === 'ligne') renderHome = (o => () => {
+  let h = o(); if (S.univ !== 'chants' || ES_ET) return h;
+  const i = h.indexOf('</section>'); if (i < 0) return h;
+  return h.slice(0, i) + `<button class="s-next es-ligne" data-essep="1s-2"><span class="es-li">${ES_IC_SERM}</span><span class="n-ey">Étude biblique</span><span class="n-nm">1 Samuel 3</span><span class="n-d" style="margin-left:auto">Reprendre</span>${ic('chev', 16)}</button>` + h.slice(i);
+})(renderHome);
 render();
 
 })();
