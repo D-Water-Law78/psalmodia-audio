@@ -1133,7 +1133,7 @@ const ORDRE = {
       'evangile-sixte-vendredi-abraham', 'evangile-sixte-vendredi-mounir', 'amanat-al-less', 'amanat-al-less-batanouny', 'ethve-ti-anastasis',
       'ti-shouri', 'ethve-ti-anastasis-2', 'lamentations-jeremie-2024', 'lamentations-jeremie-3', 'lamentations-jeremie-mounir',
       'lamentations-jeremie-abraham', 'lamentations-jeremie-villejuif', 'pek-thronos', 'pek-thronos-villejuif', 'golgotha', 'golgotha-villejuif'],
-    'Samedi de la Joie': ['anok-pe-pikouji', 'louanges-samedi-joie-seminaire', 'aube-samedi-joie-seminaire', 'doxologie-aube-samedi-joie-seminaire']
+    'Samedi de la Joie': ['anok-pe-pikouji', 'louanges-samedi-joie-seminaire', 'louanges-samedi-joie-seminaire-deepgram', 'aube-samedi-joie-seminaire', 'doxologie-aube-samedi-joie-seminaire']
   },
   resurrection: ['psali-watos-resurrection-philopater', 'fraction-pere-resurrection-philopater', 'fraction-resurrection-philopater',
     'fraction-resurrection-mina-abood', 'psaume-150-resurrection-ayad', 'onemnai-ayad', 'ya-kol-al-soufouf', 'ya-kol-al-soufouf-seminaire'],
@@ -1333,6 +1333,7 @@ const TRACKS = [
   {id:'doxologie-aube-samedi-joie-seminaire',dur:525,ti:"Lumière véritable",cop:'Ⲡⲓⲟⲩⲱⲓⲛⲓ ⲛ̀ⲧⲁⲫ̀ⲙⲏⲓ',note:"Doxologie de l’aube, en arabe",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:robeir-samir/zoksologiat-baker-arabic-sabt-el-fara7'},
   {id:'aube-samedi-joie-seminaire',dur:1252,ti:"Psalie et théotokie du samedi",cop:'Ⲁϥϯ ⲙ̀ⲡ̀ⲟⲩⲛⲟϥ ⲛ̀ⲛⲉⲛⲯⲩⲭⲏ',note:"Aube du Samedi de la Joie, en arabe · la psalie propre du jour (5:22-9:36) est sans paroles",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:christian-library/dfuu6dqlzv6u'},
   {id:'louanges-samedi-joie-seminaire',dur:2240,ti:"3e Hos et Aripsalin",cop:'Ⲕⲥ̀ⲙⲁⲣⲱⲟⲩⲧ Ⲡ̀ⲟ̅ⲥ̅ Ⲫϯ ⲛ̀ⲧⲉ ⲛⲉⲛⲓⲟϯ',note:"Louanges du Samedi de la Joie, en copte et en arabe · l’air long d’Aripsalin (10:20-23:45) et Ⲧⲉⲛⲉⲛ (29:40-fin) sont sans paroles",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:christian-library/el-tasabe7'},
+  {id:'louanges-samedi-joie-seminaire-deepgram',aud:'louanges-samedi-joie-seminaire',dur:2240,ti:"3e Hos et Aripsalin · Deepgram",cop:'Ⲕⲥ̀ⲙⲁⲣⲱⲟⲩⲧ Ⲡ̀ⲟ̅ⲥ̅ Ⲫϯ ⲛ̀ⲧⲉ ⲛⲉⲛⲓⲟϯ',note:"Test : mêmes paroles, calées par Deepgram au lieu de Whisper · à comparer avec l’original",p:PS,sec:'Samedi de la Joie',ch:'seminaire',yt:'sc:christian-library/el-tasabe7'},
   {id:'lamentations-jeremie-abraham',dur:620,ti:'Lamentations de Jérémie, chapitre 3',cop:'',note:'En français et en arabe · 12e heure du Vendredi saint',p:PS,sec:'Vendredi saint',ch:'abraham',ch2:'anbamarc',yt:'sc:merael_2006/lamentations-de-jeremie-arabe'},
   {id:'pihmot-gar-long',dur:319,ti:"La grâce de Dieu le Père",cop:'Ⲡⲓϩ̀ⲙⲟⲧ ⲅⲁⲣ',note:"Air long, après l’Épître de saint Paul",p:'annuel',of:'liturgie',col:'messe',m:'parole',ch:null,yt:'sc:merael_2006/h-long'},
   {id:'psali-adam-nayrouz-philopater',dur:517,ti:"Je me prosterne vers Toi",cop:'Ϯⲛⲁⲟⲩⲱϣⲧ ⲙ̀ⲙⲟⲕ',note:"Psalie Adam du Nayrouz",p:'nayrouz',of:'tasbeha',ch:'philopater',yt:'sc:sotem-efnoti/7z7hhptfhvmd'},
@@ -1626,7 +1627,8 @@ function addTrack(t) {
   if (saved && saved.length === t.L.v.length) {
     t.L.v.forEach((v, i) => { v.e = null; if (v.w && Array.isArray(saved[i])) v.w.forEach((w, k) => { w.t = saved[i][k][0]; w.lt = saved[i][k][1]; }); else if (!v.w) { if (saved[i] && typeof saved[i] === 'object') { if (saved[i].wt && saved[i].wt.length === unitsOf(v).length) { v.t = saved[i].t; v.wt = saved[i].wt; } } else v.t = saved[i]; } });
   }
-  if (AUDIO[t.id]) { t.remote = AUDIO_BASE + encodeURIComponent(t.id) + '.m4a'; t.size = AUDIO[t.id]; }
+  const aid = t.aud || t.id;   // aud : chant qui réutilise l'audio d'un autre (version de test)
+  if (AUDIO[aid]) { t.remote = AUDIO_BASE + encodeURIComponent(aid) + '.m4a'; t.size = AUDIO[aid]; }
   if (t.remote) t.remote = audioCopie(t.remote);
   TR[t.id] = t;
 }
