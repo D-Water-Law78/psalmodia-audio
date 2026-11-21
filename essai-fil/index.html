@@ -1672,7 +1672,7 @@ const S = {
   fav: new Set(store.get('fav', [])), pl: store.get('playlists', []), recent: store.get('recent', []), results: []
 };
 if (store.get('cfgv', 1) < 2) { S.cfg.holdPill = true; store.set('cfg', S.cfg); store.set('cfgv', 2); }
-const APP_VERSION = 'page d’essai · 21.11 Mixte'; // remplacé par tools/build.sh
+const APP_VERSION = 'page d’essai · 21.11 Chantres'; // remplacé par tools/build.sh
 const RATES = [1, 0.75, 0.5, 1.25];
 const LSIZES = [25, 30, 35];
 const TRSIZES = [17, 21, 25];   // traduction française sous les paroles : Petit (comme avant), Moyen, Grand
@@ -4360,6 +4360,149 @@ if (ES_SP === 'ligne') renderHome = (o => () => {
   const i = h.indexOf('</section>'); if (i < 0) return h;
   return h.slice(0, i) + `<button class="s-next es-ligne" data-essep="1s-2"><span class="es-li">${ES_IC_SERM}</span><span class="n-ey">Étude biblique</span><span class="n-nm">1 Samuel 3</span><span class="n-d" style="margin-left:auto">Reprendre</span>${ic('chev', 16)}</button>` + h.slice(i);
 })(renderHome);
+render();
+
+/* ---------- 21/11 : un même chant enregistré par plusieurs chantres (17) ----------
+   Les versions d'un chant = même titre français dans la même collection (hors Psaumes, Évangiles, Test).
+   Actuel : une ligne par chantre. Les trois autres : une seule ligne, qui joue le chantre retenu
+   (ton dernier choix, sinon un chantre favori, sinon le plus écouté, sinon le premier).
+   La messe compte aussi (litOf) : l'introduction à la fraction de saint Basile n'est pas celle de saint Grégoire. */
+const esVers = () => esG('vers', 'bulles');
+const ES_VG = {};
+(() => { const by = {}; sortTracks(TRACKS.filter(t => !t.user && !['psaumes', 'lectures', 'test'].includes(t.col) && momentOf(t) !== 'entiere')).forEach(t => { const k = (t.col || '') + '|' + litOf(t) + '|' + t.ti.trim().toLowerCase(); (by[k] = by[k] || []).push(t.id); }); Object.values(by).forEach(L => { if (L.length > 1) L.forEach(id => { ES_VG[id] = L; }); }); })();
+const esVPrefs = () => { try { return JSON.parse(localStorage.getItem('es:vpref') || '{}'); } catch (e) { return {}; } };
+function esVPrefSet(id) { const L = ES_VG[id]; if (!L) return; const p = esVPrefs(); p[L[0]] = id; try { localStorage.setItem('es:vpref', JSON.stringify(p)); } catch (e) {} }
+const esChs = id => { const t = TR[id]; return [t.ch, t.ch2, t.ch3].filter(k => CH[k]); };
+function esRep(L) {   // la version qu'on joue quand on touche la ligne
+  if (esG('vprem', 'choix') === 'premier') return L[0];
+  const p = esVPrefs()[(ES_VG[L[0]] || L)[0]]; if (p && L.includes(p)) return p;
+  const fav = chFav(), f = L.find(id => esChs(id).some(k => fav.includes(k))); if (f) return f;
+  const n = {}; store.get('ecoutes', []).forEach(e => { n[e.id] = (n[e.id] || 0) + 1; });
+  const b = L.slice().sort((a, c) => (n[c] || 0) - (n[a] || 0))[0];
+  return n[b] ? b : L[0];
+}
+const esVOrd = L => { const r = esRep(L); return [r, ...L.filter(x => x !== r)]; };   // le chantre retenu d'abord
+const ES_VK = ['period', 'office', 'col', 'all', 'univ', 'litv'];
+const esVOk = list => esVers() !== 'separe' && ES_VK.includes(String(list || '').split(':')[0]) && !(String(list).startsWith('litv') && litQF);
+const esLidsRaw = listIds;
+listIds = (o => key => {
+  const ids = o(key); if (!esVOk(key)) return ids;
+  const has = new Set(ids), seen = new Set(), out = [];
+  ids.forEach(id => {
+    const L = ES_VG[id]; if (!L) { out.push(id); return; }
+    if (seen.has(L[0])) return; seen.add(L[0]);
+    out.push(esRep(L.filter(x => has.has(x))));
+  });
+  return out;
+})(listIds);
+// « Prêtre célébrant de cette étape » : compter aussi les chantres des versions regroupées
+litQui = (o => ids => { if (!esVOk('litv:' + litStep)) return o(ids); const raw = new Set(esLidsRaw('litv:' + litStep)); return o([...new Set(ids.flatMap(id => ES_VG[id] ? ES_VG[id].filter(x => raw.has(x)) : [id]))]); })(litQui);
+const esAv = id => { const k = esChs(id)[0], c = CH[k]; return !c ? '<i class="chi">♪</i>' : c.img ? `<img src="${c.img}" alt="">` : `<i class="chi">${esc(c.name.replace(/^(Abouna|Anba|Moallem|Mo3allem)\s+/, '').slice(0, 1))}</i>`; };
+const esVNom = id => esc(chName(TR[id]) || 'Sans chantre');
+const esVDet = (id, L) => {   // ce qui distingue deux versions d'un même chantre
+  const t = TR[id], meme = L.filter(x => chName(TR[x]) === chName(t)).length > 1;
+  return [meme && t.note ? esc(t.note) : '', t.dur ? fmt(t.dur) : ''].filter(Boolean).join(' · ');
+};
+const esVMot = L => new Set(L.map(x => chName(TR[x]))).size === L.length ? 'chantres' : 'versions';
+let ES_VOPEN = new Set();
+rowHTML = (o => (tr, list, i, numbered, grip) => {
+  let h = o(tr, list, i, numbered, grip);
+  const L = ES_VG[tr.id], m = esVers(); if (!L || !esVOk(list) || grip) return h;
+  h = h.replace('<div class="row', '<div class="row es-vgrp');
+  if (m === 'bulles') {
+    const b = `<button class="es-vb" data-esv="${tr.id}" data-list="${list}" data-i="${i}" aria-label="${L.length} ${esVMot(L)} : choisir"><span class="es-vs">${esVOrd(L).slice(0, 3).map(esAv).join('')}</span><b>${L.length}</b></button>`;
+    return h.replace('<span class="dur">', b + '<span class="dur">');
+  }
+  if (m === 'deplier') {
+    const op = ES_VOPEN.has(L[0]);
+    const b = `<button class="es-vt${op ? ' on' : ''}" data-esvt="${L[0]}" aria-expanded="${op}">${L.length} ${esVMot(L)}${ic('chev', 13)}</button>`;
+    h = h.replace('<span class="dur">', b + '<span class="dur">');
+    if (!op) return h;
+    return h + `<div class="es-vsubs">${esVOrd(L).slice(1).map(id => `<div class="row es-vsub" data-esvp="${id}" data-list="${list}" data-i="${i}" role="button" tabindex="0"><span class="es-vav">${esAv(id)}</span><div class="meta"><div class="t1 ell">${esVNom(id)}</div><div class="t2 ell">${esVDet(id, L) || 'Autre version'}</div></div>${ic('play', 16)}</div>`).join('')}</div>`;
+  }
+  // lecteur : la ligne dit seulement combien de chantres ; on choisit dans le lecteur
+  return h.replace('</div><div class="t2 ell">', `<span class="es-vn">${ic('person', 11)}${L.length}</span></div><div class="t2 ell">`);
+})(rowHTML);
+function esVSheet(id, list, i) {
+  const L = ES_VG[id], cur = esRep(L), tr = TR[id];
+  return `<div class="sh-head">${trArt(tr, 'sm')}<div class="tt"><div class="tt1 ell">${titleTop(tr)}</div><div class="tt2 ell">${L.length} ${esVMot(L)} · choisis qui chante</div></div></div>
+  <div class="es-vlist">${esVOrd(L).map(x => `<button class="es-vi${x === cur ? ' on' : ''}" data-esvp="${x}"${list != null ? ` data-list="${list}" data-i="${i}"` : ''}><span class="es-vav lg">${esAv(x)}</span><span class="es-vit"><b class="ell">${esVNom(x)}</b><small class="ell">${esVDet(x, L) || esc(TR[x].note || '')}</small></span>${x === cur ? ic('check', 18) : ic('play', 16)}</button>`).join('')}</div>
+  <p class="es-vnote">Ton choix est retenu : la ligne jouera ensuite ce chantre.</p>`;
+}
+function esPlayV(id, list, i) {
+  esVPrefSet(id);
+  if (list != null) { const ids = listIds(list); S.queue = ids.slice(); S.qi = Math.max(0, +i || 0); S.queue[S.qi] = id; S.shuffle = false; S.qFrom = listName(list); S.qKey = list; }
+  else if (S.queue && S.queue.length && S.qi >= 0) S.queue[S.qi] = id;
+  load(id); play(); render(true);
+}
+document.addEventListener('click', e => {
+  const v = e.target.closest('[data-esv]'), t = e.target.closest('[data-esvt]'), p = e.target.closest('[data-esvp]'), pv = e.target.closest('[data-esvpl]');
+  if (!v && !t && !p && !pv) return;
+  e.preventDefault(); e.stopPropagation();
+  if (v) { openSheet(esVSheet(v.dataset.esv, v.dataset.list, v.dataset.i)); return; }
+  if (t) { const g = t.dataset.esvt; ES_VOPEN.has(g) ? ES_VOPEN.delete(g) : ES_VOPEN.add(g); render(true); return; }
+  if (pv) { if (pv.dataset.esvpl !== S.cur) esPlayV(pv.dataset.esvpl); return; }
+  closeSheet(); esPlayV(p.dataset.esvp, p.dataset.list, p.dataset.i);
+}, true);
+// option « Dans le lecteur » : sous le titre, la rangée des chantres de ce chant ; toucher = changer de chantre
+renderPlayer = (o => () => {
+  o();
+  let bar = $('#esPV'); if (!bar) { bar = document.createElement('div'); bar.id = 'esPV'; $('#pCtl').insertBefore(bar, $('#scrub')); }
+  const tr = curTrack(), L = tr && ES_VG[tr.id];
+  bar.hidden = !(L && esVers() === 'lecteur');
+  bar.innerHTML = bar.hidden ? '' : `<div class="es-pvh">Chanté aussi par</div><div class="es-pvr">${L.map(x => `<button class="${x === tr.id ? 'on' : ''}" data-esvpl="${x}"><span class="es-vav">${esAv(x)}</span><span class="ell">${esc((chName(TR[x]) || 'Sans chantre').replace(/^(Abouna|Anba|Moallem|Mo3allem)\s+/, ''))}</span></button>`).join('')}</div>`;
+})(renderPlayer);
+document.head.insertAdjacentHTML('beforeend', `<style>
+.es-vb{display:flex;align-items:center;gap:4px;padding:3px 7px 3px 3px;border-radius:99px;background:var(--raised);color:var(--ivory);flex:none}
+.es-vb b{font-size:12px;font-weight:700;min-width:8px}
+.es-vs{display:inline-flex}
+.es-vs>*,.es-vav>*{width:24px;height:24px;border-radius:50%;object-fit:cover;display:block;flex:none;font-style:normal;font-size:10px;font-weight:700;text-align:center;line-height:24px;background:var(--glass);box-shadow:0 0 0 1.5px var(--night)}
+.es-vs>*+*{margin-left:-9px}
+.es-vs>:nth-child(1){z-index:3}.es-vs>:nth-child(2){z-index:2}
+.es-vt{display:flex;align-items:center;gap:3px;padding:5px 8px 5px 10px;border-radius:99px;background:var(--raised);color:var(--ivory);font-size:12px;font-weight:600;flex:none;white-space:nowrap}
+.es-vt .ic{transform:rotate(90deg);transition:transform .2s}
+.es-vt.on{background:var(--gold);color:var(--on-gold)}
+.es-vt.on .ic{transform:rotate(-90deg)}
+.es-vsubs{margin:0 0 4px 22px;border-left:2px solid var(--gold);padding-left:10px}
+.es-vsub{padding:6px 0}
+.es-vsub .t1{font-size:15px}
+.es-vsub>.ic{color:var(--gold);flex:none}
+.es-vav{display:inline-flex;flex:none}
+.es-vav.lg>*{width:44px;height:44px;line-height:44px;font-size:16px}
+.es-vn{display:inline-flex;align-items:center;gap:2px;margin-left:7px;padding:1px 6px;border-radius:99px;background:var(--raised);font-size:11px;font-weight:700;vertical-align:2px;color:var(--faint)}
+.es-vlist{display:flex;flex-direction:column;gap:6px;padding:4px 0}
+.es-vi{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:12px;background:var(--raised);color:var(--ivory);text-align:left;width:100%}
+.es-vi.on{box-shadow:inset 0 0 0 2px var(--gold)}
+.es-vi>.ic{margin-left:auto;flex:none;color:var(--gold)}
+.es-vit{display:flex;flex-direction:column;min-width:0}
+.es-vit b{font-size:16px}.es-vit small{font-size:13px;color:var(--faint)}
+.es-vnote{font-size:13px;color:var(--faint);margin:10px 2px 18px}
+#esPV{margin:0 0 10px}
+.es-pvh{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
+.es-pvr{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.es-pvr::-webkit-scrollbar{display:none}
+.es-pvr button{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;border-radius:99px;background:rgba(255,255,255,.14);color:#fff;font-size:13px;font-weight:600;flex:none;max-width:170px}
+.es-pvr button.on{background:rgba(255,255,255,.92);color:#1a1a1a}
+.es-pvr .es-vav>*{box-shadow:none}
+</style>`);
+ES_CHOIX.unshift(['17', 'Un chant, plusieurs chantres', 'vers', 'bulles', [['separe', 'Actuelle (une ligne par chantre)'], ['bulles', 'Bulles des chantres'], ['deplier', 'Ligne qui se déplie'], ['lecteur', 'Choix dans le lecteur']],
+  'Quand un chant est enregistré par plusieurs chantres (ex. l’Introduction à la fraction : 7 versions), il n’a plus qu’une ligne. Bulles : les photos des chantres au bout de la ligne ; on les touche pour choisir qui chante. Ligne qui se déplie : « 3 chantres » au bout de la ligne ouvre les autres versions juste en dessous. Choix dans le lecteur : la ligne joue un chantre, et dans le lecteur une rangée « Chanté aussi par » permet de passer à un autre. La page d’un chantre garde tous ses chants.'],
+  ['17 bis', 'Quel chantre joue d’abord', 'vprem', 'choix', [['choix', 'Mon dernier choix'], ['premier', 'Toujours le même ordre']],
+  'Mon dernier choix : le chantre choisi la dernière fois pour ce chant ; sinon un chantre favori (cœur), sinon celui que tu écoutes le plus. Toujours le même ordre : le premier par ordre alphabétique, comme aujourd’hui.']);
+esGo = (o => (k, v) => {
+  if (k !== 'vers' && k !== 'vprem') return o(k, v);
+  closeSheet(); S.univ = 'liturgie'; try { store.set('univ', S.univ); } catch (_) {}
+  S.route = { tab: 'home', stack: [{ type: 'col', id: 'messe' }] };
+  if ((v || esVers()) === 'deplier') { const g = ES_VG['introduction-fraction-antonios']; if (g) ES_VOPEN.add(g[0]); }
+  render();
+  setTimeout(() => {
+    const el = document.querySelector('#screen .es-vgrp') || document.querySelector('#screen .row');
+    if (!el) return;
+    const r = [...document.querySelectorAll('#screen .es-vgrp')].find(x => /fraction/i.test(x.textContent)) || el;
+    scrollTo({ top: Math.max(0, r.getBoundingClientRect().top + scrollY - 200), behavior: 'smooth' });
+    r.classList.remove('es-flash'); void r.offsetWidth; r.classList.add('es-flash'); setTimeout(() => r.classList.remove('es-flash'), 2300);
+  }, 120);
+})(esGo);
 render();
 
 })();
