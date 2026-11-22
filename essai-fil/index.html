@@ -2382,6 +2382,15 @@ A.addEventListener('error', () => {   // 19/11 : la copie audio ne répond pas :
 A.addEventListener('playing', () => { audioEchecs = 0; });
 const okDur = (tr, d) => isFinite(d) && d > 0 && (!tr.yt || !tr.dur || Math.abs(d - tr.dur) < tr.dur * 0.2);
 A.addEventListener('loadedmetadata', () => { const tr = curTrack(); if (tr && au(tr) && okDur(tr, A.duration)) tr.dur = A.duration; });
+/* 22/11 : écran verrouillé ou appli en fond, l'image ne tourne plus : le chrono et les paroles restaient au moment du
+   verrouillage pendant que le son avançait. Le temps de l'écran suit maintenant le vrai son en fond, à la pause et au retour. */
+function suivreSon() {
+  if (!au(curTrack()) || A.readyState < 1 || A.seeking || !isFinite(A.currentTime)) return;
+  if (A.currentTime < 0.5 && S.t > 2) return;   // son revenu à 0:00 sans qu'on l'ait demandé (rechargé par iOS)
+  if (Math.abs(A.currentTime - S.t) > 0.05) { S.t = A.currentTime; clk.ct = -1; if (LY) LY.uKey = null; }
+}
+A.addEventListener('pause', () => suivreSon());
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') suivreSon(); });
 let simLast = performance.now();
 
 /* ---------- Comptage des écoutes (statistiques du propriétaire, dans son bilan privé) ----------
@@ -2422,7 +2431,7 @@ const EC = {
     });
   }
 };
-A.addEventListener('timeupdate', () => { EC.avance(A.currentTime, A.duration); verifPassage(A.currentTime); });
+A.addEventListener('timeupdate', () => { EC.avance(A.currentTime, A.duration); verifPassage(A.currentTime); if (document.hidden || A.paused) suivreSon(); });
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && EC.cur) store.set('ecEnCours', EC.cur); else EC.envoyer(); });
 // L'appli peut rester ouverte plusieurs jours sur l'iPhone : la date copte et la période sont calculées au lancement,
 // donc on recharge au retour si le jour a changé (pas pendant une écoute).
@@ -2449,7 +2458,7 @@ function play() {
   if (au(tr)) { A.playbackRate = S.rate; A.play().catch(() => { S.playing = false; updateUI(); }); }
   updateUI(); pokeControls();
 }
-function pause() { S.playing = false; if (au(curTrack())) A.pause(); updateUI(); pokeControls(); }
+function pause() { S.playing = false; if (au(curTrack())) { A.pause(); suivreSon(); } updateUI(); pokeControls(); }
 function toggle() { S.playing ? pause() : play(); }
 function seek(t) {
   const tr = curTrack(); if (!tr) return;
