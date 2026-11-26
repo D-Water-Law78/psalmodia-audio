@@ -394,7 +394,7 @@ h1{font-family:var(--f-display);font-weight:400;font-size:34px;letter-spacing:.0
 .row.is-cur .t1{color:var(--gold)}
 .num{width:24px;text-align:center;color:var(--muted);font-variant-numeric:tabular-nums;flex:none;display:grid;place-items:center}
 .dur{color:var(--faint);font-size:13px;font-variant-numeric:tabular-nums}
-.dur.durl{display:flex;flex-direction:column;align-items:flex-end;gap:0;line-height:1.12}.dur.durl small{font-size:11px;line-height:1.1;font-weight:600;color:var(--gold);font-variant-numeric:normal;white-space:nowrap}   /* 26/11 : langue(s) chantée(s) sous la durée */
+.dur.durl{display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.12}.dur.durl small{font-size:11px;line-height:1.1;font-weight:600;color:var(--gold);font-variant-numeric:normal;white-space:nowrap}   /* 26/11 : langue(s) chantée(s) sous la durée */
 .nosnd{font-size:10px;letter-spacing:.04em;color:var(--faint);border:1px solid var(--line);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:1px}
 .fav{width:36px;height:36px;display:grid;place-items:center;color:var(--faint);flex:none}
 .fav.on{color:var(--gold)}
@@ -547,7 +547,7 @@ body.am-col:not(.am-sea) .am-lp{opacity:1;pointer-events:auto}
 #player[data-view="find"] #pCtl{display:none}
 #pTop .art{width:58px;height:58px;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
 /* 26/11 (variante I) : photo ronde du chantre, lettrine du chant dans le coin, points des autres versions sous son nom */
-.pv-w{position:relative;flex:none;display:block;touch-action:pan-y}
+.pv-w{position:relative;flex:none;display:block;touch-action:pan-y;cursor:pointer;-webkit-tap-highlight-color:transparent}
 #pTop .pv-ph{border-radius:50%}
 .pv-lt{position:absolute;right:-4px;bottom:-4px;display:block;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,.3);line-height:0}
 #pTop .pv-lt .art{width:25px;height:25px;border-radius:50%;box-shadow:none}
@@ -1733,7 +1733,7 @@ const trArt = (tr, cls) => evImg(tr) ? `<div class="art ${cls}" style="backgroun
 const eq = () => '<span class="eq"><i></i><i></i><i></i></span>';
 // 26/11 : langues d'une version, lues dans ses paroles calées (copte = lignes à mots coptes, arabe, français chanté), en part du temps chanté ;
 // moins de 10 % = répons (Kyrie, Amen) : pas affiché. Grec : d'après la description. Sans paroles : la description.
-const LANGN = { cop: 'Copte', ar: 'AR', fr: 'FR', gr: 'GR', en: 'EN' }, LANGC = {};   // demande du user (26/11) : le copte en toutes lettres, les autres en abrégé
+const LANGN = { cop: 'COPTE', ar: 'AR', fr: 'FR', gr: 'GR', en: 'EN' }, LANGC = {};   // demande du user (26/11) : le copte en toutes lettres, les autres en abrégé
 function langsDe(tr) {
   if (LANGC[tr.id]) return LANGC[tr.id];
   const txt = ((tr.note || '') + ' ' + (tr.ti || '')).toLowerCase(), grec = /grec/.test(txt) && !/copte/.test(txt);
@@ -2781,7 +2781,7 @@ const activeL = tr => S.sync ? S.sync.L : tr && tr.L;
 const versCle = t => t && t.cop && t.m !== 'entiere' && !horsChants(t) ? canon(t.cop) + '|' + (t.col === 'messe' ? momentOf(t) + litOf(t) : '') : '';
 const versDe = tr => { const k = versCle(tr); return k ? TRACKS.filter(t => au(t) && versCle(t) === k) : []; };
 const versMots = v => v.w ? v.w.map(w => canon(w.x)) : [];
-const chRond = tr => { const c = CH[tr.ch]; if (!c || !c.img || evImg(tr)) return trArt(tr, 'sm');
+const chRond = tr => { const c = CH[tr.ch]; if (!c || !c.img || evImg(tr) || versDe(tr).length < 2) return trArt(tr, 'sm');   // une seule version : la lettrine carrée, comme avant
   return `<span class="pv-w" data-pvw="1"><div class="art sm pv-ph" style="background:url(${c.img}) center/cover no-repeat" aria-hidden="true"></div><span class="pv-lt">${trArt(tr, 'xs')}</span></span>`; };
 function versPoints(tr) {
   const vs = versDe(tr); if (vs.length < 2) return '';
@@ -2807,13 +2807,15 @@ function versChanger(id) {   // autre chantre, sur la même phrase (la ligne qui
   toast(trouve ? `${chName(b) || 'Autre version'} · même phrase` : `${chName(b) || 'Autre version'} · reprise au début`);
 }
 document.addEventListener('click', e => { const d = e.target.closest('[data-vers]'); if (!d) return; e.preventDefault(); e.stopPropagation(); versChanger(d.dataset.vers); }, true);
+const versSuivant = d => { const tr = curTrack(), vs = versDe(tr), i = vs.indexOf(tr); if (vs.length > 1 && i >= 0) versChanger(vs[(i + d + vs.length) % vs.length].id); };
+let versGlisse = 0;
+document.addEventListener('click', e => { if (!e.target.closest('[data-pvw]')) return; e.preventDefault(); e.stopPropagation(); if (Date.now() - versGlisse > 500) versSuivant(1); }, true);   // toucher la photo : la version suivante
 { let x0 = null, y0 = 0;   // glisser sur la photo : chantre suivant ou précédent
   document.addEventListener('touchstart', e => { x0 = e.target.closest('[data-pvw]') ? e.touches[0].clientX : null; y0 = e.touches[0].clientY; }, { passive: true });
   document.addEventListener('touchend', e => {
     if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
     if (Math.abs(dx) < 30 || Math.abs(dy) > Math.abs(dx)) return;
-    const tr = curTrack(), vs = versDe(tr), i = vs.indexOf(tr); if (vs.length < 2 || i < 0) return;
-    versChanger(vs[(i + (dx < 0 ? 1 : -1) + vs.length) % vs.length].id);
+    versGlisse = Date.now(); versSuivant(dx < 0 ? 1 : -1);
   }, { passive: true }); }
 function renderPlayer() {
   const tr = curTrack(); if (!tr) return;
@@ -4478,7 +4480,7 @@ rowHTML = (o => function (tr, list, i, numbered, grip) {
 })(rowHTML);
 ES_CHOIX.unshift(
   ['17', 'Langue avant de toucher', 'langue', 'droite', [['droite', 'Sous la durée (vraie appli)'], ['pastilles', 'Pastilles COP AR FR'], ['exception', 'Seulement si pas tout copte'], ['nom', 'Après le chantre'], ['points', 'Points de couleur'], ['ecritures', 'Lettre de l’écriture'], ['barre', 'Barre des langues'], ['mots', 'En toutes lettres'], ['coin', 'Sur la photo'], ['aucune', 'Rien']],
-    'Calculé tout seul d’après les paroles calées de chaque version. Sous la durée : ce qu’a la vraie appli depuis le 26/11 (Copte, Arabe… en toutes lettres). Les autres ne touchent plus à la ligne grise : le chantre reste visible. Pastilles : sur la ligne du titre, la langue des répons (Kyrie, Amen) en pâle. Lettre de l’écriture : Ⲁ copte, ع arabe, Fr français, Ω grec, à droite. Barre : un trait sous la ligne, la part de chaque langue (or copte, bleu arabe, ivoire français, violet grec). En toutes lettres : « Grec puis arabe » en couleur au début de la ligne grise. Sur la photo : une étiquette posée en bas de la vignette. Sous la durée : AR · FR sous le temps, à droite. Nouveaux (26/11) : Seulement si pas tout copte : rien sur les chants tout en copte (les plus nombreux), une pastille dès qu’il y a de l’arabe, du français ou du grec. Après le chantre : « Abraham Shenouda · copte, arabe », à la suite du nom. Points de couleur : un petit rond par langue avant la durée (or copte, bleu arabe, ivoire français, violet grec).'],
+    'Calculé tout seul d’après les paroles calées de chaque version. Sous la durée : ce qu’a la vraie appli depuis le 26/11 (COPTE en toutes lettres, AR, FR en abrégé, centrés sous la durée). Les autres ne touchent plus à la ligne grise : le chantre reste visible. Pastilles : sur la ligne du titre, la langue des répons (Kyrie, Amen) en pâle. Lettre de l’écriture : Ⲁ copte, ع arabe, Fr français, Ω grec, à droite. Barre : un trait sous la ligne, la part de chaque langue (or copte, bleu arabe, ivoire français, violet grec). En toutes lettres : « Grec puis arabe » en couleur au début de la ligne grise. Sur la photo : une étiquette posée en bas de la vignette. Sous la durée : AR · FR sous le temps, à droite. Nouveaux (26/11) : Seulement si pas tout copte : rien sur les chants tout en copte (les plus nombreux), une pastille dès qu’il y a de l’arabe, du français ou du grec. Après le chantre : « Abraham Shenouda · copte, arabe », à la suite du nom. Points de couleur : un petit rond par langue avant la durée (or copte, bleu arabe, ivoire français, violet grec).'],
   ['19', 'Onglets du bas', 'ong', 'biblio', [['biblio', 'Bibliothèque à gauche, Études à droite'], ['etudes', 'Études à gauche, Bibliothèque à droite']],
     'Accueil tout à gauche et Périodes au centre sont dans la vraie appli. Je conseille Bibliothèque à côté d’Accueil (on s’en sert souvent) et Études près de la loupe, plus loin du pouce, puisque ce n’est pas le but principal de l’appli.']
 );
